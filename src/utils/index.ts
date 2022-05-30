@@ -1,0 +1,1 @@
+export { isMobileView } from './ssrMobileDetection';

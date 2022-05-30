@@ -1,0 +1,11 @@
+@import 'nprogress/nprogress.css';
+
+#nprogress .bar{
+  z-index: 2000;
+}
+.page-wrapper {
+  margin: 0 auto;
+  padding: 0px 8px;
+  max-width: 1445px;
+  width: 100%;
+}
