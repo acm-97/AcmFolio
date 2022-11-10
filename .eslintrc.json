@@ -54,6 +54,17 @@
     "import/extensions": "off",
     "import/no-cycle": [0, { "ignoreExternal": true }],
     "import/prefer-default-export": "off",
+    "import/order": [
+      "warn",
+      {
+        "newlines-between": "always",
+        "groups": ["builtin", "external", "internal", ["index", "sibling", "parent", "object", "type"]],
+        "alphabetize": {
+          "order": "desc",
+          "caseInsensitive": true
+        }
+      }
+    ],
 
     // typescript rules
     "@typescript-eslint/no-use-before-define": [

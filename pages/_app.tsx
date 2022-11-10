@@ -1,13 +1,14 @@
-import React, { FC } from 'react';
-import '../src/styles/globals.css';
-import type { AppProps } from 'next/app';
-import { appWithTranslation } from 'next-i18next';
 import { NextComponentType } from 'next';
+import { appWithTranslation } from 'next-i18next';
 import { DefaultSeo } from 'next-seo';
+import React, { FC } from 'react';
+
 import { TopProgressBar } from '@/components';
 import { MainProvider } from '@/contexts';
-import { ChildrenProps } from '@/types';
 import { DEFAULT_SEO } from '@/settings';
+import { ChildrenProps } from '@/types';
+
+import type { AppProps } from 'next/app';
 
 type CustomAppProps = AppProps & {
   Component: NextComponentType & { Layout?: FC };
