@@ -8,7 +8,7 @@ interface SettingsContextProps {
 }
 
 export const initialSettings: ThemeSettingType = {
-  theme: THEMES.LIGHT,
+  theme: THEMES.DARK,
   responsiveFontSizes: true,
 };
 
