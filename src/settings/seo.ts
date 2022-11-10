@@ -1,12 +1,12 @@
 export const DEFAULT_SEO = {
-  title: 'Next.js Shell',
-  description: 'Cascaron para proyectos NEXT',
+  title: 'ACM',
+  description: 'Personal Portfolio',
   openGraph: {
-    title: 'Next.js Shell',
-    description: 'Cascaron para proyectos NEXT',
+    title: 'ACM',
+    description: 'Personal Portfolio',
     type: 'website',
     locale: 'en',
-    site_name: 'Next.js-Shell',
+    site_name: 'ACM',
     images: [
       {
         url: '/favicon.png',
