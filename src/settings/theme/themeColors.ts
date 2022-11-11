@@ -7,7 +7,7 @@ export const primary = {
   main: '#2499EF',
   red: '#FF6B93',
   purple: '#A798FF',
-  yellow: '#FF9777',
+  orange: '#FF9777',
 };
 export const secondary = {
   100: '#F9F9F9',
@@ -19,9 +19,6 @@ export const secondary = {
   main: '#1d2438',
   // main text
   light: '#F9F9F9',
-  red: '#FF6B93',
-  purple: '#A798FF',
-  yellow: '#FF9777',
 };
 export const error = {
   main: '#FD396D',
@@ -43,5 +40,5 @@ export const text = {
   100: error.main,
   200: success.main,
   300: secondary[300],
-  400: warning.main,
+  400: primary.orange,
 };
