@@ -42,6 +42,6 @@ export const text = {
   secondary: secondary[450],
   100: error.main,
   200: success.main,
-  300: secondary[200],
+  300: secondary[300],
   400: warning.main,
 };

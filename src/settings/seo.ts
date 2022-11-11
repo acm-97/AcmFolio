@@ -1,12 +1,12 @@
 export const DEFAULT_SEO = {
-  title: 'ACM',
+  title: 'ACMFolio',
   description: 'Personal Portfolio',
   openGraph: {
-    title: 'ACM',
+    title: 'ACMFolio',
     description: 'Personal Portfolio',
     type: 'website',
     locale: 'en',
-    site_name: 'ACM',
+    site_name: 'ACMFolio',
     images: [
       {
         url: '/favicon.png',
