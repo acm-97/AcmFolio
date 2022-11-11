@@ -148,6 +148,7 @@ export const themesOptions = {
       warning,
       success,
       info,
+      text,
       background: {
         default: '#1e2732',
         paper: '#152238',

@@ -9,6 +9,7 @@ import { MainProvider } from '@/contexts';
 import { TopProgressBar } from '@/components';
 
 import type { AppProps } from 'next/app';
+import '../src/styles/globals.css';
 
 type CustomAppProps = AppProps & {
   Component: NextComponentType & { Layout?: FC };

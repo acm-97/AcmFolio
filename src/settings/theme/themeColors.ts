@@ -4,6 +4,7 @@ export const primary = {
   300: '#7AD2FA',
   400: '#59BCF5',
   500: '#2499EF',
+  main: '#2499EF',
   red: '#FF6B93',
   purple: '#A798FF',
   yellow: '#FF9777',
@@ -35,8 +36,12 @@ export const warning = {
 export const info = {
   main: '#A798FF',
 };
+
 export const text = {
-  primary: primary.yellow,
-  secondary: primary.purple,
-  description: '#23395d',
+  primary: primary.main,
+  secondary: secondary[450],
+  100: error.main,
+  200: success.main,
+  300: secondary[200],
+  400: warning.main,
 };

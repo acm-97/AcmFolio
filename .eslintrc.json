@@ -38,6 +38,9 @@
     "no-param-reassign": "off",
     "no-shadow": "off",
     "no-nested-ternary": "off",
+    "space-before-blocks": "off",
+    "@typescript-eslint/space-before-blocks": "warn",
+    "newline-before-return":"warn",
     
     // react rules
     "react/function-component-definition": "off",
