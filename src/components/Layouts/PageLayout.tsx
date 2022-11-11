@@ -11,7 +11,7 @@ const PageLayout = ({ children }: MainLayoutRootProps) => (
         <meta name="description" content="Personal Portafolio" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box mb={8}>{children}</Box>
+      <Box>{children}</Box>
     </PageWidthContainer>
   </MainLayout>
 );

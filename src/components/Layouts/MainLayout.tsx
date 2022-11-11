@@ -5,8 +5,13 @@ import { Box } from '@mui/material';
 const LayoutRoot = styled('main')(() => ({
   display: 'flex',
   flex: '1 1 auto',
+  width: '100%',
   maxWidth: '100%',
-  paddingTop: 65,
+  maxHeight: '100vh',
+  minHeight: '100vh',
+  justifyContent: 'center',
+  alignItems: 'center',
+  // paddingTop: 65,
 }));
 
 export type MainLayoutRootProps = {
