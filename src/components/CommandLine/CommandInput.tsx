@@ -5,7 +5,7 @@ const Input = styled('input')(({ theme }: { theme: Theme }) => ({
   flex: 1,
   background: 'transparent',
   border: 'none',
-  color: theme.palette.text[200],
+  color: theme.palette.text[400],
   caretColor: theme.palette.text[100],
   ':focus': {
     outline: 'none',
@@ -14,14 +14,16 @@ const Input = styled('input')(({ theme }: { theme: Theme }) => ({
 
 type CommandInputTypes = {
   inputCommandRef: any;
-  addCommandLines: (x: any[]) => void;
+  command?: string;
+  addCommandLines: (x: any) => void;
 };
 
 const CommandInput = ({
   inputCommandRef,
+  command: commandValue,
   addCommandLines,
 }: CommandInputTypes) => {
-  const [command, setCommand] = useState('');
+  const [command, setCommand] = useState(commandValue || '');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.target.value);
@@ -29,7 +31,8 @@ const CommandInput = ({
 
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      addCommandLines((prev: any[]) => [...prev, command]);
+      addCommandLines((prev: any[]) => [...prev, { command, value: '' }]);
+      setCommand('');
     }
   };
 
@@ -39,6 +42,7 @@ const CommandInput = ({
       id="command-input"
       type="text"
       spellCheck="false"
+      autoComplete="off"
       value={command}
       onChange={onChange}
       onKeyUp={onEnter}

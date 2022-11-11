@@ -7,7 +7,7 @@ const PageLayout = ({ children }: MainLayoutRootProps) => (
   <MainLayout>
     <PageWidthContainer>
       <Head>
-        <title>ACM</title>
+        <title>ACMFolio</title>
         <meta name="description" content="Personal Portafolio" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
