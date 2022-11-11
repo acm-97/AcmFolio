@@ -1,12 +1,12 @@
-import { NextComponentType } from 'next';
-import { appWithTranslation } from 'next-i18next';
-import { DefaultSeo } from 'next-seo';
 import React, { FC } from 'react';
+import { DefaultSeo } from 'next-seo';
+import { appWithTranslation } from 'next-i18next';
+import { NextComponentType } from 'next';
 
-import { TopProgressBar } from '@/components';
-import { MainProvider } from '@/contexts';
-import { DEFAULT_SEO } from '@/settings';
 import { ChildrenProps } from '@/types';
+import { DEFAULT_SEO } from '@/settings';
+import { MainProvider } from '@/contexts';
+import { TopProgressBar } from '@/components';
 
 import type { AppProps } from 'next/app';
 
