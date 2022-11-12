@@ -19,6 +19,7 @@ const DefaultLayout = ({ children }: ChildrenProps) => <>{children}</>;
 
 function MyApp({ Component, pageProps }: CustomAppProps) {
   const Layout = Component?.Layout || DefaultLayout;
+
   return (
     <>
       <DefaultSeo {...DEFAULT_SEO} />
