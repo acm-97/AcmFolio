@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 import { Paper, PaperProps } from '@mui/material';
 
@@ -54,11 +54,18 @@ type TerminalLayaoutTypes = ChildrenProps & {
 const TerminalLayaout = ({
   children,
   inputCommandFocus,
-}: TerminalLayaoutTypes) => (
-  <Wrapper>
-    <TopBar />
-    <Container onClick={inputCommandFocus}>{children}</Container>
-  </Wrapper>
-);
+}: TerminalLayaoutTypes) => {
+  useEffect(
+    () => inputCommandFocus && inputCommandFocus(),
+    [inputCommandFocus]
+  );
+
+  return (
+    <Wrapper>
+      <TopBar />
+      <Container onClick={inputCommandFocus}>{children}</Container>
+    </Wrapper>
+  );
+};
 
 export default memo(TerminalLayaout);
