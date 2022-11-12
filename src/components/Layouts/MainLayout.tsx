@@ -1,14 +1,17 @@
 import React, { ReactNode } from 'react';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
-// import { useToggle } from '@/hooks';
-// import { Navbar, SideBar } from '@/components';
 
 const LayoutRoot = styled('main')(() => ({
   display: 'flex',
   flex: '1 1 auto',
+  width: '100%',
   maxWidth: '100%',
-  paddingTop: 65,
+  maxHeight: '100vh',
+  minHeight: '100vh',
+  justifyContent: 'center',
+  alignItems: 'center',
+  // paddingTop: 65,
 }));
 
 export type MainLayoutRootProps = {
@@ -17,7 +20,6 @@ export type MainLayoutRootProps = {
 
 export const MainLayoutRoot = (props: MainLayoutRootProps) => {
   const { children } = props;
-  // const { isOpen, onOpen, onClose } = useToggle(false);
 
   return (
     <>
@@ -33,8 +35,6 @@ export const MainLayoutRoot = (props: MainLayoutRootProps) => {
           {children}
         </Box>
       </LayoutRoot>
-      {/* <Navbar onOpenSidebar={onOpen} /> */}
-      {/* <SideBar open={isOpen} onClose={onClose} /> */}
     </>
   );
 };

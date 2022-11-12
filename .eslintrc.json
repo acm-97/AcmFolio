@@ -38,6 +38,9 @@
     "no-param-reassign": "off",
     "no-shadow": "off",
     "no-nested-ternary": "off",
+    "space-before-blocks": "off",
+    "@typescript-eslint/space-before-blocks": "warn",
+    "newline-before-return":"warn",
     
     // react rules
     "react/function-component-definition": "off",
@@ -54,6 +57,17 @@
     "import/extensions": "off",
     "import/no-cycle": [0, { "ignoreExternal": true }],
     "import/prefer-default-export": "off",
+    "import/order": [
+      "warn",
+      {
+        "newlines-between": "always",
+        "groups": ["builtin", "external", "internal", ["index", "sibling", "parent", "object", "type"]],
+        "alphabetize": {
+          "order": "desc",
+          "caseInsensitive": true
+        }
+      }
+    ],
 
     // typescript rules
     "@typescript-eslint/no-use-before-define": [
