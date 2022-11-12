@@ -1,89 +1,145 @@
-import { useRef, useState, useId } from 'react';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Typewriter from 'typewriter-effect';
+import { useRouter } from 'next/router';
 import { styled, Theme } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { Paper } from '@mui/material';
 
-import { AppNextPage } from '@/types/common-types';
-import { COMMON_LOCALE } from '@/settings';
-import {
-  CommandLine,
-  PageLayout,
-  Paragraph,
-  Span,
-  TerminalLayout,
-} from '@/components';
-
-import type { NextPage } from 'next';
-
-export const getStaticProps = async ({ locale }: any) => ({
-  props: {
-    ...(await serverSideTranslations(locale, [...COMMON_LOCALE])),
-  },
-});
-
-const Header = styled('div')(({ theme }: { theme: Theme }) => ({
-  '& p': {
+const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
+  display: 'flex',
+  width: '100%',
+  padding: '20px',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
+  minHeight: '100vh',
+  maxHeight: '100vh',
+  '.text': {
     color: theme.palette.text[200],
+    width: '30%',
+    padding: 30,
+    minHeight: '50vh',
+
+    '.blink_me': {
+      color: theme.palette.text[400],
+      animation: 'blinker 1s linear infinite',
+      cursor: 'pointer',
+      fontWeight: 800,
+    },
+
+    '@keyframes blinker': {
+      '50%': { opacity: 0 },
+    },
+
+    [theme.breakpoints.down('xl')]: {
+      width: '45%',
+    },
+    [theme.breakpoints.down('lg')]: {
+      width: '55%',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '85%',
+      fontSize: '1.5em',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      padding: 15,
+      fontSize: '1em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.8em',
+    },
+  },
+  '.emojis': {
+    marginBottom: '100px',
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '8em',
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: '50px',
+      fontSize: '3em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '2.8em',
+    },
+  },
+  '.emojis span': {
+    fontSize: '1em !important',
+  },
+  '.Typewriter__wrapper': {
+    fontSize: '1.8em',
+    '.userName': {
+      color: theme.palette.text[400],
+    },
+    '.dollar': {
+      color: theme.palette.text[100],
+    },
+  },
+  '.Typewriter__cursor ': {
+    fontSize: '1.8em',
   },
 }));
 
-type CommandLines = {
-  command?: string;
-  value?: string;
-};
-
-const Home: NextPage = () => {
-  let [commandLines, setCommandLines] = useState<CommandLines[]>([]);
-  const inputCommandRef = useRef<any>();
-  const commandLineId = useId();
-
-  const inputCommandFocus = () => {
-    inputCommandRef.current.focus();
-  };
+const Home = () => {
+  const router = useRouter();
 
   return (
-    <TerminalLayout inputCommandFocus={inputCommandFocus}>
-      <Header>
-        <Paragraph sx={{ margin: '10px 0 5px 0 !important' }}>
-          Hello there &#128578;.
-        </Paragraph>
-        <Paragraph sx={{ margin: '0 0 5px 0 !important' }}>
-          Welcome to ACMFolio  v1.0 by <Span sx={{color: (theme) => theme.palette.text[400]}}>@acm-97</Span> !
-        </Paragraph>
-        <Paragraph sx={{ margin: '0 0 5px 0 !important' }}>
-          I'm a <Span sx={{color: (theme) => theme.palette.text[400]}}>Frontend Web Developer</Span> and this web is a Portfolio.
-        </Paragraph>
-        <Paragraph sx={{ margin: '0 0 15px 0 !important' }}>
-          Type "help" to see available commands.
-        </Paragraph>
-      </Header>
-      {commandLines.length === 0 ? (
-        <CommandLine
-          addCommandLines={setCommandLines}
-          inputCommandRef={inputCommandRef}
+    <Wrapper>
+      <div className="emojis">
+        <Typewriter
+          options={{ cursor: '', delay: 0, deleteSpeed: 0, loop: true }}
+          onInit={(typewriter) => {
+            typewriter
+              .typeString(' <span>👈</span> ')
+              .pauseFor(4000)
+              .deleteAll()
+              .typeString(' <span>👉</span> ')
+              .pauseFor(4000)
+              .deleteAll()
+              .start();
+          }}
         />
-      ) : (
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          {commandLines.map((item) => (
-            <>
-              {' '}
-              <CommandLine
-                key={commandLineId}
-                addCommandLines={setCommandLines}
-                inputCommandRef={inputCommandRef}
-                command={item.command}
-              />
-            </>
-          ))}
-          <CommandLine
-            addCommandLines={setCommandLines}
-            inputCommandRef={inputCommandRef}
-          />
-        </Box>
-      )}
-    </TerminalLayout>
+        <div>( ͡• ͜ʖ ͡• )</div>
+        <Typewriter
+          options={{ cursor: '', delay: 0, deleteSpeed: 0, loop: true }}
+          onInit={(typewriter) => {
+            typewriter
+              .typeString(' <span>👈</span> ')
+              .pauseFor(4000)
+              .deleteAll()
+              .typeString(' <span>👉</span> ')
+              .pauseFor(4000)
+              .deleteAll()
+              .start();
+          }}
+        />
+      </div>
+      <Paper className="text">
+        <Typewriter
+          options={{ cursor: '▮' }}
+          onInit={(typewriter) => {
+            typewriter
+              .typeString(
+                `<span class="dollar">$ </span> Hello there <br/> 
+              <span class="dollar">$ </span> Welcome to ACMFolio v1.0 by <span class="userName"> @acm-97 </span><br/> 
+              <span class="dollar">$ </span>  I'm a <span class="userName"> Frontend Web Developer </span> and this web is my Portfolio. <br/> 
+              <span class="dollar">$ </span>  Do you want to continue and find out more about me? <br/>
+              `
+              )
+              .pauseFor(2000)
+              .typeString(
+                `
+              <span class="dollar">$ </span>  Still here? Greate!! Let's start then. 
+              `
+              )
+              .callFunction(async () => {
+                await router.push('/terminal');
+              })
+              .start();
+          }}
+        />
+      </Paper>
+    </Wrapper>
   );
 };
-(Home as AppNextPage).Layout = PageLayout;
 
 export default Home;
