@@ -1,6 +1,7 @@
 import { memo } from 'react';
 
 import { useCommands } from '@/hooks';
+import { systemCommands } from '@/constants';
 
 import { NotFound } from './Responses';
 
@@ -15,7 +16,7 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
   /*
   todo: return a hint response for required options
   */
-  if (cKey !== 'cls' && !option)
+  if (systemCommands[cKey] && systemCommands[cKey].options)
     return <>pending {'->'} hint for required options</>;
 
   switch (cKey) {
@@ -26,6 +27,8 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
     case 'theme':
       return handleThemeMessage();
     case 'fullscreen':
+      return <></>;
+    case 'exit':
       return <></>;
     case 'help':
       return <>'help'</>;

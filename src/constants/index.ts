@@ -1,1 +1,1 @@
-export { customTheme } from './theme';
+export { systemCommands } from './commands';

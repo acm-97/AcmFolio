@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useRouter } from 'next/router';
 
 import { THEMES } from '@/settings';
 import { useSettings } from '@/contexts/SettingsProvider';
@@ -29,6 +30,7 @@ const useCommands = (command: string) => {
   const { locales, changeLocale } = useLocale();
   const { settings, saveSettings } = useSettings();
   const { cKey, option } = handleCommand(command);
+  const { push } = useRouter();
 
   /*
    * handleLocale function
@@ -94,16 +96,19 @@ const useCommands = (command: string) => {
   const handleFullScreen = async (_command: string) => {
     const { cKey: _cKey } = handleCommand(_command);
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    if (_cKey === 'exit') push('/');
+
     if (_cKey === 'fullscreen') {
       const elem = document.documentElement;
       if (elem.requestFullscreen) {
         await elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) {
-        /* Safari */
-        await elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) {
-        /* IE11 */
-        await elem.msRequestFullscreen();
+        // } else if (elem.webkitRequestFullscreen) {
+        // /* Safari */
+        // await elem.webkitRequestFullscreen();
+        // } else if (elem.msRequestFullscreen) {
+        // /* IE11 */
+        // await elem.msRequestFullscreen();
       }
     }
   };
