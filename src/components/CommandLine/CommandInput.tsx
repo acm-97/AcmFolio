@@ -55,6 +55,8 @@ const CommandInput = ({
         handleTheme(command);
         await handleFullScreen(command);
       }
+      const element = document.getElementById('terminal-container');
+      element.scrollTop = element.scrollHeight;
     }
   };
 
