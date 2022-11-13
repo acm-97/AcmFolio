@@ -92,8 +92,9 @@ const useCommands = (command: string) => {
    * put the browser windows on full screen mode
    */
   const handleFullScreen = async (_command: string) => {
-    const { option: _option } = handleCommand(_command);
-    if (_option === 'fs') {
+    const { cKey: _cKey } = handleCommand(_command);
+
+    if (_cKey === 'fullscreen') {
       const elem = document.documentElement;
       if (elem.requestFullscreen) {
         await elem.requestFullscreen();
@@ -107,18 +108,6 @@ const useCommands = (command: string) => {
     }
   };
 
-  /*
-   * handleFullScreenMessage function
-   * return a response message
-   * for the command line
-   * when command == "theme"
-   */
-  const handleFullScreenMessage = useCallback(() => {
-    if (option !== 'fs') return <NotFound cKey={cKey} option={option} />;
-
-    return <></>;
-  }, [cKey, option]);
-
   return {
     cKey,
     option,
@@ -127,7 +116,6 @@ const useCommands = (command: string) => {
     handleTheme,
     handleThemeMessage,
     handleFullScreen,
-    handleFullScreenMessage,
   };
 };
 

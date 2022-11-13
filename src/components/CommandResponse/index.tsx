@@ -9,13 +9,8 @@ type CommandResponse = {
 };
 
 const CommandResponse = ({ commandKey }: CommandResponse) => {
-  const {
-    cKey,
-    option,
-    handleLocaleMessage,
-    handleThemeMessage,
-    handleFullScreenMessage,
-  } = useCommands(commandKey);
+  const { cKey, option, handleLocaleMessage, handleThemeMessage } =
+    useCommands(commandKey);
 
   /*
   todo: return a hint response for required options
@@ -30,8 +25,8 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
       return handleLocaleMessage();
     case 'theme':
       return handleThemeMessage();
-    case 'screen':
-      return handleFullScreenMessage();
+    case 'fullscreen':
+      return <></>;
     case 'help':
       return <>'help'</>;
     default:
