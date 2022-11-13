@@ -9,8 +9,19 @@ type CommandResponse = {
 };
 
 const CommandResponse = ({ commandKey }: CommandResponse) => {
-  const { cKey, handleLocaleMessage, handleThemeMessage } =
-    useCommands(commandKey);
+  const {
+    cKey,
+    option,
+    handleLocaleMessage,
+    handleThemeMessage,
+    handleFullScreenMessage,
+  } = useCommands(commandKey);
+
+  /*
+  todo: return a hint response for required options
+  */
+  if (cKey !== 'cls' && !option)
+    return <>pending {'->'} hint for required options</>;
 
   switch (cKey) {
     case '':
@@ -19,6 +30,8 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
       return handleLocaleMessage();
     case 'theme':
       return handleThemeMessage();
+    case 'screen':
+      return handleFullScreenMessage();
     case 'help':
       return <>'help'</>;
     default:
