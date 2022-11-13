@@ -22,20 +22,13 @@ export const getStaticProps = async ({ locale }: any) => ({
   },
 });
 
-const Header = styled('div')(({ theme }: { theme: Theme }) => ({
-  '& p': {
-    color: theme.palette.text[200],
-    opacity: 0.7,
-  },
-}));
-
-type CommandLines = {
-  key?: string;
-  value?: string;
-};
+// type CommandLines = {
+//   key?: string;
+//   value?: string;
+// };
 
 const Terminal: NextPage = () => {
-  let [commandLines, setCommandLines] = useState<CommandLines[]>([]);
+  let [commandLines, setCommandLines] = useState<string[]>([]);
   let [cls, setCls] = useState<boolean>(false);
   const inputCommandRef = useRef<any>();
   const commandLineId = useId();
@@ -47,7 +40,7 @@ const Terminal: NextPage = () => {
   return (
     <TerminalLayout inputCommandFocus={inputCommandFocus}>
       {!cls && (
-        <Header>
+        <>
           <Paragraph sx={{ margin: '15px 0 5px 0 !important' }}>
             Hi again, I know, it's not the typical portfolio you'd expect.
           </Paragraph>
@@ -55,13 +48,13 @@ const Terminal: NextPage = () => {
             But look, it's refreshing and can be fun too.
           </Paragraph>
           <Paragraph sx={{ margin: '0 0 15px 0 !important' }}>
-            Type{' '}
-            <Span sx={{ color: (theme) => theme.palette.text[400] }}>
-              "help"
-            </Span>{' '}
-            to see the available commands you can interact with.
+            Type "
+            <Span sx={{ color: (theme) => theme.palette.text.secondary }}>
+              help
+            </Span>
+            " to see the available commands you can interact with.
           </Paragraph>
-        </Header>
+        </>
       )}
       {commandLines.length === 0 ? (
         <CommandLine
@@ -79,9 +72,9 @@ const Terminal: NextPage = () => {
                 cleanTerminal={setCls}
                 addCommandLines={setCommandLines}
                 inputCommandRef={inputCommandRef}
-                command={item.key}
+                command={item}
               />
-              <CommandResponse commandKey={item.key || ''} />
+              <CommandResponse commandKey={item || ''} />
             </>
           ))}
           <CommandLine
