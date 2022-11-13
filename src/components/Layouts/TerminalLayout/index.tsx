@@ -33,17 +33,39 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
 const Container = styled(Paper)<PaperProps>(({ theme }: { theme: Theme }) => ({
   width: '50%',
   height: '65vh',
+  maxHeight: '65vh',
   borderRadius: '0 0 20px 20px',
   padding: '10px 15px',
+  overflow: 'auto',
+
+  /* width */
+  '&::-webkit-scrollbar': {
+    width: '8px',
+    height: '10px',
+  },
+
+  /* Track */
+  '&::-webkit-scrollbar-track': {
+    boxShadow: `inset 0 0 4px ${theme.palette.secondary.main}`,
+    borderColor: theme.palette.secondary.main,
+    borderRadius: '15px',
+  },
+  /* Handle */
+  '&::-webkit-scrollbar-thumb': {
+    background: '#B9BBC6',
+    borderRadius: '15px',
+  },
 
   [theme.breakpoints.down('md')]: {
     width: '90%',
     height: 'calc(100vh - 350px)',
+    maxHeight: 'calc(100vh - 350px)',
   },
 
   [theme.breakpoints.down('md')]: {
     width: '90%',
     height: 'calc(100vh - 200px)',
+    maxHeight: 'calc(100vh - 200px)',
   },
 }));
 
@@ -61,9 +83,9 @@ const TerminalLayaout = ({
   );
 
   return (
-    <Wrapper>
+    <Wrapper >
       <TopBar />
-      <Container onClick={inputCommandFocus}>{children}</Container>
+      <Container id="terminal-container" onClick={inputCommandFocus}>{children}</Container>
     </Wrapper>
   );
 };
