@@ -34,13 +34,13 @@ const CommandInput = ({
 }: CommandInputTypes) => {
   const [command, setCommand] = useState(commandValue || '');
 
-  const { handleLocale, handleTheme } = useCommands('');
+  const { handleLocale, handleTheme, handleFullScreen } = useCommands('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.target.value);
   };
 
-  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const onEnter = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (command.trim() === 'cls') {
         addCommandLines([]);
@@ -49,8 +49,11 @@ const CommandInput = ({
       } else {
         addCommandLines((prev: any[]) => [...prev, command]);
         setCommand('');
+
+        //* execute command systems
         handleLocale(command);
         handleTheme(command);
+        await handleFullScreen(command);
       }
     }
   };

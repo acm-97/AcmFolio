@@ -87,6 +87,38 @@ const useCommands = (command: string) => {
     return <></>;
   }, [cKey, option]);
 
+  /*
+   * handleFullScreen function
+   * put the browser windows on full screen mode
+   */
+  const handleFullScreen = async (_command: string) => {
+    const { option: _option } = handleCommand(_command);
+    if (_option === 'fs') {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        await elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) {
+        /* Safari */
+        await elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        /* IE11 */
+        await elem.msRequestFullscreen();
+      }
+    }
+  };
+
+  /*
+   * handleFullScreenMessage function
+   * return a response message
+   * for the command line
+   * when command == "theme"
+   */
+  const handleFullScreenMessage = useCallback(() => {
+    if (option !== 'fs') return <NotFound cKey={cKey} option={option} />;
+
+    return <></>;
+  }, [cKey, option]);
+
   return {
     cKey,
     option,
@@ -94,6 +126,8 @@ const useCommands = (command: string) => {
     handleLocaleMessage,
     handleTheme,
     handleThemeMessage,
+    handleFullScreen,
+    handleFullScreenMessage,
   };
 };
 
