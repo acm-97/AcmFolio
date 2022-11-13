@@ -1,1 +1,1 @@
-export { systemCommands } from './commands';
+export { systemCommands, columns } from './commands';
