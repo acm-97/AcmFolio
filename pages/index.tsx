@@ -35,7 +35,6 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     },
     '.text': {
       width: '100%',
-      color: theme.palette.primary.main,
       padding: 30,
       minHeight: '50vh',
       [theme.breakpoints.down('md')]: {
@@ -85,6 +84,7 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     fontSize: '1.8em',
     '.user-name, .frontend': {
       color: theme.palette.text.secondary,
+      cursor: 'pointer',
     },
     '.dollar': {
       color: theme.palette.error.main,
@@ -182,6 +182,14 @@ const Home = () => {
                   ` <span class="dollar">$ </span>  Do you want to   `
                 )
                 .typeString(` <span id="continue-blink">continue</span>  `)
+                .callFunction(() => {
+                  document
+                    ?.getElementById('continue-blink')
+                    ?.addEventListener(
+                      'click',
+                      async () => await router.push('/terminal')
+                    );
+                })
                 .typeString(` and find out more about me? `)
 
                 .start();
