@@ -1,6 +1,7 @@
 import React, { memo, useState } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 
+import { useCommands } from '@/hooks';
 import { Span } from '@/components';
 
 const Input = styled('input')(
@@ -33,6 +34,8 @@ const CommandInput = ({
 }: CommandInputTypes) => {
   const [command, setCommand] = useState(commandValue || '');
 
+  const { handleLocale, handleTheme } = useCommands('');
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.target.value);
   };
@@ -46,6 +49,8 @@ const CommandInput = ({
       } else {
         addCommandLines((prev: any[]) => [...prev, command]);
         setCommand('');
+        handleLocale(command);
+        handleTheme(command);
       }
     }
   };

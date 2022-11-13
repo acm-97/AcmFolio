@@ -1,6 +1,6 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 
-import { useCommands, useLocale } from '@/hooks';
+import { useCommands } from '@/hooks';
 
 import { NotFound } from './Responses';
 
@@ -9,23 +9,16 @@ type CommandResponse = {
 };
 
 const CommandResponse = ({ commandKey }: CommandResponse) => {
-  const commandKeyFormated = useMemo(
-    () => commandKey.trim().replace(' ', '').split('--'),
-    [commandKey]
-  );
-
-  const cKey = commandKeyFormated[0];
-  const option = commandKeyFormated[1];
-
-  const { handleLocale, handleTheme } = useCommands(cKey, option);
+  const { cKey, handleLocaleMessage, handleThemeMessage } =
+    useCommands(commandKey);
 
   switch (cKey) {
     case '':
       return <></>;
     case 'language':
-      return handleLocale();
+      return handleLocaleMessage();
     case 'theme':
-      return handleTheme();
+      return handleThemeMessage();
     case 'help':
       return <>'help'</>;
     default:

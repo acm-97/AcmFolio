@@ -1,10 +1,10 @@
 import { useRef, useState, useId } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { styled, Theme } from '@mui/material/styles';
 import { Box } from '@mui/material';
 
 import { AppNextPage } from '@/types/common-types';
 import { COMMON_LOCALE } from '@/settings';
+import CommandResponse from '@/components/CommandResponse';
 import {
   CommandLine,
   PageLayout,
@@ -14,8 +14,11 @@ import {
 } from '@/components';
 
 import type { NextPage } from 'next';
-import CommandResponse from '@/components/CommandResponse';
 
+/*
+ * manage the current locale (language)
+ * and "locales".json availables for page translation
+ */
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
     ...(await serverSideTranslations(locale, [...COMMON_LOCALE])),
@@ -33,6 +36,11 @@ const Terminal: NextPage = () => {
   const inputCommandRef = useRef<any>();
   const commandLineId = useId();
 
+  /*
+   * inputCommandFocus function
+   * focus input from command line
+   * when a click pccurs in the container of the terminal
+   */
   const inputCommandFocus = () => {
     inputCommandRef.current.focus();
   };
