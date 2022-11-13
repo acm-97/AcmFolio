@@ -1,28 +1,37 @@
+import { memo } from 'react';
 import { styled } from '@mui/material/styles';
 
 import { TypographyProps } from '@/components/Typography/typography.types';
 import { Span } from '@/components';
 
 type NotFound = {
-  command: string;
+  cKey: string;
+  option?: string;
 };
 
 const StyledSpan = styled((props: TypographyProps) => (
-  <Span sx={{ color: (theme) => theme.palette.text[400] }} {...props} />
+  <Span sx={{ color: (theme) => theme.palette.text.secondary }} {...props} />
 ))``;
 
-const NotFound = ({ command }: NotFound) => (
+const NotFound = ({ cKey, option }: NotFound) => (
   <Span
     sx={{
-      color: (theme) => theme.palette.primary.main,
       margin: '10px 0 10px 15px',
     }}
   >
-    command
-    <StyledSpan> ( {command} ) </StyledSpan>
-    not found. Type
-    <StyledSpan> help </StyledSpan>
-    to see all available commands
+    {!option ? (
+      <>
+        command (<StyledSpan> {cKey} </StyledSpan>) not found. Type "
+        <StyledSpan>help</StyledSpan>" to see all available commands
+      </>
+    ) : (
+      <>
+        option (<StyledSpan> --{option} </StyledSpan>) for command (
+        <StyledSpan> {cKey} </StyledSpan>) not found. Type "
+        <StyledSpan>help</StyledSpan>" to see all available commands and their
+        "--options"
+      </>
+    )}
   </Span>
 );
-export default NotFound;
+export default memo(NotFound);
