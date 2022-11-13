@@ -23,6 +23,7 @@ type ColumnProps = {
   accessor: any;
   headerCellProps?: object;
   cellProps?: object;
+  width: number;
 };
 
 type MuiTableProps = {
@@ -85,6 +86,7 @@ const MuiTable = ({
                   className={headerClass}
                   component="th"
                   key={idx}
+                  sx={{ minWidth: col.width, width: col.width }}
                   {...col.headerCellProps}
                 >
                   <>{col.headerName}</>
@@ -101,7 +103,11 @@ const MuiTable = ({
                   onClick={() => tableRowBodyProps?.onClick(item)}
                 >
                   {columns.map((col, colIdx) => (
-                    <TableCell key={colIdx} {...col.cellProps}>
+                    <TableCell
+                      key={colIdx}
+                      {...col.cellProps}
+                      sx={{ minWidth: col.width, width: col.width }}
+                    >
                       {typeof col.accessor === 'function'
                         ? col.accessor(item)
                         : item[col.accessor]}
@@ -111,7 +117,7 @@ const MuiTable = ({
               ))
             ) : loading ? (
               <TableRow>
-                <TableCell sx={{ p: 0, m: 0 }} colSpan={columns.length}>
+                <TableCell colSpan={columns.length}>
                   <LinearProgress />
                 </TableCell>
               </TableRow>
