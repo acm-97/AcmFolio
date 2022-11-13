@@ -151,7 +151,7 @@ const Home = () => {
       </div>
       <Paper className="terminal">
         <div className="options">
-          <LanguageSelector />
+          <LanguageSelector mini />
           <ThemeSelector />
         </div>
         <Paper className="text">
