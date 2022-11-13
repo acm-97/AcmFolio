@@ -3,30 +3,51 @@ import { useRouter } from 'next/router';
 import { styled, Theme } from '@mui/material/styles';
 import { Paper } from '@mui/material';
 
+import { LanguageSelector, ThemeSelector } from '@/components';
+
 const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
   width: '100%',
   padding: '20px',
   justifyContent: 'center',
-  flexDirection: 'column',
   alignItems: 'center',
+  flexDirection: 'column',
   minHeight: '100vh',
   maxHeight: '100vh',
-  '.text': {
-    color: theme.palette.text[200],
+  '.terminal': {
+    display: 'flex',
+    alignItems: 'flex-end',
     width: '30%',
-    padding: 30,
-    minHeight: '50vh',
-
-    '.blink_me': {
-      color: theme.palette.text[400],
-      animation: 'blinker 1s linear infinite',
-      cursor: 'pointer',
-      fontWeight: 800,
+    flexDirection: 'column',
+    backgroundColor: '#232323',
+    '.options': {
+      display: 'flex',
+      borderRadius: '8px 8px 0 0',
+      paddingRight: 20,
+      '.MuiSvgIcon-root': {
+        fontSize: '1.2rem',
+      },
+      '.MuiButtonBase-root': {
+        ':hover': {
+          backgroundColor: 'transparent !important',
+        },
+      },
     },
-
-    '@keyframes blinker': {
-      '50%': { opacity: 0 },
+    '.text': {
+      width: '100%',
+      color: theme.palette.primary.main,
+      padding: 30,
+      minHeight: '50vh',
+      [theme.breakpoints.down('md')]: {
+        fontSize: '1.5em',
+      },
+      [theme.breakpoints.down('sm')]: {
+        padding: 15,
+        fontSize: '1em',
+      },
+      [theme.breakpoints.down('xs')]: {
+        fontSize: '0.8em',
+      },
     },
 
     [theme.breakpoints.down('xl')]: {
@@ -37,17 +58,12 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     },
     [theme.breakpoints.down('md')]: {
       width: '85%',
-      fontSize: '1.5em',
     },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
-      padding: 15,
-      fontSize: '1em',
-    },
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '0.8em',
     },
   },
+
   '.emojis': {
     marginBottom: '100px',
     display: 'flex',
@@ -67,18 +83,26 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   },
   '.Typewriter__wrapper': {
     fontSize: '1.8em',
-    '.userName': {
-      color: theme.palette.text[400],
+    '.user-name, .frontend': {
+      color: theme.palette.text.secondary,
     },
     '.dollar': {
-      color: theme.palette.text[100],
+      color: theme.palette.error.main,
+    },
+    '#continue-blink': {
+      color: theme.palette.text.secondary,
+      animation: 'blinker 1s linear infinite',
+      cursor: 'pointer',
+      fontWeight: 800,
+    },
+    '@keyframes blinker': {
+      '50%': { opacity: 0 },
     },
   },
   '.Typewriter__cursor ': {
     fontSize: '1.8em',
   },
 }));
-
 const Home = () => {
   const router = useRouter();
 
@@ -100,7 +124,7 @@ const Home = () => {
         />
         <div>( ͡• ͜ʖ ͡• )</div>
         <Typewriter
-          options={{ cursor: '', delay: 0, deleteSpeed: 0, loop: true }}
+          options={{ cursor: '', delay: 0, loop: true }}
           onInit={(typewriter) => {
             typewriter
               .typeString(' <span>👈</span> ')
@@ -113,30 +137,57 @@ const Home = () => {
           }}
         />
       </div>
-      <Paper className="text">
-        <Typewriter
-          options={{ cursor: '▮' }}
-          onInit={(typewriter) => {
-            typewriter
-              .typeString(
-                `<span class="dollar">$ </span> Hello there <br/> 
-              <span class="dollar">$ </span> Welcome to ACMFolio v1.0 by <span class="userName"> @acm-97 </span><br/> 
-              <span class="dollar">$ </span>  I'm a <span class="userName"> Frontend Web Developer </span> and this web is my Portfolio. <br/> 
-              <span class="dollar">$ </span>  Do you want to continue and find out more about me? <br/>
-              `
-              )
-              .pauseFor(2000)
-              .typeString(
-                `
-              <span class="dollar">$ </span>  Still here? Greate!! Let's start then. 
-              `
-              )
-              .callFunction(async () => {
-                await router.push('/terminal');
-              })
-              .start();
-          }}
-        />
+      <Paper className="terminal">
+        <div className="options">
+          <LanguageSelector />
+          <ThemeSelector />
+        </div>
+        <Paper className="text">
+          <Typewriter
+            options={{ cursor: '▮' }}
+            onInit={(typewriter) => {
+              typewriter
+                .typeString(
+                  `<span class="dollar">$ </span> Hello there <br/> 
+                           <span class="dollar">$ </span> Welcome to ACMFolio v1.0 by`
+                )
+
+                .typeString(
+                  '<span id="user-name" class="user-name"> @acm-97 </span> <br/> '
+                )
+                .callFunction(() => {
+                  document
+                    ?.getElementById('user-name')
+                    ?.addEventListener('click', () => {
+                      window?.open('https://github.com/acm-97');
+                    });
+                })
+                .typeString(`<span class="dollar">$ </span>  I'm a `)
+                .typeString(
+                  `<span id="frontend" class="frontend"> Front-End Web Developer </span> `
+                )
+                .callFunction(() => {
+                  document
+                    ?.getElementById('frontend')
+                    ?.addEventListener('click', () => {
+                      window?.open(
+                        router.locale === 'es'
+                          ? 'https://es.wikipedia.org/wiki/Desarrollo_web_Front-end'
+                          : 'https://en.wikipedia.org/wiki/Front-end_web_development'
+                      );
+                    });
+                })
+                .typeString(` and this web is my Portfolio. <br/>  `)
+                .typeString(
+                  ` <span class="dollar">$ </span>  Do you want to   `
+                )
+                .typeString(` <span id="continue-blink">continue</span>  `)
+                .typeString(` and find out more about me? `)
+
+                .start();
+            }}
+          />
+        </Paper>
       </Paper>
     </Wrapper>
   );
