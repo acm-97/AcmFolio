@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 
 import { useLocale } from '@/hooks';
 
@@ -9,20 +9,26 @@ type CommandResponse = {
 };
 
 const CommandResponse = ({ commandKey }: CommandResponse) => {
-  const commandKeyFormated = commandKey.trim().replace(' ', '').split('--');
+  const commandKeyFormated = useMemo(
+    () => commandKey.trim().replace(' ', '').split('--'),
+    [commandKey]
+  );
   const { locales, changeLocale } = useLocale();
 
+  const cKey = commandKeyFormated[0];
+  const option = commandKeyFormated[1];
+
   const handleLocale = () => {
-    if (locales?.includes(commandKeyFormated[1])) {
-      changeLocale(commandKeyFormated[1]);
+    if (locales?.includes(option)) {
+      changeLocale(option);
 
       return <></>;
     }
 
-    return <NotFound command="" />;
+    return <NotFound cKey={cKey} option={option} />;
   };
 
-  switch (commandKeyFormated[0]) {
+  switch (cKey) {
     case '':
       return <></>;
     case 'language':
@@ -30,7 +36,7 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
     case 'help':
       return <>'help'</>;
     default:
-      return <NotFound command="" />;
+      return <NotFound cKey={cKey} />;
   }
 };
 
