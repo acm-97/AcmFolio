@@ -1,13 +1,16 @@
 import React, { memo, useState } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 
+import { Span } from '@/components';
+
 const Input = styled('input')(
   ({ theme, width }: { theme: Theme; width: string }) => ({
     flex: '1 1 auto',
     background: 'transparent',
     border: 'none',
     caretColor: theme.palette.error.main,
-    caretShape: 'block',
+    color: theme.palette.warning.main,
+    paddingLeft: 0,
     ':focus': {
       outline: 'none',
     },
@@ -41,14 +44,18 @@ const CommandInput = ({
         cleanTerminal(true);
         setCommand('');
       } else {
-        addCommandLines((prev: any[]) => [
-          ...prev,
-          { key: command, value: '' },
-        ]);
+        addCommandLines((prev: any[]) => [...prev, command]);
         setCommand('');
       }
     }
   };
+
+  if (commandValue)
+    return (
+      <Span sx={{ color: (theme) => theme.palette.warning.main }}>
+        {commandValue}
+      </Span>
+    );
 
   return (
     <Input
