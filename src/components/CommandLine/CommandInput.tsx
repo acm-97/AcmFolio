@@ -6,8 +6,7 @@ const Input = styled('input')(
     flex: '1 1 auto',
     background: 'transparent',
     border: 'none',
-    color: theme.palette.text[400],
-    caretColor: theme.palette.text[100],
+    caretColor: theme.palette.error.main,
     caretShape: 'block',
     ':focus': {
       outline: 'none',

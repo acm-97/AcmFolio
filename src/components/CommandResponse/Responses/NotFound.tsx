@@ -14,7 +14,7 @@ const StyledSpan = styled((props: TypographyProps) => (
 const NotFound = ({ command }: NotFound) => (
   <Span
     sx={{
-      color: (theme) => theme.palette.text[200],
+      color: (theme) => theme.palette.primary.main,
       margin: '10px 0 10px 15px',
     }}
   >

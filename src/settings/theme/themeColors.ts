@@ -1,13 +1,12 @@
 export const primary = {
-  100: '#D3F5FE',
-  200: '#A7E7FD',
-  300: '#7AD2FA',
-  400: '#59BCF5',
-  500: '#2499EF',
-  main: '#2499EF',
+  100: '#e0f2f1',
+  200: '#b2dfdb',
+  300: '#80cbc4',
+  400: '#4db6ac',
+  main: '#009688',
   red: '#FF6B93',
-  purple: '#A798FF',
   orange: '#FF9777',
+  blue: '#2499EF',
 };
 export const secondary = {
   100: '#F9F9F9',
@@ -24,7 +23,7 @@ export const error = {
   main: '#FD396D',
 };
 export const success = {
-  main: '#2CC5BD',
+  main: '#64ffda',
 };
 export const warning = {
   main: '#FFE91F',
@@ -36,9 +35,8 @@ export const info = {
 
 export const text = {
   primary: primary.main,
-  secondary: secondary[450],
+  secondary: primary.orange,
   100: error.main,
-  200: success.main,
+  200: primary.blue,
   300: secondary[300],
-  400: primary.orange,
 };

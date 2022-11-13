@@ -25,11 +25,11 @@ const ComandLine = (props: ComandLineTypes) => (
   <Container>
     <Span sx={{ color: (theme) => theme.palette.text[300] }}>
       ${' '}
-      <Span sx={{ color: (theme) => theme.palette.text[100], marginLeft: 1 }}>
+      <Span sx={{ color: (theme) => theme.palette.error.main, marginLeft: 1 }}>
         root@acm-97
         <Span
           sx={{
-            color: (theme) => theme.palette.text.primary,
+            color: (theme) => theme.palette.text[200],
             marginRight: 1.5,
           }}
         >
