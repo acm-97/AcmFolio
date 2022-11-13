@@ -1,9 +1,21 @@
 import Typewriter from 'typewriter-effect';
 import { useRouter } from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { styled, Theme } from '@mui/material/styles';
 import { Paper } from '@mui/material';
 
+import { COMMON_LOCALE } from '@/settings';
 import { LanguageSelector, ThemeSelector } from '@/components';
+
+/*
+ * manage the current locale (language)
+ * and "locales".json availables for page translation
+ */
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, [...COMMON_LOCALE])),
+  },
+});
 
 const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
