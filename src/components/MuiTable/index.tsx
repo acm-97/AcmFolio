@@ -9,6 +9,7 @@ import {
   TablePagination,
   TableRow,
   Box,
+  TableCellProps,
 } from '@mui/material';
 // import EmptyData from '@/components/EmptyData';
 
@@ -21,8 +22,8 @@ type ColumnProps = {
   id?: string;
   headerName: string;
   accessor: any;
-  headerCellProps?: object;
-  cellProps?: object;
+  headerCellProps?: TableCellProps;
+  cellProps?: TableCellProps;
   width: number;
 };
 
@@ -75,6 +76,10 @@ const MuiTable = ({
       sx={{
         position: 'relative',
         minHeight: rows?.length > 0 ? 'inherit' : '50vh !important',
+        '& .MuiTableCell-root': {
+          fontFamily: 'luminari',
+          fontWeight: 600,
+        },
       }}
     >
       <TableContainer className={containerClass}>
@@ -86,7 +91,11 @@ const MuiTable = ({
                   className={headerClass}
                   component="th"
                   key={idx}
-                  sx={{ minWidth: col.width, width: col.width }}
+                  sx={{
+                    ...col?.cellProps?.sx,
+                    minWidth: col.width,
+                    width: col.width,
+                  }}
                   {...col.headerCellProps}
                 >
                   <>{col.headerName}</>
@@ -106,7 +115,11 @@ const MuiTable = ({
                     <TableCell
                       key={colIdx}
                       {...col.cellProps}
-                      sx={{ minWidth: col.width, width: col.width }}
+                      sx={{
+                        ...col?.cellProps?.sx,
+                        minWidth: col.width,
+                        width: col.width,
+                      }}
                     >
                       {typeof col.accessor === 'function'
                         ? col.accessor(item)
