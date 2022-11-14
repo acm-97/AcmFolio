@@ -3,6 +3,7 @@ import { styled, Theme } from '@mui/material/styles';
 
 import { useCommands } from '@/hooks';
 import { Span } from '@/components';
+import { scrollToBottom } from '@/utils';
 
 const Input = styled('input')(
   ({ theme, width }: { theme: Theme; width: string }) => ({
@@ -55,8 +56,8 @@ const CommandInput = ({
         handleTheme(command);
         await handleFullScreen(command);
       }
-      const element = document.getElementById('terminal-container');
-      element.scrollTop = element.scrollHeight;
+      scrollToBottom()
+      // scrollToTop()
     }
   };
 

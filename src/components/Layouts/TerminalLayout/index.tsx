@@ -83,9 +83,11 @@ const TerminalLayaout = ({
   );
 
   return (
-    <Wrapper >
+    <Wrapper>
       <TopBar />
-      <Container id="terminal-container" onClick={inputCommandFocus}>{children}</Container>
+      <Container id="terminal-container" onClick={inputCommandFocus}>
+        {children}
+      </Container>
     </Wrapper>
   );
 };
