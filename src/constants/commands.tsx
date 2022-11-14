@@ -48,6 +48,7 @@ const headerCellProps = {
 const cellProps = {
   sx: {
     padding: '6px 16px',
+    verticalAlign: 'top',
   },
 };
 
@@ -59,7 +60,7 @@ const OptionsWrapper = styled('div')(() => ({
 
 export const columns = [
   {
-    headerName: 'Commands',
+    headerName: 'System Commands',
     accessor: ({ key }: any) => (
       <Span sx={{ color: (theme) => theme.palette.text.secondary }} key={key}>
         {key}
