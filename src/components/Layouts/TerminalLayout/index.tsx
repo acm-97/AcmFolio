@@ -2,6 +2,7 @@ import { memo, useEffect } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 import { Paper, PaperProps } from '@mui/material';
 
+import { scrollToBottom } from '@/utils';
 import { ChildrenProps } from '@/types';
 
 import TopBar from './TopBar';
@@ -64,29 +65,15 @@ const TerminalWrapper = styled(Paper)<PaperProps>(
   })
 );
 
-type TerminalLayaoutTypes = ChildrenProps & {
-  inputCommandFocus?: () => void;
-};
+type TerminalLayaoutTypes = ChildrenProps;
 
-const TerminalLayaout = ({
-  children,
-  inputCommandFocus,
-}: TerminalLayaoutTypes) => {
-  useEffect(
-    () => inputCommandFocus && inputCommandFocus(),
-    [inputCommandFocus]
-  );
-
-  return (
-    <Wrapper>
-      <Container>
-        <TopBar />
-        <TerminalWrapper id="terminal-container" onClick={inputCommandFocus}>
-          {children}
-        </TerminalWrapper>
-      </Container>
-    </Wrapper>
-  );
-};
+const TerminalLayaout = ({ children }: TerminalLayaoutTypes) => (
+  <Wrapper>
+    <Container>
+      <TopBar />
+      <TerminalWrapper id="terminal-container">{children}</TerminalWrapper>
+    </Container>
+  </Wrapper>
+);
 
 export default memo(TerminalLayaout);

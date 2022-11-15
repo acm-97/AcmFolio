@@ -1,7 +1,8 @@
-import { useRef, useState, Fragment } from 'react';
+import { useRef, useState, Fragment, useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Box } from '@mui/material';
 
+import { scrollToBottom } from '@/utils';
 import { AppNextPage } from '@/types/common-types';
 import { COMMON_LOCALE } from '@/settings';
 import CommandResponse from '@/components/CommandResponse';
@@ -44,8 +45,10 @@ const Terminal: NextPage = () => {
     inputCommandRef.current.focus();
   };
 
+  useEffect(() => scrollToBottom(), [commandLines.length]);
+
   return (
-    <TerminalLayout inputCommandFocus={inputCommandFocus}>
+    <TerminalLayout>
       {!cls && (
         <>
           <Paragraph sx={{ margin: '15px 0 5px 0 !important' }}>
@@ -74,6 +77,7 @@ const Terminal: NextPage = () => {
           cleanTerminal={setCls}
           addCommandLines={setCommandLines}
           inputCommandRef={inputCommandRef}
+          inputCommandFocus={inputCommandFocus}
         />
       ) : (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -92,6 +96,7 @@ const Terminal: NextPage = () => {
             cleanTerminal={setCls}
             addCommandLines={setCommandLines}
             inputCommandRef={inputCommandRef}
+            inputCommandFocus={inputCommandFocus}
           />
         </Box>
       )}

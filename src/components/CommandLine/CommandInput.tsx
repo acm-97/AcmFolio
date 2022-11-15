@@ -3,7 +3,6 @@ import { styled, Theme } from '@mui/material/styles';
 
 import { useCommands } from '@/hooks';
 import { Span } from '@/components';
-import { scrollToBottom } from '@/utils';
 
 const Input = styled('input')(
   ({ theme, width }: { theme: Theme; width: string }) => ({
@@ -34,34 +33,30 @@ const CommandInput = ({
   cleanTerminal,
 }: CommandInputTypes) => {
   const [command, setCommand] = useState(commandValue || '');
-
-  const { handleLocale, handleTheme, handleFullScreen } = useCommands('');
+  const { handleLocale, handleTheme } = useCommands('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.target.value);
   };
 
-  const onEnter = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (command.trim() === 'cls') {
         addCommandLines([]);
         cleanTerminal(true);
         setCommand('');
       } else {
-        addCommandLines((prev: any[]) => [...prev, command]);
+        addCommandLines((prev: any[]) => [...prev, command || ' ']);
         setCommand('');
 
         //* execute command systems
         handleLocale(command);
         handleTheme(command);
-        await handleFullScreen(command);
       }
-      scrollToBottom()
-      // scrollToTop()
     }
   };
 
-  if (commandValue)
+  if (commandValue || command === undefined)
     return (
       <Span sx={{ color: (theme) => theme.palette.warning.main }}>
         {commandValue}
@@ -69,6 +64,7 @@ const CommandInput = ({
     );
 
   return (
+    // @ts-ignore
     <Input
       ref={inputCommandRef}
       id="command-input"

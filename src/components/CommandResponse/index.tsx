@@ -10,8 +10,13 @@ type CommandResponse = {
 };
 
 const CommandResponse = ({ commandKey }: CommandResponse) => {
-  const { cKey, option, handleLocaleMessage, handleThemeMessage } =
-    useCommands(commandKey);
+  const {
+    cKey,
+    option,
+    handleLocaleMessage,
+    handleThemeMessage,
+    setFullScreen,
+  } = useCommands(commandKey);
 
   /*
   todo: return a hint response for required options
@@ -27,6 +32,9 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
     case 'theme':
       return handleThemeMessage();
     case 'fullscreen':
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      setFullScreen();
+
       return <></>;
     case 'exit':
       return <></>;
