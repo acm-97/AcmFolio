@@ -1,4 +1,4 @@
-import { useRef, useState, useId } from 'react';
+import { useRef, useState, Fragment } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Box } from '@mui/material';
 
@@ -34,7 +34,6 @@ const Terminal: NextPage = () => {
   let [commandLines, setCommandLines] = useState<string[]>([]);
   let [cls, setCls] = useState<boolean>(false);
   const inputCommandRef = useRef<any>();
-  const commandLineId = useId();
 
   /*
    * inputCommandFocus function
@@ -78,18 +77,16 @@ const Terminal: NextPage = () => {
         />
       ) : (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          {commandLines.map((item) => (
-            <>
-              {' '}
+          {commandLines.map((item, i) => (
+            <Fragment key={i}>
               <CommandLine
-                key={commandLineId}
                 cleanTerminal={setCls}
                 addCommandLines={setCommandLines}
                 inputCommandRef={inputCommandRef}
                 command={item}
               />
               <CommandResponse commandKey={item || ''} />
-            </>
+            </Fragment>
           ))}
           <CommandLine
             cleanTerminal={setCls}

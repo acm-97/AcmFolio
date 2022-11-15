@@ -25,6 +25,7 @@
     "react-dom": "18.1.0",
     "react-hot-toast": "^2.2.0",
     "react-query": "^3.39.0",
+    "react-scripts": "^5.0.1",
     "typewriter-effect": "^2.19.0"
   },
   "devDependencies": {

@@ -5,6 +5,11 @@ import { styled, Theme } from '@mui/material/styles';
 import { Paper } from '@mui/material';
 
 import { COMMON_LOCALE } from '@/settings';
+import {
+  EN_FRONTEND_DEVELOPER,
+  ES_FRONTEND_DEVELOPER,
+  GITHUB,
+} from '@/constants';
 import { LanguageSelector, ThemeSelector } from '@/components';
 
 /*
@@ -172,7 +177,7 @@ const Home = () => {
                   document
                     ?.getElementById('user-name')
                     ?.addEventListener('click', () => {
-                      window?.open('https://github.com/acm-97');
+                      window?.open(GITHUB);
                     });
                 })
                 .typeString(`<span class="dollar">$ </span>  I'm a `)
@@ -185,8 +190,8 @@ const Home = () => {
                     ?.addEventListener('click', () => {
                       window?.open(
                         router.locale === 'es'
-                          ? 'https://es.wikipedia.org/wiki/Desarrollo_web_Front-end'
-                          : 'https://en.wikipedia.org/wiki/Front-end_web_development'
+                          ? ES_FRONTEND_DEVELOPER
+                          : EN_FRONTEND_DEVELOPER
                       );
                     });
                 })

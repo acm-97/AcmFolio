@@ -5,6 +5,8 @@ import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CloseIcon from '@mui/icons-material/Close';
 
+import { GITHUB } from '@/constants';
+
 const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   width: '100%',
   height: '3.5vh',
@@ -17,6 +19,7 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   padding: '0 18px',
 
   '& a': {
+    // @ts-ignore
     color: theme.palette.secondary[300],
     display: 'flex',
     alignItems: 'center',
@@ -77,11 +80,7 @@ const TopBar = () => (
           overflow: 'hidden',
         }}
       >
-        <a
-          href="https://github.com/acm-97/portfolio-v2"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={GITHUB} target="_blank" rel="noopener noreferrer">
           <GitHubIcon
             sx={{
               width: '0.8em !important',
