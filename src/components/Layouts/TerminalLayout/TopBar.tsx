@@ -1,10 +1,12 @@
 import { memo } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import { IconButton } from '@mui/material';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CloseIcon from '@mui/icons-material/Close';
 
+import { useCommands } from '@/hooks';
 import { GITHUB } from '@/constants';
 
 const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
@@ -66,33 +68,40 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   },
 }));
 
-const TopBar = () => (
-  <Wrapper className="TopBar">
-    {/* <div className="close">x</div> */}
-    <CloseIcon className="close" />
-    <OpenInFullIcon className="expand" />
-    <div className="minimize">-</div>
-    <div className="title">
-      <Box
-        component="div"
-        sx={{
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-        }}
-      >
-        <a href={GITHUB} target="_blank" rel="noopener noreferrer">
-          <GitHubIcon
-            sx={{
-              width: '0.8em !important',
-              height: '0.8em !important',
-              color: 'white !important',
-            }}
-          />
-          github.com/acm-97/portfolio-v2
-        </a>
-      </Box>
-    </div>
-  </Wrapper>
-);
+const TopBar = () => {
+  const { setFullScreen, exit } = useCommands();
+
+  return (
+    <Wrapper className="TopBar">
+      {/* <div className="close">x</div> */}
+      <IconButton onClick={exit}>
+        <CloseIcon className="close" />
+      </IconButton>
+      <IconButton onClick={setFullScreen}>
+        <OpenInFullIcon className="expand" />
+      </IconButton>
+      <div className="title">
+        <Box
+          component="div"
+          sx={{
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+          }}
+        >
+          <a href={GITHUB} target="_blank" rel="noopener noreferrer">
+            <GitHubIcon
+              sx={{
+                width: '0.8em !important',
+                height: '0.8em !important',
+                color: 'white !important',
+              }}
+            />
+            github.com/acm-97/portfolio-v2
+          </a>
+        </Box>
+      </div>
+    </Wrapper>
+  );
+};
 
 export default memo(TopBar);

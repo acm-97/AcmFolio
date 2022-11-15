@@ -14,9 +14,9 @@ import useLocale from './useLocale';
  * ex: {cKey: "theme", option: "dark"}
  */
 const handleCommand = (command: string) => {
-  const commandKeyFormated = command.trim().replace(' ', '').split('--');
-  const cKey = commandKeyFormated[0];
-  const option = commandKeyFormated[1];
+  const commandKeyFormated = command.trim().split('--');
+  const cKey = commandKeyFormated?.[0]?.trim();
+  const option = commandKeyFormated?.[1]?.trim();
 
   return { cKey, option };
 };
@@ -26,10 +26,10 @@ const handleCommand = (command: string) => {
  * return an object of functions and values
  * for commandos management
  */
-const useCommands = (command: string) => {
+const useCommands = (command?: string) => {
   const { locales, changeLocale } = useLocale();
   const { settings, saveSettings } = useSettings();
-  const { cKey, option } = handleCommand(command);
+  const { cKey, option } = handleCommand(command || '');
   const { push } = useRouter();
 
   /*
@@ -90,26 +90,28 @@ const useCommands = (command: string) => {
   }, [cKey, option]);
 
   /*
-   * handleFullScreen function
+   * exit function
+   * send the user back to initial page
+   */
+  const exit = () => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    push('/');
+  };
+
+  /*
+   * setFullScreen function
    * put the browser windows on full screen mode
    */
-  const handleFullScreen = async (_command: string) => {
-    const { cKey: _cKey } = handleCommand(_command);
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    if (_cKey === 'exit') push('/');
-
-    if (_cKey === 'fullscreen') {
-      const elem = document.documentElement;
-      if (elem.requestFullscreen) {
-        await elem.requestFullscreen();
-        // } else if (elem.webkitRequestFullscreen) {
-        // /* Safari */
-        // await elem.webkitRequestFullscreen();
-        // } else if (elem.msRequestFullscreen) {
-        // /* IE11 */
-        // await elem.msRequestFullscreen();
-      }
+  const setFullScreen = async () => {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      await elem.requestFullscreen();
+      // } else if (elem.webkitRequestFullscreen) {
+      // /* Safari */
+      // await elem.webkitRequestFullscreen();
+      // } else if (elem.msRequestFullscreen) {
+      // /* IE11 */
+      // await elem.msRequestFullscreen();
     }
   };
 
@@ -120,7 +122,8 @@ const useCommands = (command: string) => {
     handleLocaleMessage,
     handleTheme,
     handleThemeMessage,
-    handleFullScreen,
+    exit,
+    setFullScreen,
   };
 };
 
