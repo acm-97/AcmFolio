@@ -9,7 +9,7 @@ const Help = () => (
     sx={{
       margin: '20px 0',
       '&  .MuiTableRow-root ': {
-        '&:nth-of-type(odd)': {
+        '&:nth-of-type(even)': {
           backgroundColor: (theme) => theme.palette.action.hover,
         },
       },

@@ -80,6 +80,7 @@ export const columns = [
           {options.map((item: string) => (
             <Span
               sx={{
+                // @ts-ignore
                 color: (theme) => theme.palette.text[200],
                 margin: '3px 0',
               }}
