@@ -111,8 +111,9 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
       '50%': { opacity: 0 },
     },
   },
-  '.Typewriter__cursor ': {
-    fontSize: '1.8em',
+  '& .Typewriter__cursor ': {
+    fontSize: '2.8em',
+    lineHeight: 0,
   },
 }));
 const Home = () => {

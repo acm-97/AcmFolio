@@ -50,17 +50,23 @@ const Terminal: NextPage = () => {
       {!cls && (
         <>
           <Paragraph sx={{ margin: '15px 0 5px 0 !important' }}>
-            Hi again, I know, it's not the typical portfolio you'd expect.
+            #############################################################
+          </Paragraph>
+          <Paragraph sx={{ margin: '15px 0 5px 0 !important' }}>
+            # Hi again, I know, it's not the typical portfolio you'd expect.
           </Paragraph>
           <Paragraph sx={{ margin: '0 0 5px 0 !important' }}>
-            But look, it's refreshing and can be fun too.
+            # But look, it's refreshing and can be fun too.
           </Paragraph>
           <Paragraph sx={{ margin: '0 0 15px 0 !important' }}>
-            Type "
+            # Type "
             <Span sx={{ color: (theme) => theme.palette.text.secondary }}>
               help
             </Span>
             " to see the available commands you can interact with.
+          </Paragraph>
+          <Paragraph sx={{ margin: '15px 0 5px 0 !important' }}>
+            #############################################################
           </Paragraph>
         </>
       )}

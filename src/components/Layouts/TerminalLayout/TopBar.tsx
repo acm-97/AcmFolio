@@ -6,7 +6,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
-  width: '50%',
+  width: '100%',
   height: '3.5vh',
   display: 'flex',
   flex: '1 1 auto',
