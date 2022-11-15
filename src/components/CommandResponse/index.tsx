@@ -4,6 +4,7 @@ import { useCommands } from '@/hooks';
 import { systemCommands } from '@/constants';
 
 import { NotFound, Help } from './Responses';
+import About from './Responses/About';
 
 type CommandResponse = {
   commandKey: string;
@@ -40,6 +41,8 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
       return <></>;
     case 'help':
       return <Help />;
+    case 'about':
+      return <About />;
     default:
       return <NotFound cKey={cKey} />;
   }

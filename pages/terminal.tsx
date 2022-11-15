@@ -15,6 +15,7 @@ import {
 } from '@/components';
 
 import type { NextPage } from 'next';
+import { StyledSpan } from '@/components/CommandResponse/Responses/About';
 
 /*
  * manage the current locale (language)
@@ -50,27 +51,21 @@ const Terminal: NextPage = () => {
   return (
     <TerminalLayout>
       {!cls && (
-        <>
-          <Paragraph sx={{ margin: '15px 0 5px 0 !important' }}>
-            #############################################################
-          </Paragraph>
-          <Paragraph sx={{ margin: '15px 0 5px 0 !important' }}>
-            # Hi again, I know, it's not the typical portfolio you'd expect.
-          </Paragraph>
-          <Paragraph sx={{ margin: '0 0 5px 0 !important' }}>
-            # But look, it's refreshing and can be fun too.
-          </Paragraph>
-          <Paragraph sx={{ margin: '0 0 15px 0 !important' }}>
-            # Type "
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <StyledSpan sx={{ margin: '15px 0 5px 0 !important' }}>
+            Hi again, I know, it's not the typical portfolio you'd expect.
+          </StyledSpan>
+          <StyledSpan sx={{ margin: '0 0 5px 0 !important' }}>
+            But look, it's refreshing and can be fun too.
+          </StyledSpan>
+          <StyledSpan sx={{ margin: '0 0 15px 0 !important' }}>
+            Type "
             <Span sx={{ color: (theme) => theme.palette.text.secondary }}>
               help
             </Span>
             " to see the available commands you can interact with.
-          </Paragraph>
-          <Paragraph sx={{ margin: '15px 0 5px 0 !important' }}>
-            #############################################################
-          </Paragraph>
-        </>
+          </StyledSpan>
+        </Box>
       )}
       {commandLines.length === 0 ? (
         <CommandLine

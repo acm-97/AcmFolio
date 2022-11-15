@@ -8,32 +8,33 @@ export const systemCommands: {
   help: {
     key: 'help',
     options: null,
-    description: '',
+    description: 'Provides the list of commands available for the terminal.',
   },
   cls: {
     key: 'cls',
     options: null,
-    description: '',
+    description: 'Clean the terminal',
   },
   language: {
     key: 'language',
     options: ['en', 'es'],
-    description: '',
+    description:
+      'Switch to the language of your choice, English( en ) or Spanish( es ).',
   },
   theme: {
     key: 'theme',
-    options: ['light', 'dark'],
-    description: '',
+    options: ['l', 'd'],
+    description: 'Switch to the theme of your choice, light( l ) or dark( d ).',
   },
   fullscreen: {
     key: 'fullscreen',
     options: null,
-    description: '',
+    description: 'Switch to full screen modo ( F11 ).',
   },
   exit: {
     key: 'exit',
     options: null,
-    description: '',
+    description: 'Leave current view',
   },
 };
 
