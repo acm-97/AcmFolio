@@ -31,12 +31,12 @@ const styleTypography = (
 });
 
 const StyledBox = styled(Box)<TypographyStyleProps>(
-  ({ textTransform, ellipsis, defaultValues, theme }) => ({
+  ({ textTransform, ellipsis, defaultvalues, theme }) => ({
     textTransform: textTransform || 'none',
     whiteSpace: ellipsis ? 'nowrap' : 'normal',
     overflow: ellipsis ? 'hidden' : '',
     textOverflow: ellipsis ? 'ellipsis' : '',
-    ...styleTypography(theme, defaultValues.component, defaultValues),
+    ...styleTypography(theme, defaultvalues.component, defaultvalues),
   })
 );
 
@@ -65,7 +65,7 @@ const createTypographyComp: (
         component={component}
         mb={marginBottom}
         mt={gutterBottom ? 0 : undefined}
-        defaultValues={{
+        defaultvalues={{
           component,
           fontSize,
           fontWeight,
