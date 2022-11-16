@@ -1,5 +1,9 @@
 /* eslint-disable prefer-destructuring */
-export { systemCommands, columns } from './systemCommands';
+export {
+  systemCommands,
+  columns as systemColumns,
+} from './HelpConstants/systemCommands';
+export { rows, columns as skillsColumns } from './skills';
 
 export const GITHUB = process.env.NEXT_PUBLIC_GITHUB;
 export const LINKEDIN = process.env.NEXT_PUBLIC_LINKEDIN;

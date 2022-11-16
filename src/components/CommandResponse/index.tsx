@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { useCommands } from '@/hooks';
 import { systemCommands } from '@/constants';
 
-import { NotFound, Help, About } from './Responses';
+import { NotFound, Help, About, Skills } from './Responses';
 
 type CommandResponse = {
   commandKey: string;
@@ -34,6 +34,8 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
       return <Help />;
     case 'about':
       return <About />;
+    case 'skills':
+      return <Skills />;
     default:
       return <NotFound cKey={cKey} />;
   }

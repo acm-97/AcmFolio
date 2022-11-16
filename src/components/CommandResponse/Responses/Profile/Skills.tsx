@@ -1,10 +1,12 @@
 import { memo } from 'react';
 import { Box } from '@mui/material';
 
-import { systemCommands, systemColumns } from '@/constants';
+import { skillsColumns, rows } from '@/constants';
 import MuiTable from '@/components/MuiTable';
 
-const Help = () => (
+// type SkillsProps = {};
+
+const Skills = () => (
   <Box
     sx={{
       margin: '20px 0',
@@ -15,8 +17,8 @@ const Help = () => (
       },
     }}
   >
-    <MuiTable columns={systemColumns} rows={Object.values(systemCommands)} />
+    <MuiTable columns={skillsColumns} rows={Object.values(rows)} />
   </Box>
 );
 
-export default memo(Help);
+export default memo(Skills);
