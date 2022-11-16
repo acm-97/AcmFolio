@@ -52,13 +52,11 @@ const Terminal: NextPage = () => {
     <TerminalLayout>
       {!cls && (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <StyledSpan sx={{ margin: '15px 0 5px 0 !important' }}>
+          <StyledSpan sx={{ marginTop: '15px !important' }}>
             Hi again, I know, it's not the typical portfolio you'd expect.
           </StyledSpan>
-          <StyledSpan sx={{ margin: '0 0 5px 0 !important' }}>
-            But look, it's refreshing and can be fun too.
-          </StyledSpan>
-          <StyledSpan sx={{ margin: '0 0 15px 0 !important' }}>
+          <StyledSpan>But look, it's refreshing and can be fun too.</StyledSpan>
+          <StyledSpan sx={{ marginBottom: '15px !important' }}>
             Type "
             <Span sx={{ color: (theme) => theme.palette.text.secondary }}>
               help

@@ -1,8 +1,7 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 import { Paper, PaperProps } from '@mui/material';
 
-import { scrollToBottom } from '@/utils';
 import { ChildrenProps } from '@/types';
 
 import TopBar from './TopBar';
@@ -18,13 +17,9 @@ const Container = styled('div')(({ theme }: { theme: Theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
-  width: '80% !important',
+  width: '70% !important',
 
   '& .MuiPaper-root, .TopBar': {
-    [theme.breakpoints.down('xl')]: {
-      width: '70%',
-    },
-
     [theme.breakpoints.down('md')]: {
       width: '90%',
     },
