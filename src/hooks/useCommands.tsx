@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import { THEMES } from '@/settings';
 import { useSettings } from '@/contexts/SettingsProvider';
-import { NotFound } from '@/components/CommandResponse/Responses';
+import { NotFound, Projects } from '@/components/CommandResponse/Responses';
 
 import useLocale from './useLocale';
 
@@ -119,7 +119,7 @@ const useCommands = (command?: string) => {
    * handleProjects function
    * return a list of projects
    */
-  const handleProjects = () => (option === 'ls' ? <div /> : <></>);
+  const handleProjects = () => (option === 'ls' ? <Projects /> : <></>);
 
   return {
     cKey,
@@ -131,6 +131,7 @@ const useCommands = (command?: string) => {
     exit,
     setFullScreen,
     handleProjects,
+    fetchProjects,
   };
 };
 
