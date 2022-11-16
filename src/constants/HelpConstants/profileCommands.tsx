@@ -12,7 +12,7 @@ export const profileCommands: {
   },
   skills: {
     key: 'skills',
-    options: [],
+    options: null,
     description:
       'Provide a list of skills that I have worked on over the years.',
   },

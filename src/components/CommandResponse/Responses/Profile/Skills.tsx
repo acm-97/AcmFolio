@@ -15,7 +15,7 @@ const Skills = () => (
           backgroundColor: (theme) => theme.palette.action.hover,
         },
       },
-      '&  .MuiTableHead-root ': {
+      '& .MuiTableHead-root ': {
         display: 'none',
       },
     }}
