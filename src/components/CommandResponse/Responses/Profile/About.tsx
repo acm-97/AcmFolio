@@ -5,7 +5,7 @@ import { Span } from '@/components';
 
 // type AboutProps = {};
 
-export const StyledSpan = ({ children, sx }: ChildrenProps & { sx?: {} }) => (
+export const StyledSpan = ({ children, sx }: ChildrenProps & { sx?: any }) => (
   <Span
     sx={{
       // @ts-ignore

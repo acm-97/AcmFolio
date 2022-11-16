@@ -16,7 +16,6 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
     handleLocaleMessage,
     handleThemeMessage,
     setFullScreen,
-    handleSkills,
     handleProjects,
   } = useCommands(commandKey);
 
@@ -45,7 +44,7 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
     case 'about':
       return <About />;
     case 'skills':
-      return handleSkills();
+      return <Skills />;
     case 'projects':
       return handleProjects();
     default:

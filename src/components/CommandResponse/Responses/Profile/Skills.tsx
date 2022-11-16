@@ -15,6 +15,9 @@ const Skills = () => (
           backgroundColor: (theme) => theme.palette.action.hover,
         },
       },
+      '&  .MuiTableHead-root ': {
+        display: 'none',
+      },
     }}
   >
     <MuiTable columns={skillsColumns} rows={Object.values(rows)} />

@@ -77,5 +77,5 @@ export const columns = [
     headerCellProps: { ...headerCellProps },
     cellProps: { ...cellProps },
     width: 90,
-  }
+  },
 ];
