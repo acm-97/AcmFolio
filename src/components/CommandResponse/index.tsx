@@ -3,28 +3,22 @@ import { memo } from 'react';
 import { useCommands } from '@/hooks';
 import { systemCommands } from '@/constants';
 
-import About from './Responses/About';
-import { NotFound, Help } from './Responses';
+import { NotFound, Help, About } from './Responses';
 
 type CommandResponse = {
   commandKey: string;
 };
 
 const CommandResponse = ({ commandKey }: CommandResponse) => {
-  const {
-    cKey,
-    option,
-    handleLocaleMessage,
-    handleThemeMessage,
-    setFullScreen,
-  } = useCommands(commandKey);
+  const { cKey, handleLocaleMessage, handleThemeMessage, setFullScreen } =
+    useCommands(commandKey);
 
   /*
   TODO: return a hint response for required options
   */
   if (systemCommands[cKey] && systemCommands[cKey].options)
     return <NotFound cKey={cKey} optionsRequired />;
-  
+
   switch (cKey) {
     case '':
       return <></>;

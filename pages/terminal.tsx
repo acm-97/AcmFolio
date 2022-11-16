@@ -15,7 +15,7 @@ import {
 } from '@/components';
 
 import type { NextPage } from 'next';
-import { StyledSpan } from '@/components/CommandResponse/Responses/About';
+import { StyledSpan } from '@/components/CommandResponse/Responses/Portafolio/About';
 
 /*
  * manage the current locale (language)
