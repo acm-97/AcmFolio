@@ -19,6 +19,7 @@ const NotFound = ({ cKey, option }: NotFound) => (
       margin: '10px 0 10px 15px',
     }}
   >
+    <Span sx={{ color: (theme) => theme.palette.error.dark }}>ERROR : </Span>
     {!option ? (
       <>
         command (<StyledSpan> {cKey} </StyledSpan>) not found. Type "

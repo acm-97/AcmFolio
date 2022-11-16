@@ -26,7 +26,8 @@ export const StyledSpan = ({ children, sx }: ChildrenProps & { sx?: {} }) => (
 
 const About = () => (
   <>
-    <StyledSpan sx={{ marginTop: '20px' }}>
+    <StyledSpan sx={{ marginTop: '20px' }}>Hi, I am Alejandro.</StyledSpan>
+    <StyledSpan>
       I am a Software Engineer with 3 years of experience.
     </StyledSpan>
     <StyledSpan>
