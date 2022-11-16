@@ -3,8 +3,8 @@ import { memo } from 'react';
 import { useCommands } from '@/hooks';
 import { systemCommands } from '@/constants';
 
-import { NotFound, Help } from './Responses';
 import About from './Responses/About';
+import { NotFound, Help } from './Responses';
 
 type CommandResponse = {
   commandKey: string;
@@ -20,11 +20,11 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
   } = useCommands(commandKey);
 
   /*
-  todo: return a hint response for required options
+  TODO: return a hint response for required options
   */
   if (systemCommands[cKey] && systemCommands[cKey].options)
-    return <>pending {'->'} hint for required options</>;
-
+    return <NotFound cKey={cKey} optionsRequired />;
+  
   switch (cKey) {
     case '':
       return <></>;

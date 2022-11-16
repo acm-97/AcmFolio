@@ -34,7 +34,6 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     minHeigth: '0.9rem',
     height: '0.9rem',
     color: 'black',
-    margin: '0 3px',
     ':hover': { cursor: 'pointer' },
   },
   '& .close, .minimize': {
