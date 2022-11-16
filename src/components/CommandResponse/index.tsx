@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 import { useCommands } from '@/hooks';
-import { systemCommands } from '@/constants';
+import { profileCommands, systemCommands } from '@/constants';
 
 import { NotFound, Help, About, Skills } from './Responses';
 
@@ -10,10 +10,20 @@ type CommandResponse = {
 };
 
 const CommandResponse = ({ commandKey }: CommandResponse) => {
-  const { cKey, handleLocaleMessage, handleThemeMessage, setFullScreen } =
-    useCommands(commandKey);
+  const {
+    cKey,
+    option,
+    handleLocaleMessage,
+    handleThemeMessage,
+    setFullScreen,
+    handleSkills,
+    handleProjects,
+  } = useCommands(commandKey);
 
-  if (systemCommands[cKey] && systemCommands[cKey].options)
+  if (
+    (systemCommands[cKey] && systemCommands[cKey].options && !option) ||
+    (profileCommands[cKey] && profileCommands[cKey].options && !option)
+  )
     return <NotFound cKey={cKey} optionsRequired />;
 
   switch (cKey) {
@@ -35,7 +45,9 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
     case 'about':
       return <About />;
     case 'skills':
-      return <Skills />;
+      return handleSkills();
+    case 'projects':
+      return handleProjects();
     default:
       return <NotFound cKey={cKey} />;
   }

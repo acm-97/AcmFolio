@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import { THEMES } from '@/settings';
 import { useSettings } from '@/contexts/SettingsProvider';
-import { NotFound } from '@/components/CommandResponse/Responses';
+import { NotFound, Skills } from '@/components/CommandResponse/Responses';
 
 import useLocale from './useLocale';
 
@@ -115,6 +115,21 @@ const useCommands = (command?: string) => {
     }
   };
 
+  /*
+   * handleSkills function
+   * return a list of skills
+   */
+  const handleSkills = () => {
+    console.log(option, '====');
+  return option === 'ls' ? <Skills /> : <></>
+  };
+
+  /*
+   * handleProjects function
+   * return a list of projects
+   */
+  const handleProjects = () => (option === 'ls' ? <div /> : <></>);
+
   return {
     cKey,
     option,
@@ -124,6 +139,8 @@ const useCommands = (command?: string) => {
     handleThemeMessage,
     exit,
     setFullScreen,
+    handleSkills,
+    handleProjects,
   };
 };
 
