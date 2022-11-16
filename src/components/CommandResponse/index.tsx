@@ -13,9 +13,6 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
   const { cKey, handleLocaleMessage, handleThemeMessage, setFullScreen } =
     useCommands(commandKey);
 
-  /*
-  TODO: return a hint response for required options
-  */
   if (systemCommands[cKey] && systemCommands[cKey].options)
     return <NotFound cKey={cKey} optionsRequired />;
 
