@@ -1,7 +1,12 @@
 import { memo } from 'react';
 
 import { useCommands } from '@/hooks';
-import { profileCommands, systemCommands } from '@/constants';
+import {
+  systemCommands,
+  systemColumns,
+  profileCommands,
+  profileColumns,
+} from '@/constants';
 
 import { NotFound, Help, About, Skills } from './Responses';
 
@@ -52,7 +57,15 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
     case 'exit':
       return <></>;
     case 'help':
-      return <Help />;
+      return (
+        <>
+          <Help
+            columns={profileColumns}
+            rows={Object.values(profileCommands)}
+          />
+          <Help columns={systemColumns} rows={Object.values(systemCommands)} />
+        </>
+      );
     case 'about':
       return <About />;
     case 'skills':

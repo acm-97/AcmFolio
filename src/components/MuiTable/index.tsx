@@ -18,7 +18,7 @@ export type PaginationProps = {
   pageSize: number;
 };
 
-type ColumnProps = {
+export type ColumnProps = {
   id?: string;
   headerName: string;
   accessor: any;

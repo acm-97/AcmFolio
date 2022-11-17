@@ -137,16 +137,18 @@ const useCommands = (command?: string) => {
 
   const handleProjectsPreview = useCallback(
     (_command: string) => {
-      const { option: _option } = handleCommand(_command);
-      const newOption = _option.split('=');
+      const { cKey: _cKey, option: _option } = handleCommand(_command);
+      if (_cKey === 'preview') {
+        const newOption = _option.split('=');
 
-      // @ts-ignore
-      if (newOption[0] === 'preview' && !Number.isNaN(newOption[1])) {
-        const selectedProject = projects[Number(newOption[1]) - 1];
-        handlePreviews({
-          projectName: selectedProject.name,
-          project: selectedProject,
-        });
+        // @ts-ignore
+        if (newOption[0] === 'preview' && !Number.isNaN(newOption[1])) {
+          const selectedProject = projects[Number(newOption[1]) - 1];
+          handlePreviews({
+            projectName: selectedProject.name,
+            project: selectedProject,
+          });
+        }
       }
     },
     [handlePreviews, projects]
