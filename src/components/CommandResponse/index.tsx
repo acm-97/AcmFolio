@@ -9,6 +9,7 @@ import {
 } from '@/constants';
 
 import { NotFound, Help, About, Skills } from './Responses';
+import Contacts from './Responses/Profile/Contacts';
 
 type CommandResponse = {
   commandKey: string;
@@ -72,6 +73,8 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
       return <Skills />;
     case 'projects':
       return handleProjects();
+    case 'contacts':
+      return <Contacts />;
     default:
       return <NotFound cKey={cKey} />;
   }

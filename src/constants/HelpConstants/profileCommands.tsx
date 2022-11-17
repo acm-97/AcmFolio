@@ -10,6 +10,11 @@ export const profileCommands: {
     options: null,
     description: 'Provides a little description about me.',
   },
+  contacts: {
+    key: 'contacts',
+    options: null,
+    description: 'Provides a list of socials where you can contact me.',
+  },
   skills: {
     key: 'skills',
     options: null,
