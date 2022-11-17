@@ -6,6 +6,12 @@ html, html main {
   /* font-style: italic */
 }
 
+
+html body {
+  overflow: hidden !important;
+  /* font-style: italic */
+}
+
 #nprogress .bar {
   z-index: 2000;
 }
