@@ -5,6 +5,8 @@ import { Paper, PaperProps } from '@mui/material';
 import { ChildrenProps } from '@/types';
 
 import TopBar from './TopBar';
+import Draggable from 'react-draggable';
+import ProjectDetails from '@/components/CommandResponse/Responses/Profile/ProjectDetails';
 
 const Wrapper = styled('div')(() => ({
   width: '100% !important',
@@ -17,9 +19,10 @@ const Container = styled('div')(({ theme }: { theme: Theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
-  width: '70% !important',
+  width: '100%',
 
   '& .MuiPaper-root, .TopBar': {
+    width: '70%',
     [theme.breakpoints.down('md')]: {
       width: '90%',
     },
@@ -64,10 +67,13 @@ type TerminalLayaoutTypes = ChildrenProps;
 
 const TerminalLayaout = ({ children }: TerminalLayaoutTypes) => (
   <Wrapper>
-    <Container>
-      <TopBar />
-      <TerminalWrapper id="terminal-container">{children}</TerminalWrapper>
-    </Container>
+    <ProjectDetails />
+    <Draggable>
+      <Container>
+        <TopBar />
+        <TerminalWrapper id="terminal-container">{children}</TerminalWrapper>
+      </Container>
+    </Draggable>
   </Wrapper>
 );
 
