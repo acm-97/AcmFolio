@@ -11,7 +11,13 @@ type NotFoundProps = {
 };
 
 const StyledSpan = styled((props: TypographyProps) => (
-  <Span sx={{ color: (theme) => theme.palette.text.secondary }} {...props} />
+  <Span
+    sx={{
+      // @ts-ignore
+      color: (theme) => theme.palette.warning.main,
+    }}
+    {...props}
+  />
 ))``;
 
 const NotFound = ({ cKey, option, optionsRequired }: NotFoundProps) => (

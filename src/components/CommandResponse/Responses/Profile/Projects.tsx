@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import { Grid } from '@mui/material';
 
 import { useDraggablePreviews } from '@/hooks';
-import { Span, MuiNextLink } from '@/components';
+import { Paragraph, Span, MuiNextLink } from '@/components';
 
 const Projects = () => {
   const { isLoading, projects, handlePreviews } = useDraggablePreviews();
@@ -23,47 +23,61 @@ const Projects = () => {
     );
 
   return (
-    <Grid
-      container
-      spacing={2}
-      rowSpacing={2}
-      justifyContent="flex-start"
-      padding="20px"
-    >
-      {projects.map((item, i) => (
-        <Grid key={item.name} item>
-          <MuiNextLink
-            key={item.name}
-            sx={{
-              width: 'auto',
-              textDecoration: 'none',
-              // @ts-ignore
-              color: (theme) => theme.palette.text.secondary,
-            }}
-            href={!isDownSm ? '#' : item.url}
-            target={isDownSm ? '_blank' : '_self'}
-            rel={isDownSm ? 'noopener noreferrer' : ''}
-            onClick={() =>
-              !isDownSm &&
-              handlePreviews({
-                projectName: item.name,
-                project: item,
-              })
-            }
-          >
-            <Span
+    <>
+      <Paragraph>
+        <Span
+          sx={{
+            // @ts-ignore
+            color: (theme) => theme.palette.text[200],
+          }}
+        >
+          Note :
+        </Span>{' '}
+        You can access the preview of a project by using the "preview" command
+        or by clicking on one of the project names
+      </Paragraph>
+      <Grid
+        container
+        spacing={2}
+        rowSpacing={2}
+        justifyContent="flex-start"
+        paddingTop="10px"
+        paddingBottom="20px"
+      >
+        {projects.map((item, i) => (
+          <Grid key={item.name} item>
+            <MuiNextLink
+              key={item.name}
               sx={{
+                width: 'auto',
+                textDecoration: 'none',
                 // @ts-ignore
-                color: (theme) => theme.palette.text.primary,
+                color: (theme) => theme.palette.text.secondary,
               }}
+              href={!isDownSm ? '#' : item.url}
+              target={isDownSm ? '_blank' : '_self'}
+              rel={isDownSm ? 'noopener noreferrer' : ''}
+              onClick={() =>
+                !isDownSm &&
+                handlePreviews({
+                  projectName: item.name,
+                  project: item,
+                })
+              }
             >
-              ( {i + 1} ){' '}
-            </Span>
-            {item.name}
-          </MuiNextLink>
-        </Grid>
-      ))}
-    </Grid>
+              <Span
+                sx={{
+                  color: (theme) => theme.palette.text.primary,
+                }}
+              >
+                ( {i + 1} ){' '}
+              </Span>
+              {item.name}
+            </MuiNextLink>
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 };
 
