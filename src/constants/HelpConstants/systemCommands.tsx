@@ -23,7 +23,7 @@ export const systemCommands: {
   },
   theme: {
     key: 'theme',
-    options: ['l', 'd'],
+    options: ['light', 'dark'],
     description: 'Switch to the theme of your choice, light( l ) or dark( d ).',
   },
   fullscreen: {
