@@ -1,4 +1,6 @@
 import { memo } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Theme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 
 import { useDraggablePreviews } from '@/hooks';
@@ -6,6 +8,10 @@ import { Span, MuiNextLink } from '@/components';
 
 const Projects = () => {
   const { projects, handlePreviews } = useDraggablePreviews();
+
+  const isDownSm = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('sm')
+  );
 
   return (
     <Grid
@@ -25,8 +31,11 @@ const Projects = () => {
               // @ts-ignore
               color: (theme) => theme.palette.text.secondary,
             }}
-            href="#"
+            href={!isDownSm ? '#' : item.url}
+            target={isDownSm ? '_blank' : '_self'}
+            rel={isDownSm ? 'noopener noreferrer' : ''}
             onClick={() =>
+              !isDownSm &&
               handlePreviews({
                 projectName: item.name,
                 project: item,
