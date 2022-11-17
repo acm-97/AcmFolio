@@ -24,7 +24,7 @@ export const systemCommands: {
   theme: {
     key: 'theme',
     options: ['light', 'dark'],
-    description: 'Switch to the theme of your choice, light( l ) or dark( d ).',
+    description: 'Switch to the theme of your choice ( light or dark ) .',
   },
   fullscreen: {
     key: 'fullscreen',
@@ -102,6 +102,6 @@ export const columns = [
     accessor: 'description',
     headerCellProps: { ...headerCellProps },
     cellProps: { ...cellProps },
-    width: 120,
+    width: 200,
   },
 ];

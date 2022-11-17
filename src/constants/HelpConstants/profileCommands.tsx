@@ -20,7 +20,7 @@ export const profileCommands: {
     key: 'projects',
     options: ['ls', 'preview'],
     description:
-      'Provides a list of both personal and professional projects that I have been working on',
+      'With ( ls ) you got a list of projects that I have been working on. With ( preview ) you can see a small info abaout a project, for this you have to provide a project number from de list ( --preview=1 )',
   },
 };
 
@@ -88,6 +88,6 @@ export const columns = [
     accessor: 'description',
     headerCellProps: { ...headerCellProps },
     cellProps: { ...cellProps },
-    width: 120,
+    width: 200,
   },
 ];
