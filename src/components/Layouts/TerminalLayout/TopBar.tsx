@@ -3,11 +3,9 @@ import { styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { useCommands } from '@/hooks';
-import { GITHUB } from '@/constants';
 
 const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   width: '100%',
@@ -20,14 +18,9 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   background: '#232323',
   padding: '0 18px',
 
-  '& a': {
-    // @ts-ignore
-    color: theme.palette.secondary[300],
-    display: 'flex',
-    alignItems: 'center',
-  },
+  ':hover': { cursor: 'grab' },
 
-  '& .MuiSvgIcon-root, .close, .minimize': {
+  '& .MuiSvgIcon-root, .close': {
     borderRadius: '15px',
     width: '0.9rem',
     minWidth: '0.9rem',
@@ -44,7 +37,6 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   },
   '& .close': { backgroundColor: theme.palette.error.main },
   '& .expand': { backgroundColor: theme.palette.warning.main },
-  '& .minimize': { backgroundColor: theme.palette.success.main },
 
   '& .title': {
     display: 'flex',
@@ -71,7 +63,7 @@ const TopBar = () => {
   const { setFullScreen, exit } = useCommands();
 
   return (
-    <Wrapper className="TopBar">
+    <Wrapper className="TopBar drag-terminal">
       {/* <div className="close">x</div> */}
       <IconButton onClick={exit}>
         <CloseIcon className="close" />
@@ -85,18 +77,11 @@ const TopBar = () => {
           sx={{
             textOverflow: 'ellipsis',
             overflow: 'hidden',
+            // @ts-ignore
+            color: (theme) => theme.palette.secondary[300],
           }}
         >
-          <a href={GITHUB} target="_blank" rel="noopener noreferrer">
-            <GitHubIcon
-              sx={{
-                width: '0.8em !important',
-                height: '0.8em !important',
-                color: 'white !important',
-              }}
-            />
-            github.com/acm-97/portfolio-v2
-          </a>
+          root@acm-97/portfolio-v2: ~
         </Box>
       </div>
     </Wrapper>
