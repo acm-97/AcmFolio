@@ -1,17 +1,26 @@
 import { memo } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Theme } from '@mui/material/styles';
+import LinearProgress from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
 import { Grid } from '@mui/material';
 
 import { useDraggablePreviews } from '@/hooks';
 import { Span, MuiNextLink } from '@/components';
 
 const Projects = () => {
-  const { projects, handlePreviews } = useDraggablePreviews();
+  const { isLoading, projects, handlePreviews } = useDraggablePreviews();
 
   const isDownSm = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down('sm')
   );
+
+  if (isLoading)
+    return (
+      <Box sx={{ width: '100%', padding: '20px' }}>
+        <LinearProgress sx={{ height: '10px' }} />
+      </Box>
+    );
 
   return (
     <Grid

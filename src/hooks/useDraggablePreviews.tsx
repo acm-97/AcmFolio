@@ -8,7 +8,7 @@ export type newDraggableProps = {
 };
 
 const useDraggablePreviews = () => {
-  const { projects, saveDraggable, draggables } = useDraggable();
+  const { isLoading, projects, saveDraggable, draggables } = useDraggable();
 
   const lastDraggableTop = useMemo(
     () =>
@@ -33,7 +33,7 @@ const useDraggablePreviews = () => {
     [draggables, lastDraggableTop, saveDraggable]
   );
 
-  return { projects, lastDraggableTop, handlePreviews };
+  return { isLoading, projects, lastDraggableTop, handlePreviews };
 };
 
 export default useDraggablePreviews;

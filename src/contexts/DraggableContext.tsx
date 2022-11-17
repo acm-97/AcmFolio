@@ -30,6 +30,7 @@ interface DraggableContextProps {
   saveDraggable: (draggable: DraggProps) => void;
   closeDragable: (draggable: DraggProps[]) => void;
   projects: ProjectsProps[];
+  isLoading: boolean;
 }
 
 export const initialDraggable: DraggProps[] = [];
@@ -40,6 +41,7 @@ export const DraggableContext = createContext<DraggableContextProps>({
   saveDraggable: (Draggable: DraggProps) => {},
   closeDragable: (Draggable: DraggProps[]) => {},
   projects: [],
+  isLoading: false,
 });
 
 type DraggableProviderProps = {
@@ -49,11 +51,13 @@ type DraggableProviderProps = {
 const DraggableProvider = ({ children }: DraggableProviderProps) => {
   const [draggables, setDraggable] = useState<DraggProps[]>(initialDraggable);
   const [projects, setProjects] = useState<ProjectsProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
     const fetchProjects = () => {
+      setLoading(true);
       fetch('https://api.github.com/users/acm-97/repos', { signal })
         .then((res) => res.json())
         .then((repos) => {
@@ -70,10 +74,13 @@ const DraggableProvider = ({ children }: DraggableProviderProps) => {
           }));
 
           setProjects(result);
+          setLoading(false);
         })
         .catch((err) => {
-          if (err.name === 'AbortError') console.log('previus fetch canceled');
-          else console.log(err);
+          if (err.name === 'AbortError') {
+            setLoading(true);
+            console.log('previus fetch canceled');
+          } else console.log(err);
         });
     };
     fetchProjects();
@@ -97,6 +104,7 @@ const DraggableProvider = ({ children }: DraggableProviderProps) => {
         saveDraggable,
         closeDragable,
         projects,
+        isLoading: loading,
       }}
     >
       {children}
