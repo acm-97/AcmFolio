@@ -18,7 +18,7 @@ export const profileCommands: {
   },
   projects: {
     key: 'projects',
-    options: ['ls'],
+    options: ['ls', 'preview'],
     description:
       'Provides a list of both personal and professional projects that I have been working on',
   },
