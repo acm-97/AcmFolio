@@ -6,6 +6,9 @@ import { useSettings } from '@/contexts/SettingsProvider';
 import { NotFound, Projects } from '@/components/CommandResponse/Responses';
 
 import useLocale from './useLocale';
+import useDraggablePreviews, {
+  newDraggableProps,
+} from './useDraggablePreviews';
 
 /*
  * handleCommand
@@ -31,6 +34,8 @@ const useCommands = (command?: string) => {
   const { settings, saveSettings } = useSettings();
   const { cKey, option } = handleCommand(command || '');
   const { push } = useRouter();
+
+  const { projects, handlePreviews } = useDraggablePreviews();
 
   /*
    * handleLocale function
@@ -119,7 +124,33 @@ const useCommands = (command?: string) => {
    * handleProjects function
    * return a list of projects
    */
-  const handleProjects = () => (option === 'ls' ? <Projects /> : <></>);
+  const handleProjects = () => {
+    if (option === 'ls') return <Projects />;
+    const _option = option.split('=');
+    // @ts-ignore
+    if (_option[0] === 'preview' && Number.isNaN(_option[1])) {
+      return <NotFound cKey={cKey} option={_option[0]} />;
+    }
+
+    return <></>;
+  };
+
+  const handleProjectsPreview = useCallback(
+    (_command: string) => {
+      const { option: _option } = handleCommand(_command);
+      const newOption = _option.split('=');
+
+      // @ts-ignore
+      if (newOption[0] === 'preview' && !Number.isNaN(newOption[1])) {
+        const selectedProject = projects[Number(newOption[1]) - 1];
+        handlePreviews({
+          projectName: selectedProject.name,
+          project: selectedProject,
+        });
+      }
+    },
+    [handlePreviews, projects]
+  );
 
   return {
     cKey,
@@ -131,6 +162,7 @@ const useCommands = (command?: string) => {
     exit,
     setFullScreen,
     handleProjects,
+    handleProjectsPreview,
   };
 };
 

@@ -1,13 +1,10 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
-import OpenInFullIcon from '@mui/icons-material/OpenInFull';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { useCommands } from '@/hooks';
-import { GITHUB } from '@/constants';
+import { useDraggable } from '@/contexts/DraggableContext';
 
 const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   width: '100%',
@@ -20,14 +17,9 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   background: '#232323',
   padding: '0 18px',
 
-  '& a': {
-    // @ts-ignore
-    color: theme.palette.secondary[300],
-    display: 'flex',
-    alignItems: 'center',
-  },
+  ':hover': { cursor: 'grab' },
 
-  '& .MuiSvgIcon-root, .close, .minimize': {
+  '& .MuiSvgIcon-root, .close': {
     borderRadius: '15px',
     width: '0.9rem',
     minWidth: '0.9rem',
@@ -36,30 +28,20 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     color: 'black',
     ':hover': { cursor: 'pointer' },
   },
-  '& .close, .minimize': {
+  '& .close': {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     fontWeight: 700,
+    backgroundColor: theme.palette.error.main,
   },
-  '& .close': { backgroundColor: theme.palette.error.main },
-  '& .expand': { backgroundColor: theme.palette.warning.main },
-  '& .minimize': { backgroundColor: theme.palette.success.main },
 
   '& .title': {
     display: 'flex',
     flex: 1,
     justifyContent: 'center',
-
-    [theme.breakpoints.down('sm')]: {
-      flex: 0,
-      marginLeft: 20,
-      width: '70%',
-      whiteSpace: 'nowrap',
-    },
-    [theme.breakpoints.down('xs')]: {
-      width: '60%',
-    },
+    // @ts-ignore
+    color: theme.palette.text[300],
   },
 
   [theme.breakpoints.down('md')]: {
@@ -67,16 +49,24 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   },
 }));
 
-const TopBar = () => {
-  const { setFullScreen, exit } = useCommands();
+type TopBar = {
+  projectName: string;
+};
+
+const TopBar = ({ projectName }: TopBar) => {
+  const { draggables, closeDragable } = useDraggable();
+
+  const handleClose = useCallback(() => {
+    const filter = draggables.filter(
+      (item) => item.projectName !== projectName
+    );
+    closeDragable(filter);
+  }, [draggables, closeDragable, projectName]);
 
   return (
-    <Wrapper className="TopBar">
-      <IconButton onClick={exit}>
+    <Wrapper className="drag-projects-details">
+      <IconButton onClick={handleClose}>
         <CloseIcon className="close" />
-      </IconButton>
-      <IconButton onClick={setFullScreen}>
-        <OpenInFullIcon className="expand" />
       </IconButton>
       <div className="title">
         <Box
@@ -86,9 +76,7 @@ const TopBar = () => {
             overflow: 'hidden',
           }}
         >
-          <a href={GITHUB} target="_blank" rel="noopener noreferrer">
-                        github.com/acm-97/portfolio-v2
-          </a>
+          {projectName}
         </Box>
       </div>
     </Wrapper>

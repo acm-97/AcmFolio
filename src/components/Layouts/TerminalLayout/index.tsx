@@ -1,12 +1,13 @@
+import Draggable from 'react-draggable';
 import { memo } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 import { Paper, PaperProps } from '@mui/material';
 
 import { ChildrenProps } from '@/types';
+import { useDraggable } from '@/contexts/DraggableContext';
+import ProjectDetails from '@/components/CommandResponse/Responses/Profile/ProjectDetails';
 
 import TopBar from './TopBar';
-import Draggable from 'react-draggable';
-import ProjectDetails from '@/components/CommandResponse/Responses/Profile/ProjectDetails';
 
 const Wrapper = styled('div')(() => ({
   width: '100% !important',
@@ -23,6 +24,7 @@ const Container = styled('div')(({ theme }: { theme: Theme }) => ({
 
   '& .MuiPaper-root, .TopBar': {
     width: '70%',
+
     [theme.breakpoints.down('md')]: {
       width: '90%',
     },
@@ -65,16 +67,22 @@ const TerminalWrapper = styled(Paper)<PaperProps>(
 
 type TerminalLayaoutTypes = ChildrenProps;
 
-const TerminalLayaout = ({ children }: TerminalLayaoutTypes) => (
-  <Wrapper>
-    <ProjectDetails />
-    <Draggable>
-      <Container>
-        <TopBar />
-        <TerminalWrapper id="terminal-container">{children}</TerminalWrapper>
-      </Container>
-    </Draggable>
-  </Wrapper>
-);
+const TerminalLayaout = ({ children }: TerminalLayaoutTypes) => {
+  const { draggables } = useDraggable();
+
+  return (
+    <Wrapper>
+      {draggables.map((item) => (
+        <ProjectDetails key={item.projectName} draggable={item} />
+      ))}
+      <Draggable handle=".drag-terminal">
+        <Container>
+          <TopBar />
+          <TerminalWrapper id="terminal-container">{children}</TerminalWrapper>
+        </Container>
+      </Draggable>
+    </Wrapper>
+  );
+};
 
 export default memo(TerminalLayaout);

@@ -28,10 +28,12 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
   if (
     (systemCommands[cKey] &&
       systemCommands[cKey].options &&
-      !systemCommands[cKey].options?.includes(option)) ||
+      !systemCommands[cKey].options?.includes(option) &&
+      !option.includes('=')) ||
     (profileCommands[cKey] &&
       profileCommands[cKey].options &&
-      !profileCommands[cKey].options?.includes(option))
+      !profileCommands[cKey].options?.includes(option) &&
+      !option.includes('='))
   )
     return <NotFound cKey={cKey} option={option} />;
 
