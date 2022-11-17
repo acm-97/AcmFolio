@@ -128,7 +128,7 @@ const useCommands = (command?: string) => {
     if (option === 'ls') return <Projects />;
     const _option = option.split('=');
     // @ts-ignore
-    if (_option[0] === 'preview' && Number.isNaN(_option[1])) {
+    if (_option[0] === 'preview' && (Number.isNaN(_option[1]) || !_option[1])) {
       return <NotFound cKey={cKey} option={_option[0]} />;
     }
 
@@ -138,7 +138,7 @@ const useCommands = (command?: string) => {
   const handleProjectsPreview = useCallback(
     (_command: string) => {
       const { cKey: _cKey, option: _option } = handleCommand(_command);
-      if (_cKey === 'preview') {
+      if (_cKey === 'projects' && _option.includes('=')) {
         const newOption = _option.split('=');
 
         // @ts-ignore
