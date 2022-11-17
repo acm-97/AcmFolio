@@ -25,6 +25,16 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
   )
     return <NotFound cKey={cKey} optionsRequired />;
 
+  if (
+    (systemCommands[cKey] &&
+      systemCommands[cKey].options &&
+      !systemCommands[cKey].options?.includes(option)) ||
+    (profileCommands[cKey] &&
+      profileCommands[cKey].options &&
+      !profileCommands[cKey].options?.includes(option))
+  )
+    return <NotFound cKey={cKey} option={option} />;
+
   switch (cKey) {
     case '':
       return <></>;

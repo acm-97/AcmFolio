@@ -131,7 +131,6 @@ const useCommands = (command?: string) => {
     exit,
     setFullScreen,
     handleProjects,
-    fetchProjects,
   };
 };
 
