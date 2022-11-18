@@ -12,6 +12,7 @@ import { H1, H6 } from '@/components/Typography';
 import { MuiNextLink } from '@/components/Link';
 
 import TopBar from './TopBar';
+import Image from 'next/image';
 
 // type ProjectDetailsProps = {};
 
@@ -43,24 +44,28 @@ const Container = styled(Paper)(({ top, theme }: Container) => ({
     display: 'flex',
     alignItems: 'center',
     padding: '30px 15px',
-    borderRadius: '20px',
   },
-  '& .CardMedia': {
-    width: 300,
-    minHeight: 100,
+  '& .CardMediaWrapper': {
     overflow: 'hidden',
     margin: '0 auto',
-    borderRadius: '20px',
   },
-  '& .CardMedia .image': {
-    width: '100%',
+  '& .CardMediaWrapper .CardMedia': {
+    width: 300,
+    height: 180,
     transition: '0.5s all ease-in-out',
     ':hover': {
       transform: 'scale(1.2)',
       cursor: 'pointer',
     },
   },
+  '& .CardMediaWrapper .CardMedia .image': {
+    // borderRadius: '20px',
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+  },
   '& .MuiCardContent-root': {
+    width: '100%',
     flex: '1 0 auto',
     padding: '12px',
     ':last-child': {
@@ -85,14 +90,17 @@ const ProjectDetails = ({
     <Container top={top}>
       <TopBar projectName={projectName} />
       <Card className="MuiCard">
-        <Box className="CardMedia">
-          <CardMedia
-            component="img"
-            image={images[projectName]}
-            alt={projectName}
-            className="image"
-            onClick={() => window.open(url)}
-          />
+        <Box className="CardMediaWrapper">
+          <CardMedia className="CardMedia" onClick={() => window.open(url)}>
+            <div className="image">
+              <Image
+                alt={projectName}
+                src={images[projectName]}
+                layout="fill"
+                objectFit="contain" // or objectFit="cover"
+              />
+            </div>
+          </CardMedia>
         </Box>
         <Box sx={{ display: 'flex' }}>
           <CardContent>
