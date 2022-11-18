@@ -1,11 +1,12 @@
 // @ts-nocheck
 import React, { FunctionComponent, memo, MouseEvent, useState } from 'react';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { useTranslation } from 'next-i18next';
-import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import { Button } from '@mui/material';
+import LanguageIcon from '@mui/icons-material/Language';
 
 interface CompProps {
   className?: string;
@@ -21,7 +22,7 @@ interface LanguageSelectorProps {
 
 const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
   className,
-  icon,
+  icon = <LanguageIcon />,
   mini,
   compProps,
 }) => {
@@ -39,6 +40,7 @@ const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
   };
   // if there's no language configuration, we don't render the component
   if (!locale) return <></>;
+
   return (
     <div className={className}>
       <Button
@@ -48,7 +50,6 @@ const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         alt="selector"
-        sx={{ color: (theme) => `${theme.palette.text.primary} !important` }}
         {...props}
       >
         {icon} {t(mini ? `mini-${locale}` : locale || 'es')}

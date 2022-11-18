@@ -1,8 +1,14 @@
 @import 'nprogress/nprogress.css';
 
-html main {
-  font-family: 'comic sans ms, luminari';
+html, html main {
+  font-family: ' luminari';
   font-weight: 600;
+  /* font-style: italic */
+}
+
+
+html body {
+  overflow: hidden !important;
   /* font-style: italic */
 }
 

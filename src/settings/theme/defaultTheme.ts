@@ -62,6 +62,9 @@ export const defaultTheme = {
             WebkitAppearance: 'none',
             margin: 0,
           },
+        '.MuiButtonBase-root': {
+          color: `${text.secondary}!important`,
+        },
       },
     },
     MuiRating: {

@@ -9,25 +9,43 @@ import CommandInput from './CommandInput';
 const Container = styled('div')(() => ({
   display: 'flex',
   flex: '1 1 auto',
+  flexWrap: 'wrap',
   alignItems: 'center',
+  flexGrow: 2,
+  cursor: 'text',
 }));
 
 type ComandLineTypes = {
   inputCommandRef: any;
+  inputCommandFocus?: () => void;
   command?: string;
   addCommandLines: (x: any) => void;
+  cleanTerminal: (x: boolean) => void;
 };
 
-const ComandLine = (props: ComandLineTypes) => (
-  <Container>
-    <Span sx={{ color: (theme) => theme.palette.text[300], marginRight: 1 }}>
-      $
+const ComandLine = ({ inputCommandFocus, ...props }: ComandLineTypes) => (
+  <Container onClick={inputCommandFocus}>
+    <Span
+      sx={{
+        // @ts-ignore
+        color: (theme) => theme.palette.text[300],
+      }}
+    >
+      ${' '}
+      <Span sx={{ color: (theme) => theme.palette.error.main, marginLeft: 1 }}>
+        root@acm-97
+        <Span
+          sx={{
+            // @ts-ignore
+            color: (theme) => theme.palette.text[200],
+            marginRight: 1.5,
+          }}
+        >
+          /portfolio-v2/{i18n?.language}/ :
+        </Span>
+        <CommandInput {...props} />
+      </Span>
     </Span>
-    <Span sx={{ color: (theme) => theme.palette.text[100] }}>~/acm-97</Span>
-    <Span sx={{ color: (theme) => theme.palette.primary, marginRight: 1.5 }}>
-      /portfolio-v2/{i18n?.language}/ :
-    </Span>
-    <CommandInput {...props} />
   </Container>
 );
 

@@ -1,11 +1,10 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
-import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { useCommands } from '@/hooks';
+import { useDraggable } from '@/contexts/DraggableContext';
 
 const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   width: '100%',
@@ -29,29 +28,20 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     color: 'black',
     ':hover': { cursor: 'pointer' },
   },
-  '& .close, .minimize': {
+  '& .close': {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     fontWeight: 700,
+    backgroundColor: theme.palette.error.main,
   },
-  '& .close': { backgroundColor: theme.palette.error.main },
-  '& .expand': { backgroundColor: theme.palette.warning.main },
 
   '& .title': {
     display: 'flex',
     flex: 1,
     justifyContent: 'center',
-
-    [theme.breakpoints.down('sm')]: {
-      flex: 0,
-      marginLeft: 20,
-      width: '70%',
-      whiteSpace: 'nowrap',
-    },
-    [theme.breakpoints.down('xs')]: {
-      width: '60%',
-    },
+    // @ts-ignore
+    color: theme.palette.text[300],
   },
 
   [theme.breakpoints.down('md')]: {
@@ -59,17 +49,24 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   },
 }));
 
-const TopBar = () => {
-  const { setFullScreen, exit } = useCommands();
+type TopBar = {
+  projectName: string;
+};
+
+const TopBar = ({ projectName }: TopBar) => {
+  const { draggables, closeDragable } = useDraggable();
+
+  const handleClose = useCallback(() => {
+    const filter = draggables.filter(
+      (item) => item.projectName !== projectName
+    );
+    closeDragable(filter);
+  }, [draggables, closeDragable, projectName]);
 
   return (
-    <Wrapper className="TopBar drag-terminal">
-      {/* <div className="close">x</div> */}
-      <IconButton onClick={exit}>
+    <Wrapper className="drag-projects-details">
+      <IconButton onClick={handleClose}>
         <CloseIcon className="close" />
-      </IconButton>
-      <IconButton onClick={setFullScreen}>
-        <OpenInFullIcon className="expand" />
       </IconButton>
       <div className="title">
         <Box
@@ -77,11 +74,9 @@ const TopBar = () => {
           sx={{
             textOverflow: 'ellipsis',
             overflow: 'hidden',
-            // @ts-ignore
-            color: (theme) => theme.palette.secondary[300],
           }}
         >
-          root@acm-97/portfolio-v2: ~
+          {projectName}
         </Box>
       </div>
     </Wrapper>

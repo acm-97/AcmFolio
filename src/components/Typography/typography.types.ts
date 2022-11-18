@@ -18,7 +18,7 @@ export type TypographyStyleProps = BoxProps & {
     | 'lowercase'
     | 'uppercase'
     | 'none';
-  defaultValues: TypographyOptionsProps;
+  defaultvalues: TypographyOptionsProps;
 };
 
 export type TypographyCreator = TypographyOptionsProps & {
