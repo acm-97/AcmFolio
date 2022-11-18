@@ -8,8 +8,8 @@ import {
   profileColumns,
 } from '@/constants';
 
-import { NotFound, Help, About, Skills } from './Responses';
 import Contacts from './Responses/Profile/Contacts';
+import { NotFound, Help, About, Skills } from './Responses';
 
 type CommandResponse = {
   commandKey: string;

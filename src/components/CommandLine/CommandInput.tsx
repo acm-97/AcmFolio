@@ -33,7 +33,8 @@ const CommandInput = ({
   cleanTerminal,
 }: CommandInputTypes) => {
   const [command, setCommand] = useState(commandValue || '');
-  const { handleLocale, handleTheme, handleProjectsPreview } = useCommands('');
+  const { exit, handleLocale, handleTheme, handleProjectsPreview } =
+    useCommands('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.target.value);
@@ -41,7 +42,11 @@ const CommandInput = ({
 
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      if (command.trim() === 'cls') {
+      if (command.trim() === 'exit') {
+        addCommandLines([]);
+        setCommand('');
+        exit();
+      } else if (command.trim() === 'cls') {
         addCommandLines([]);
         cleanTerminal(true);
         setCommand('');

@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { IconButton } from '@mui/material';
-import { useSettings } from '@/contexts/SettingsProvider';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+
 import { THEMES } from '@/settings';
+import { useSettings } from '@/contexts/SettingsProvider';
 
 const ThemeSelector = () => {
   const { settings, saveSettings } = useSettings();

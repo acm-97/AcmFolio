@@ -8,7 +8,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import { DraggProps } from '@/contexts/DraggableContext';
 import { images } from '@/constants/projects';
 import { GITHUB } from '@/constants';
-import { H1, H6, Span } from '@/components/Typography';
+import { H1, H6 } from '@/components/Typography';
 import { MuiNextLink } from '@/components/Link';
 
 import TopBar from './TopBar';

@@ -1,5 +1,5 @@
-import { BoxProps } from '@mui/material/Box/Box';
 import { ElementType } from 'react';
+import { BoxProps } from '@mui/material/Box/Box';
 
 export type TypographyOptionsProps = {
   fontSize?: string;

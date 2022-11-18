@@ -41,6 +41,7 @@
     "space-before-blocks": "off",
     "@typescript-eslint/space-before-blocks": "warn",
     "newline-before-return":"warn",
+    "no-unused-expressions":"off",
     
     // react rules
     "react/function-component-definition": "off",
@@ -70,6 +71,7 @@
     ],
 
     // typescript rules
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-use-before-define": [
       "error",
       { "functions": false, "classes": false, "variables": true }

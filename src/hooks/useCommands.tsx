@@ -102,7 +102,6 @@ const useCommands = (command?: string) => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     push('/');
   };
-
   /*
    * setFullScreen function
    * put the browser windows on full screen mode

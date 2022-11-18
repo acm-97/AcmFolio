@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { Box } from '@mui/material';
+
 import { ChildrenProps } from '@/types';
 
 const boxStyle = {

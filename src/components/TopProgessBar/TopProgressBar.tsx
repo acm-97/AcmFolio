@@ -1,5 +1,5 @@
-import Router from 'next/router';
 import NProgress from 'nprogress';
+import Router from 'next/router';
 
 let timer: any;
 let state: 'loading' | 'stop';

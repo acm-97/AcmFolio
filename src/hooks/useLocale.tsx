@@ -3,18 +3,12 @@ import { useRouter } from 'next/router';
 
 const useLocale = () => {
   const router = useRouter();
-  const {
-    locale: currentLocale,
-    locales,
-    pathname: route,
-    query,
-    asPath,
-  } = router;
+  const { locale: currentLocale, locales, pathname, query, asPath } = router;
 
   const changeLocale = (locale: string) => {
     router.push(
       {
-        route,
+        pathname,
         query,
       },
       asPath,

@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import { Divider, Stack, styled } from '@mui/material';
 import { useTranslation } from 'next-i18next';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import { Divider, Stack, styled } from '@mui/material';
+
 import { H1 } from '@/components';
 
 const Container = styled(Box)(({ theme }) => ({
