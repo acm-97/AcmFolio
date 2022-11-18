@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { FunctionComponent, memo, MouseEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -29,7 +28,7 @@ const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
   const { t } = useTranslation('locales');
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const open = Boolean(anchorEl);
-  const { className: componentClass, ...props } = compProps || {};
+  const { ...props } = compProps || {};
   const { locale, locales, asPath } = useRouter();
 
   const handleClick = (event: MouseEvent) => {
@@ -49,7 +48,7 @@ const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        alt="selector"
+        // alt="selector"
         {...props}
       >
         {icon} {t(mini ? `mini-${locale}` : locale || 'es')}

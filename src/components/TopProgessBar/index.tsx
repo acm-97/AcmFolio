@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic';
 import React, { memo } from 'react';
+import dynamic from 'next/dynamic';
 
 export const CommonTopProgressBar = dynamic(() => import('./TopProgressBar'), {
   ssr: false,

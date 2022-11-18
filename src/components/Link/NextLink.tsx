@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import Link from 'next/link';
 import { LinkProps } from 'next/dist/client/link';
+
 import { ChildrenProps } from '@/types';
 
 type aTag = {

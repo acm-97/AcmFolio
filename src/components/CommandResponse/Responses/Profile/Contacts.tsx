@@ -39,6 +39,7 @@ const Contacts = () => (
           width: '0.7em !important',
           height: '0.7em !important',
           // @ts-ignore
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
           color: (theme) => `${theme.palette.text[200]} !important`,
           marginRight: 1,
         }}
@@ -63,6 +64,7 @@ const Contacts = () => (
           width: '0.7em !important',
           height: '0.7em !important',
           // @ts-ignore
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
           color: (theme) => `${theme.palette.text[200]} !important`,
           marginRight: 1,
         }}
@@ -87,6 +89,7 @@ const Contacts = () => (
           width: '0.7em !important',
           height: '0.7em !important',
           // @ts-ignore
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
           color: (theme) => `${theme.palette.text[200]} !important`,
           marginRight: 1,
         }}

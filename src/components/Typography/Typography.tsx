@@ -1,7 +1,8 @@
-import { Box, styled, Theme } from '@mui/material';
-import classNames from 'classnames';
-import get from 'lodash/get';
 import React from 'react';
+import get from 'lodash/get';
+import classNames from 'classnames';
+import { Box, styled, Theme } from '@mui/material';
+
 import {
   TypographyCreator,
   TypographyOptionsProps,
@@ -16,6 +17,7 @@ const getValueFromTheme = (
   defaultValue: any
 ) => {
   const value = get(typography, `typography.${typography}.${field}`);
+
   return value || defaultValue;
 };
 
@@ -55,7 +57,7 @@ const createTypographyComp: (
       block,
       ...rest
     } = props;
-    // @ts-ignore
+
     return (
       <StyledBox
         ellipsis={ellipsis}
