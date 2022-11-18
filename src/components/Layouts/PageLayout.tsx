@@ -1,7 +1,8 @@
-import { MainLayout, MainLayoutRootProps } from '@/components/Layouts';
-import PageWidthContainer from '@/components/Layouts/PageWidthContainer';
-import { Box } from '@mui/material';
 import Head from 'next/head';
+import { Box } from '@mui/material';
+
+import PageWidthContainer from '@/components/Layouts/PageWidthContainer';
+import { MainLayout, MainLayoutRootProps } from '@/components/Layouts';
 
 const PageLayout = ({ children }: MainLayoutRootProps) => (
   <MainLayout>

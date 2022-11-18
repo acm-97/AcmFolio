@@ -1,14 +1,15 @@
 import React, { memo } from 'react';
-import { NextLink } from '@/components/index';
 import Image from 'next/image';
 import { ImageProps } from 'next/dist/client/image';
+
+import { NextLink } from '@/components/index';
 
 type AppLogoProps = ImageProps & {
   href: string;
 };
 
 const AppLogo = ({ href, ...props }: AppLogoProps) => (
-  <NextLink href="/">
+  <NextLink href={href}>
     <Image {...props} />
   </NextLink>
 );

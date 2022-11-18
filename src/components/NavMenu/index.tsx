@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import { useRouter } from 'next/router';
-import { MuiNextLink } from '@/components';
+
 import { IMenuItem } from '@/types';
+import { MuiNextLink } from '@/components';
 
 type NavMenuProps = {
   menu: IMenuItem[];
@@ -25,6 +26,7 @@ const NavMenu = ({
         const sx = partialMatch
           ? { mx: 2, display: 'block', ...activeSx }
           : { mx: 2, display: 'block' };
+
         return (
           <MuiNextLink
             href={href}

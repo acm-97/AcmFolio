@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { FunctionComponent, memo, MouseEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
