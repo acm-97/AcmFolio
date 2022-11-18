@@ -98,10 +98,15 @@ const useCommands = (command?: string) => {
    * exit function
    * send the user back to initial page
    */
-  const exit = (_command: string) => {
-    const { cKey: _cKey } = handleCommand(_command);
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    _cKey === 'exit' && push('/');
+  const exit = (_command?: string) => {
+    if (_command) {
+      const { cKey: _cKey } = handleCommand(_command);
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      _cKey === 'exit' && push('/');
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      push('/');
+    }
   };
 
   /*
