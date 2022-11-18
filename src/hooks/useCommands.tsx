@@ -98,9 +98,10 @@ const useCommands = (command?: string) => {
    * exit function
    * send the user back to initial page
    */
-  const exit = () => {
+  const exit = (_command: string) => {
+    const { cKey: _cKey } = handleCommand(_command);
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    push('/');
+    _cKey === 'exit' && push('/');
   };
 
   /*

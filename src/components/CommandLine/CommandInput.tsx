@@ -33,7 +33,8 @@ const CommandInput = ({
   cleanTerminal,
 }: CommandInputTypes) => {
   const [command, setCommand] = useState(commandValue || '');
-  const { handleLocale, handleTheme, handleProjectsPreview } = useCommands('');
+  const { exit, handleLocale, handleTheme, handleProjectsPreview } =
+    useCommands('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.target.value);
@@ -53,6 +54,7 @@ const CommandInput = ({
         handleLocale(command);
         handleTheme(command);
         handleProjectsPreview(command);
+        exit(command);
       }
     }
   };
