@@ -30,7 +30,7 @@
   ],
   "rules": {
     "jsx-a11y/anchor-is-valid": "off",
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "prefer-const": "off",
     "no-use-before-define": "off",
     "no-underscore-dangle": "off",
@@ -38,21 +38,36 @@
     "no-param-reassign": "off",
     "no-shadow": "off",
     "no-nested-ternary": "off",
-
+    "space-before-blocks": "off",
+    "@typescript-eslint/space-before-blocks": "warn",
+    "newline-before-return":"warn",
+    
     // react rules
     "react/function-component-definition": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx", ".js", ".jsx"] }],
     "react/jsx-props-no-spreading": ["error", { "custom": "ignore" }],
     "react/no-unescaped-entities": "off",
     "react/prop-types": "off",
     "react/jsx-no-useless-fragment": "off",
     "react/require-default-props": "off",
     "react/no-array-index-key": "off",
+    "react/react-in-jsx-scope": "off",
 
     // import rules
     "import/extensions": "off",
     "import/no-cycle": [0, { "ignoreExternal": true }],
     "import/prefer-default-export": "off",
+    "import/order": [
+      "warn",
+      {
+        "newlines-between": "always",
+        "groups": ["builtin", "external", "internal", ["index", "sibling", "parent", "object", "type"]],
+        "alphabetize": {
+          "order": "desc",
+          "caseInsensitive": true
+        }
+      }
+    ],
 
     // typescript rules
     "@typescript-eslint/no-use-before-define": [
@@ -67,7 +82,8 @@
     "@typescript-eslint/no-unsafe-return": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-misused-promises": "off",
-    "@typescript-eslint/no-shadow": ["error"]
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-explicit-any": ["off"]
   },
   "settings": {
     "import/resolver": {

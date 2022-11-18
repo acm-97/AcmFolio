@@ -7,7 +7,7 @@ const baseOptions = {
   direction: 'ltr',
   breakpoints: {
     values: {
-      xs: 0,
+      xs: 300,
       sm: 600,
       md: 960,
       lg: 1200,

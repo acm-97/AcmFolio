@@ -1,18 +1,15 @@
-import React, { useMemo } from 'react';
 import { Toaster } from 'react-hot-toast';
+import React, { useMemo } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import { useSettings } from '@/contexts/SettingsProvider';
-import { QueryContextProps, QueryProvider } from '@/contexts';
-import { customTheme } from '@/constants';
+
 import {
   defaultTheme,
   themesOptions,
   theming,
   toasterOptions,
 } from '@/settings';
-
-// custom theme
-Object.assign(defaultTheme.components, customTheme.components);
+import { useSettings } from '@/contexts/SettingsProvider';
+import { QueryContextProps, QueryProvider } from '@/contexts';
 
 export const AppProvider = ({
   children,

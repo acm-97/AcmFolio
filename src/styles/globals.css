@@ -1,6 +1,18 @@
 @import 'nprogress/nprogress.css';
 
-#nprogress .bar{
+html, html main {
+  font-family: ' luminari';
+  font-weight: 600;
+  /* font-style: italic */
+}
+
+
+html body {
+  overflow: hidden !important;
+  /* font-style: italic */
+}
+
+#nprogress .bar {
   z-index: 2000;
 }
 .page-wrapper {

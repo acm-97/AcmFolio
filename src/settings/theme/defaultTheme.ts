@@ -6,7 +6,7 @@ import {
   secondary,
   success,
   warning,
-  customLayout,
+  text,
 } from './themeColors';
 
 const fontSize = 14;
@@ -62,6 +62,9 @@ export const defaultTheme = {
             WebkitAppearance: 'none',
             margin: 0,
           },
+        '.MuiButtonBase-root': {
+          color: `${text.secondary}!important`,
+        },
       },
     },
     MuiRating: {
@@ -123,8 +126,9 @@ export const defaultTheme = {
 export const themesOptions = {
   [THEMES.LIGHT]: {
     palette: {
-      // primary,
+      primary,
       secondary,
+      text,
       // error,
       //
       // warning,
@@ -132,14 +136,9 @@ export const themesOptions = {
       // info,
       // divider: secondary[300],
       background: {
-        default: '#ffffff',
+        default: '#dfdfdf',
+        paper: '#ffff',
       },
-      text: {
-        primary: secondary[500],
-        secondary: secondary[450],
-        disabled: secondary[400],
-      },
-      ...customLayout.light,
       mode: 'light',
     },
     components: {},
@@ -147,15 +146,16 @@ export const themesOptions = {
   [THEMES.DARK]: {
     palette: {
       primary,
+      secondary,
       error,
       warning,
       success,
       info,
+      text,
       background: {
         default: '#1e2732',
-        paper: '#222b36',
+        paper: '#152238',
       },
-      ...customLayout.dark,
       mode: 'dark',
     },
     components: {

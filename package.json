@@ -23,8 +23,11 @@
     "nprogress": "^0.2.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-draggable": "^4.4.5",
     "react-hot-toast": "^2.2.0",
-    "react-query": "^3.39.0"
+    "react-query": "^3.39.0",
+    "react-scripts": "^5.0.1",
+    "typewriter-effect": "^2.19.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.182",
@@ -33,6 +36,7 @@
     "@types/react": "^18.0.9",
     "@types/react-dom": "18.0.4",
     "@types/react-query": "^1.2.9",
+    "@types/react-typist": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
     "babel-plugin-module-resolver": "^4.1.0",
