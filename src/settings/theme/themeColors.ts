@@ -26,8 +26,7 @@ export const success = {
   main: '#64ffda',
 };
 export const warning = {
-  main: '#FFE91F',
-  dark: '#FFD600',
+  main: '#FFD600',
 };
 export const info = {
   main: '#A798FF',
@@ -39,4 +38,5 @@ export const text = {
   100: error.main,
   200: primary.blue,
   300: secondary[300],
+  400: warning.main,
 };
