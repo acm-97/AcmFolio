@@ -1,5 +1,7 @@
 import { useRef, useState, Fragment, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 import { Box } from '@mui/material';
 
 import { scrollToBottom } from '@/utils';
@@ -11,7 +13,6 @@ import CommandResponse from '@/components/CommandResponse';
 import { CommandLine, PageLayout, Span, TerminalLayout } from '@/components';
 
 import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
 
 /*
  * manage the current locale (language)
@@ -19,11 +20,12 @@ import { useRouter } from 'next/router';
  */
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
-    ...(await serverSideTranslations(locale, [...COMMON_LOCALE])),
+    ...(await serverSideTranslations(locale, [...COMMON_LOCALE, 'terminal'])),
   },
 });
 
 const Terminal: NextPage = () => {
+  const { t } = useTranslation('terminal');
   let [commandLines, setCommandLines] = useState<string[]>([]);
   let [cls, setCls] = useState<boolean>(false);
   const inputCommandRef = useRef<any>();
@@ -56,13 +58,11 @@ const Terminal: NextPage = () => {
         {!cls && (
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <StyledSpan sx={{ marginTop: '15px !important' }}>
-              Hi again, I know, it's not the typical portfolio you'd expect.
+              {t('line1')}
             </StyledSpan>
-            <StyledSpan>
-              But look, it's refreshing and can be fun too.
-            </StyledSpan>
+            <StyledSpan>{t('line2')}</StyledSpan>
             <StyledSpan sx={{ marginBottom: '15px !important' }}>
-              Type "
+              {t('line3.part1')} "
               <Span
                 sx={{
                   // @ts-ignore
@@ -71,7 +71,7 @@ const Terminal: NextPage = () => {
               >
                 help
               </Span>
-              " to see the available commands you can interact with.
+              " {t('line3.part2')}
             </StyledSpan>
           </Box>
         )}
