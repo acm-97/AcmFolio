@@ -43,6 +43,7 @@ const LanguageSelector: FunctionComponent<LanguageSelectorProps> = ({
   return (
     <div className={className}>
       <Button
+        sx={{ lineHeight: 2 }}
         id="language-selector"
         aria-controls={open ? 'language-menu' : undefined}
         aria-haspopup="true"

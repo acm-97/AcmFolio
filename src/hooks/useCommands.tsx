@@ -101,6 +101,7 @@ const useCommands = (command?: string) => {
   const exit = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     push('/');
+    localStorage.clear();
   };
   /*
    * setFullScreen function

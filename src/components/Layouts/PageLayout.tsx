@@ -8,9 +8,13 @@ const PageLayout = ({ children }: MainLayoutRootProps) => (
   <MainLayout>
     <PageWidthContainer>
       <Head>
-        <title>ACMFolio</title>
-        <meta name="description" content="Personal Portafolio" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>AcmFolio</title>
+        <meta name="description" content="Alejandros's Personal Portafolio" />
+        <link
+          rel="icon"
+          href="/logos/logo-home.png
+        "
+        />
       </Head>
       <Box>{children}</Box>
     </PageWidthContainer>
