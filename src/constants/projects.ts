@@ -3,5 +3,5 @@ export const images: { [x: string]: string } = {
 
   'portfolio-v1': '/portfolio-v1.png',
 
-  'portfolio-v2': '/portfolio-v2.png',
+  AcmFolio: '/logos/logo-about.png',
 };
