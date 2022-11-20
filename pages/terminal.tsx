@@ -63,7 +63,12 @@ const Terminal: NextPage = () => {
             </StyledSpan>
             <StyledSpan sx={{ marginBottom: '15px !important' }}>
               Type "
-              <Span sx={{ color: (theme) => theme.palette.warning.main }}>
+              <Span
+                sx={{
+                  // @ts-ignore
+                  color: (theme) => theme.palette.text[400],
+                }}
+              >
                 help
               </Span>
               " to see the available commands you can interact with.
