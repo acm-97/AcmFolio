@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { styled, Theme } from '@mui/material/styles';
 import { Box, Paper } from '@mui/material';
+import { useEffect } from 'react';
 
 import { COMMON_LOCALE } from '@/settings';
 import {
@@ -115,6 +116,8 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
 }));
 const Home = () => {
   const router = useRouter();
+
+  useEffect(() => localStorage.clear());
 
   return (
     <Wrapper>
