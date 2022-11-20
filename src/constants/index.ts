@@ -1,12 +1,4 @@
 /* eslint-disable prefer-destructuring */
-export {
-  systemCommands,
-  columns as systemColumns,
-} from './HelpConstants/systemCommands';
-export {
-  profileCommands,
-  columns as profileColumns,
-} from './HelpConstants/profileCommands';
 export { rows, columns as skillsColumns } from './skills';
 
 export const GITHUB = process.env.NEXT_PUBLIC_GITHUB;

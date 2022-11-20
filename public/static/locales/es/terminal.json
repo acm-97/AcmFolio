@@ -4,5 +4,25 @@
   "line3": {
     "part1": "Escriba",
     "part2": "para ver los comandos disponibles con los que puedes interactuar."
+  },
+  "help": {
+    "options": "Opciones",
+    "description": "Descripción",
+    "profile": {
+      "commands": "Comandos de perfil",
+      "aboutDescription": "Proporciona una pequeña descripción sobre mí.",
+      "contactsDescription": "Proporciona una lista de redes sociales donde se puede contactar conmigo.",
+      "skillsDescription": "Proporciona una lista de sociales donde se puede contactar conmigo.",
+      "projectsDescription": "Proporciona una lista de habilidades en las que he trabajado a lo largo de los años Con ( ls ) obtienes una lista de proyectos en los que he estado trabajando. Con ( preview ) puedes ver una pequeña información sobre un proyecto, para esto tienes que proporcionar un número de proyecto de la lista ( --preview=1 )"
+    },
+    "system": {
+      "commands": "Comandos del sistema",
+      "helpDescription": "Proporciona la lista de comandos disponibles para el terminal.",
+      "clsDescription": "Cambia al idioma de tu elección, inglés( en ) o español( es ).",
+      "languageDescription": "Cambia al tema de tu elección ( claro u oscuro ).",
+      "themeDescription": "Proporciona una lista de sociales donde se puede contactar conmigo.",
+      "fullscreenDescription": "Cambia al modo de pantalla completa ( F11 ).",
+      "exitDescription": "Abandona la pagina actual."
+    }
   }
 }

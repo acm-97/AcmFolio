@@ -1,12 +1,6 @@
 import { memo } from 'react';
 
-import { useCommands } from '@/hooks';
-import {
-  systemCommands,
-  systemColumns,
-  profileCommands,
-  profileColumns,
-} from '@/constants';
+import { useCommands, useProfileCommands, useSystemCommands } from '@/hooks';
 
 import Contacts from './Responses/Profile/Contacts';
 import { NotFound, Help, About, Skills } from './Responses';
@@ -16,6 +10,9 @@ type CommandResponse = {
 };
 
 const CommandResponse = ({ commandKey }: CommandResponse) => {
+  const { profileCommands, profileColumns } = useProfileCommands();
+  const { systemColumns, systemCommands } = useSystemCommands();
+
   const {
     cKey,
     option,
