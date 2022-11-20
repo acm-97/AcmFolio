@@ -24,5 +24,18 @@
       "fullscreenDescription": "Switch to full screen modo ( F11 ).",
       "exitDescription": "Leave the current page."
     }
+  },
+  "skills": {
+    "skillsTypes": "Skills Types",
+    "Skills": "Skills",
+    "one": "Programming languages",
+    "two": "JavaScript Libraries",
+    "three": "Frameworks",
+    "four": "Databases",
+    "five": "Package Manager",
+    "six": "Personal",
+    "sixValues": "Teamwork, Initiative, Creativity, Dedication, Organization",
+    "seven": "Languages",
+    "sevenValues": "Spanish (native), English (B1)"
   }
 }

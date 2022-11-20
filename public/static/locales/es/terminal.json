@@ -24,5 +24,18 @@
       "fullscreenDescription": "Cambia al modo de pantalla completa ( F11 ).",
       "exitDescription": "Abandona la pagina actual."
     }
+  },
+  "skills": {
+    "skillsTypes": "Tipos de habilidades",
+    "Skills": "Habilidades",
+    "one": "Lenguajes de programación",
+    "two": "Bibliotecas JavaScript",
+    "three": "Frameworks",
+    "four": " Bases de datos",
+    "five": "Gestor de paquetes",
+    "six": "Personal",
+    "sixValues": "Trabajo en equipo, Iniciativa, Creatividad, Dedicación, Organización",
+    "seven": "Idiomas",
+    "sevenValues": "Español (nativo), Inglés (B1)"
   }
 }

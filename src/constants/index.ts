@@ -1,6 +1,3 @@
-/* eslint-disable prefer-destructuring */
-export { rows, columns as skillsColumns } from './skills';
-
 export const GITHUB = process.env.NEXT_PUBLIC_GITHUB;
 export const LINKEDIN = process.env.NEXT_PUBLIC_LINKEDIN;
 export const INSTAGRAM = process.env.NEXT_PUBLIC_INSTAGRAM;
