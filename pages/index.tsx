@@ -2,7 +2,7 @@ import Typewriter from 'typewriter-effect';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { styled, Theme } from '@mui/material/styles';
-import { Paper } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 
 import { COMMON_LOCALE } from '@/settings';
 import {
@@ -11,6 +11,7 @@ import {
   GITHUB,
 } from '@/constants';
 import { LanguageSelector, ThemeSelector } from '@/components';
+import Image from 'next/image';
 
 /*
  * manage the current locale (language)
@@ -31,6 +32,14 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
   flexDirection: 'column',
   minHeight: '100vh',
   maxHeight: '100vh',
+
+  '.image': {
+    position: 'relative',
+    width: '100%',
+    height: '20vh',
+    marginBottom: 50,
+  },
+
   '.terminal': {
     display: 'flex',
     alignItems: 'flex-end',
@@ -53,7 +62,7 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     '.text': {
       width: '100%',
       padding: 30,
-      minHeight: '50vh',
+      minHeight: '40vh',
       [theme.breakpoints.down('md')]: {
         fontSize: '1.5em',
       },
@@ -80,23 +89,6 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     },
   },
 
-  '.emojis': {
-    marginBottom: '100px',
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: '8em',
-    textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: '50px',
-      fontSize: '3em',
-    },
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '2.8em',
-    },
-  },
-  '.emojis span': {
-    fontSize: '1em !important',
-  },
   '.Typewriter__wrapper': {
     fontSize: '1.8em',
     '.user-name, .frontend': {
@@ -117,7 +109,7 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     },
   },
   '& .Typewriter__cursor ': {
-    fontSize: '2.8em',
+    fontSize: '1.8em',
     lineHeight: 0,
   },
 }));
@@ -126,35 +118,14 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <div className="emojis">
-        <Typewriter
-          options={{ cursor: '', delay: 0, deleteSpeed: 0, loop: true }}
-          onInit={(typewriter) => {
-            typewriter
-              .typeString(' <span>👈</span> ')
-              .pauseFor(4000)
-              .deleteAll()
-              .typeString(' <span>👉</span> ')
-              .pauseFor(4000)
-              .deleteAll()
-              .start();
-          }}
+      <Box className="image">
+        <Image
+          src="/logos/logo-home.png"
+          alt="logo-home"
+          layout="fill"
+          objectFit="contain"
         />
-        <div>( ͡• ͜ʖ ͡• )</div>
-        <Typewriter
-          options={{ cursor: '', delay: 0, loop: true }}
-          onInit={(typewriter) => {
-            typewriter
-              .typeString(' <span>👈</span> ')
-              .pauseFor(4000)
-              .deleteAll()
-              .typeString(' <span>👉</span> ')
-              .pauseFor(4000)
-              .deleteAll()
-              .start();
-          }}
-        />
-      </div>
+      </Box>
       <Paper className="terminal">
         <div className="options">
           <LanguageSelector mini />
@@ -162,12 +133,12 @@ const Home = () => {
         </div>
         <Paper className="text">
           <Typewriter
-            options={{ cursor: '▮' }}
+            options={{ cursor: '▮', delay: 25 }}
             onInit={(typewriter) => {
               typewriter
                 .typeString(
                   `<span class="dollar">$ </span> Hello there <br/> 
-                           <span class="dollar">$ </span> Welcome to ACMFolio v1.0 by`
+                           <span class="dollar">$ </span> Welcome to AcmFolio v1.0 by`
                 )
 
                 .typeString(
