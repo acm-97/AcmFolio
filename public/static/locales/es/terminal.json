@@ -37,5 +37,14 @@
     "sixValues": "Trabajo en equipo, Iniciativa, Creatividad, Dedicación, Organización",
     "seven": "Idiomas",
     "sevenValues": "Español (nativo), Inglés (B1)"
+  },
+  "notFound": {
+    "part1": "Escriba ",
+    "part2": "para ver todos los comandos disponibles y sus  \"opciones\"",
+    "part3": "comando",
+    "part4": "no encontrado. Escriba ",
+    "part5": "para ver todos los comandos disponibles",
+    "part6": "opción",
+    "part7": "para el comando"
   }
 }
