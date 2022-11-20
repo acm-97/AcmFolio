@@ -41,7 +41,7 @@ const ComandLine = ({ inputCommandFocus, ...props }: ComandLineTypes) => (
             marginRight: 1.5,
           }}
         >
-          /portfolio-v2/{i18n?.language}/ :
+          /AcmFolio/{i18n?.language}/ :
         </Span>
         <CommandInput {...props} />
       </Span>

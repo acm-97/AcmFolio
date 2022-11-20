@@ -81,7 +81,7 @@ const TopBar = () => {
             color: (theme) => theme.palette.secondary[300],
           }}
         >
-          root@acm-97/portfolio-v2: ~
+          root@acm-97/AcmFolio: ~
         </Box>
       </div>
     </Wrapper>
