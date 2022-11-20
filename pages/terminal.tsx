@@ -11,6 +11,7 @@ import CommandResponse from '@/components/CommandResponse';
 import { CommandLine, PageLayout, Span, TerminalLayout } from '@/components';
 
 import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 /*
  * manage the current locale (language)
@@ -22,15 +23,11 @@ export const getStaticProps = async ({ locale }: any) => ({
   },
 });
 
-// type CommandLines = {
-//   key?: string;
-//   value?: string;
-// };
-
 const Terminal: NextPage = () => {
   let [commandLines, setCommandLines] = useState<string[]>([]);
   let [cls, setCls] = useState<boolean>(false);
   const inputCommandRef = useRef<any>();
+  const { locale } = useRouter();
 
   /*
    * inputCommandFocus function
@@ -42,6 +39,16 @@ const Terminal: NextPage = () => {
   };
 
   useEffect(() => scrollToBottom(), [commandLines.length]);
+
+  useEffect(() => {
+    if (commandLines.length > 0)
+      localStorage.setItem('commandLines', JSON.stringify(commandLines));
+  }, [commandLines, commandLines.length]);
+
+  useEffect(() => {
+    const commands = localStorage.getItem('commandLines');
+    commands && setCommandLines(JSON.parse(commands));
+  }, [locale]);
 
   return (
     <DraggableProvider>
@@ -56,7 +63,12 @@ const Terminal: NextPage = () => {
             </StyledSpan>
             <StyledSpan sx={{ marginBottom: '15px !important' }}>
               Type "
-              <Span sx={{ color: (theme) => theme.palette.warning.main }}>
+              <Span
+                sx={{
+                  // @ts-ignore
+                  color: (theme) => theme.palette.text[400],
+                }}
+              >
                 help
               </Span>
               " to see the available commands you can interact with.

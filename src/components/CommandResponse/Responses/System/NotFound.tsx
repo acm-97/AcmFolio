@@ -14,7 +14,7 @@ const StyledSpan = styled((props: TypographyProps) => (
   <Span
     sx={{
       // @ts-ignore
-      color: (theme) => theme.palette.warning.main,
+      color: (theme) => theme.palette.text[400],
     }}
     {...props}
   />

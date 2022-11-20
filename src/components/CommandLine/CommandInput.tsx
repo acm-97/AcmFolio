@@ -10,7 +10,8 @@ const Input = styled('input')(
     background: 'transparent',
     border: 'none',
     caretColor: theme.palette.error.main,
-    color: theme.palette.warning.main,
+    // @ts-ignore
+    color: theme.palette.text[400],
     paddingLeft: 0,
     ':focus': {
       outline: 'none',
@@ -64,7 +65,12 @@ const CommandInput = ({
 
   if (commandValue || command === undefined)
     return (
-      <Span sx={{ color: (theme) => theme.palette.warning.main }}>
+      <Span
+        sx={{
+          // @ts-ignore
+          color: (theme) => theme.palette.text[400],
+        }}
+      >
         {commandValue}
       </Span>
     );
