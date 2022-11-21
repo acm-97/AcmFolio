@@ -34,10 +34,7 @@ const Terminal: NextPage = () => {
   let [cls, setCls] = useState<boolean>(false);
   const inputCommandRef = useRef<any>();
   const { locale } = useRouter();
-  const [storedCommandLines] = useLocalStorageState<string[]>(
-    COMMAND_LINES,
-    []
-  );
+  const [storedCommandLines] = useLocalStorageState<string[]>(COMMAND_LINES, []);
 
   /*
    * inputCommandFocus function
@@ -50,19 +47,16 @@ const Terminal: NextPage = () => {
 
   useEffect(() => scrollToBottom(), [commandLines.length]);
 
-  // useEffect(() => {
-  //   const commands = localStorage.getItem('commandLines');
-  //   commands && setCommandLines(JSON.parse(commands));
-  // }, [locale]);
+  useEffect(() => {
+    setCommandLines(storedCommandLines);
+  }, [locale, storedCommandLines]);
 
   return (
     <DraggableProvider>
       <TerminalLayout>
         {!cls && (
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <StyledSpan sx={{ marginTop: '15px !important' }}>
-              {t('line1')}
-            </StyledSpan>
+            <StyledSpan sx={{ marginTop: '15px !important' }}>{t('line1')}</StyledSpan>
             <StyledSpan>{t('line2')}</StyledSpan>
             <StyledSpan sx={{ marginBottom: '15px !important' }}>
               {t('line3.part1')} "
