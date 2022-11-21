@@ -43,8 +43,10 @@ const Terminal: NextPage = () => {
   useEffect(() => scrollToBottom(), [commandLines.length]);
 
   useEffect(() => {
-    if (commandLines.length > 0)
+    if (commandLines.length > 0) {
       localStorage.setItem('commandLines', JSON.stringify(commandLines));
+      localStorage.setItem('commandLinesHistory', JSON.stringify(commandLines));
+    }
   }, [commandLines, commandLines.length]);
 
   useEffect(() => {

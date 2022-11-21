@@ -42,6 +42,7 @@
     "@typescript-eslint/space-before-blocks": "warn",
     "newline-before-return":"warn",
     "no-unused-expressions":"off",
+    "no-plusplus": "off",
     
     // react rules
     "react/function-component-definition": "off",
