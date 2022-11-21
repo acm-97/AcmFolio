@@ -1,0 +1,50 @@
+{
+  "line1": "Hi again, I know, it's not the typical portfolio you'd expect.",
+  "line2": "But look, it's refreshing and can be fun too.",
+  "line3": {
+    "part1": "Type",
+    "part2": "to see the available commands you can interact with."
+  },
+  "help": {
+    "options": "Options",
+    "description": "Description",
+    "profile": {
+      "commands": "Profile Commands",
+      "aboutDescription": "Provides a little description about me.",
+      "contactsDescription": "Provides a list of socials where you can contact me.",
+      "skillsDescription": "Provides a list of socials where you can contact me.",
+      "projectsDescription": "Provides a list of skills that I have worked on over the years With ( ls ) you got a list of projects that I have been working on. With ( preview ) you can see a small info abaout a project, for this you have to provide a project number from de list ( --preview=1 )"
+    },
+    "system": {
+      "commands": "System Commands",
+      "helpDescription": "Provides the list of commands available for the terminal.",
+      "clsDescription": "Switch to the language of your choice, English( en ) or Spanish( es ).",
+      "languageDescription": "Switch to the theme of your choice ( light or dark ).",
+      "themeDescription": "Provides a list of socials where you can contact me.",
+      "fullscreenDescription": "Switch to full screen modo ( F11 ).",
+      "exitDescription": "Leave the current page."
+    }
+  },
+  "skills": {
+    "skillsTypes": "Skills Types",
+    "Skills": "Skills",
+    "one": "Programming languages",
+    "two": "JavaScript Libraries",
+    "three": "Frameworks",
+    "four": "Databases",
+    "five": "Package Manager",
+    "six": "Personal",
+    "sixValues": "Teamwork, Initiative, Creativity, Dedication, Organization",
+    "seven": "Languages",
+    "sevenValues": "Spanish (native), English (B1)"
+  },
+  "notFound": {
+    "part1": "Type",
+    "part2": "to see all available commands and their \"options\"",
+    "part3": "command",
+    "part4": "not found. Type ",
+    "part5": "to see all available commands",
+    "part6": "option",
+    "part7": "for command"
+  }
+}

@@ -9,4 +9,4 @@ This is a second version project for my personal portfolio, you can see the firs
 (Curriculum Vitae)
 
 
-![alt text](https://github.com/acm-97/portfolio-v2/blob/dev/public/logos/logo-about.png)
+![alt text](https://github.com/acm-97/AcmFolio/blob/dev/public/logos/logo-about.png)
