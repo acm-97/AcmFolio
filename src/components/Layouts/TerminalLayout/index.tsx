@@ -13,6 +13,11 @@ const Wrapper = styled('div')(() => ({
   width: '100% !important',
   display: 'flex',
   justifyContent: 'center',
+  height: '100vh',
+
+  '.react-draggable': {
+    margin: 'auto'
+  }
 }));
 
 const Container = styled('div')(({ theme }: { theme: Theme }) => ({
