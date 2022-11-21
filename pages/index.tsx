@@ -1,9 +1,11 @@
 import Typewriter from 'typewriter-effect';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 import { styled, Theme } from '@mui/material/styles';
 import { Box, Paper } from '@mui/material';
-import { useEffect } from 'react';
 
 import { COMMON_LOCALE } from '@/settings';
 import {
@@ -12,7 +14,6 @@ import {
   GITHUB,
 } from '@/constants';
 import { LanguageSelector, ThemeSelector } from '@/components';
-import Image from 'next/image';
 
 /*
  * manage the current locale (language)
@@ -20,7 +21,7 @@ import Image from 'next/image';
  */
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
-    ...(await serverSideTranslations(locale, [...COMMON_LOCALE])),
+    ...(await serverSideTranslations(locale, [...COMMON_LOCALE, 'home'])),
   },
 });
 
@@ -116,6 +117,7 @@ const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
 }));
 const Home = () => {
   const router = useRouter();
+  const { t } = useTranslation('home');
 
   useEffect(() => localStorage.clear());
 
@@ -140,8 +142,12 @@ const Home = () => {
             onInit={(typewriter) => {
               typewriter
                 .typeString(
-                  `<span class="dollar">$ </span> Hello there <br/> 
-                           <span class="dollar">$ </span> Welcome to AcmFolio v1.0 by`
+                  `<span class="dollar">$ </span> ${t(
+                    'textContainer.part1'
+                  )} <br/> 
+                           <span class="dollar">$ </span> ${t(
+                             'textContainer.part2'
+                           )}`
                 )
 
                 .typeString(
@@ -154,9 +160,13 @@ const Home = () => {
                       window?.open(GITHUB);
                     });
                 })
-                .typeString(`<span class="dollar">$ </span>  I'm a `)
                 .typeString(
-                  `<span id="frontend" class="frontend"> Front-End Web Developer </span> `
+                  `<span class="dollar">$ </span>  ${t('textContainer.part3')} `
+                )
+                .typeString(
+                  `<span id="frontend" class="frontend"> ${t(
+                    'textContainer.part4'
+                  )} </span> `
                 )
                 .callFunction(() => {
                   document
@@ -169,11 +179,17 @@ const Home = () => {
                       );
                     });
                 })
-                .typeString(` and this web is my Portfolio. <br/>  `)
+                .typeString(` ${t('textContainer.part5')} <br/>  `)
                 .typeString(
-                  ` <span class="dollar">$ </span>  Do you want to   `
+                  ` <span class="dollar">$ </span>  ${t(
+                    'textContainer.part6'
+                  )}   `
                 )
-                .typeString(` <span id="continue-blink">continue</span>  `)
+                .typeString(
+                  ` <span id="continue-blink">${t(
+                    'textContainer.part7'
+                  )}</span>  `
+                )
                 .callFunction(() => {
                   document
                     ?.getElementById('continue-blink')
@@ -182,7 +198,7 @@ const Home = () => {
                       async () => await router.push('/terminal')
                     );
                 })
-                .typeString(` and find out more about me? `)
+                .typeString(` ${t('textContainer.part8')} `)
 
                 .start();
             }}

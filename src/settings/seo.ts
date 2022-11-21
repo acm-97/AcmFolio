@@ -1,18 +1,18 @@
 export const DEFAULT_SEO = {
-  title: 'ACMFolio',
-  description: 'Personal Portfolio',
+  title: 'AcmFolio',
+  description: "Alejandros's Personal Portafolio",
   openGraph: {
-    title: 'ACMFolio',
-    description: 'Personal Portfolio',
+    title: 'AcmFolio',
+    description: "Alejandros's Personal Portafolio",
     type: 'website',
     locale: 'en',
-    site_name: 'ACMFolio',
+    site_name: 'AcmFolio',
     images: [
       {
-        url: '/favicon.png',
+        url: '/logos/logo-home.png',
         width: 192,
         height: 192,
-        alt: 'ext.js Shell',
+        alt: 'logo-home.png',
         type: 'image/png',
       },
     ],

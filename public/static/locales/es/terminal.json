@@ -1,0 +1,50 @@
+{
+  "line1": "Hola de nuevo, lo sé, no es el tipico portafolio que se espera.",
+  "line2": "Pero mira, es refrescante y también puede ser divertido.",
+  "line3": {
+    "part1": "Escriba",
+    "part2": "para ver los comandos disponibles con los que puedes interactuar."
+  },
+  "help": {
+    "options": "Opciones",
+    "description": "Descripción",
+    "profile": {
+      "commands": "Comandos de perfil",
+      "aboutDescription": "Proporciona una pequeña descripción sobre mí.",
+      "contactsDescription": "Proporciona una lista de redes sociales donde se puede contactar conmigo.",
+      "skillsDescription": "Proporciona una lista de sociales donde se puede contactar conmigo.",
+      "projectsDescription": "Proporciona una lista de habilidades en las que he trabajado a lo largo de los años Con ( ls ) obtienes una lista de proyectos en los que he estado trabajando. Con ( preview ) puedes ver una pequeña información sobre un proyecto, para esto tienes que proporcionar un número de proyecto de la lista ( --preview=1 )"
+    },
+    "system": {
+      "commands": "Comandos del sistema",
+      "helpDescription": "Proporciona la lista de comandos disponibles para el terminal.",
+      "clsDescription": "Cambia al idioma de tu elección, inglés( en ) o español( es ).",
+      "languageDescription": "Cambia al tema de tu elección ( claro u oscuro ).",
+      "themeDescription": "Proporciona una lista de sociales donde se puede contactar conmigo.",
+      "fullscreenDescription": "Cambia al modo de pantalla completa ( F11 ).",
+      "exitDescription": "Abandona la pagina actual."
+    }
+  },
+  "skills": {
+    "skillsTypes": "Tipos de habilidades",
+    "Skills": "Habilidades",
+    "one": "Lenguajes de programación",
+    "two": "Bibliotecas JavaScript",
+    "three": "Frameworks",
+    "four": " Bases de datos",
+    "five": "Gestor de paquetes",
+    "six": "Personal",
+    "sixValues": "Trabajo en equipo, Iniciativa, Creatividad, Dedicación, Organización",
+    "seven": "Idiomas",
+    "sevenValues": "Español (nativo), Inglés (B1)"
+  },
+  "notFound": {
+    "part1": "Escriba ",
+    "part2": "para ver todos los comandos disponibles y sus  \"opciones\"",
+    "part3": "comando",
+    "part4": "no encontrado. Escriba ",
+    "part5": "para ver todos los comandos disponibles",
+    "part6": "opción",
+    "part7": "para el comando"
+  }
+}
