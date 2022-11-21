@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 import { styled, Theme } from '@mui/material/styles';
 import { Box } from '@mui/material';
 
@@ -55,40 +56,40 @@ export const StyledSpan = ({
   </Span>
 );
 
-const About = () => (
-  <>
-    <Wrapper>
-      <Box className="image">
-        <Image src="/logos/logo-about.png" layout="fill" objectFit="contain" />
-      </Box>
-      <Box className="personal-info">
-        <StyledSpan keyName="Name:">Alejandro Cabrera Mena</StyledSpan>
-        <StyledSpan keyName="Age:">25</StyledSpan>
-        <StyledSpan keyName="Birth Place:">Cuba</StyledSpan>
-        <StyledSpan keyName="Current Location:">Cuba</StyledSpan>
-        <StyledSpan keyName="B.S:">Informatics Engeneering.</StyledSpan>
-        <StyledSpan keyName="Current Profesion:">
-          Front-End Web Developer.
-        </StyledSpan>
-      </Box>
-    </Wrapper>
-    <StyledSpan sx={{ marginTop: '20px' }}>
-      I am a Software Engineer with 3 years of experience.
-    </StyledSpan>
-    <StyledSpan>
-      I offer advanced knowledge of frontend web technologies, mainly ReactJS or
-      NextJS.
-    </StyledSpan>
-    <StyledSpan>
-      In addition, I can offer some experience in development with the MERN
-      stack .
-    </StyledSpan>
-    <StyledSpan sx={{ marginBottom: '20px' }}>
-      I am a web programming enthusiast, eager to learn new technologies and{' '}
-      skills, always looking for new and interesting projects where improve my
-      skills.
-    </StyledSpan>
-  </>
-);
+const About = () => {
+  const { t } = useTranslation('terminal');
+
+  return (
+    <>
+      <Wrapper>
+        <Box className="image">
+          <Image
+            src="/logos/logo-about.png"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box className="personal-info">
+          <StyledSpan keyName="Name:">{t('about.name')}</StyledSpan>
+          <StyledSpan keyName="Age:">{t('about.age')}</StyledSpan>
+          <StyledSpan keyName="Birth Place:">
+            {t('about.birthPlace')}
+          </StyledSpan>
+          <StyledSpan keyName="Current Location:">
+            {t('about.currentLocation')}
+          </StyledSpan>
+          <StyledSpan keyName="B.S:">{t('about.bs')}</StyledSpan>
+          <StyledSpan keyName="Current Profesion:">
+            {t('about.currentProfesion')}
+          </StyledSpan>
+        </Box>
+      </Wrapper>
+      <StyledSpan sx={{ marginTop: '20px' }}>{t('about.line1')}</StyledSpan>
+      <StyledSpan>{t('about.line2')}</StyledSpan>
+      <StyledSpan>{t('about.line3')}</StyledSpan>
+      <StyledSpan sx={{ marginBottom: '20px' }}>{t('about.line4')}</StyledSpan>
+    </>
+  );
+};
 
 export default memo(About);
