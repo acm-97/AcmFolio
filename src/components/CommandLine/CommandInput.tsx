@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 
 import { useCommands } from '@/hooks';
@@ -34,14 +34,49 @@ const CommandInput = ({
   cleanTerminal,
 }: CommandInputTypes) => {
   const [command, setCommand] = useState(commandValue || '');
+  const [commandsHistory, setCommandsHistory] = useState([]);
+  const [lastCommand, setLastCommand] = useState(0);
+
   const { exit, handleLocale, handleTheme, handleProjectsPreview } =
     useCommands('');
+
+  useEffect(() => {
+    const commandsStorage = localStorage.getItem('commandLinesHistory');
+    if (commandsStorage) {
+      const parsedCommandsStorage = JSON.parse(commandsStorage);
+      setCommandsHistory(parsedCommandsStorage);
+      setLastCommand(parsedCommandsStorage.length - 1);
+    }
+  }, []);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.target.value);
   };
 
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowUp') {
+      setCommand(commandsHistory[lastCommand]);
+      setLastCommand((prev) => (prev > 0 ? prev - 1 : prev));
+    }
+
+    if (e.key === 'ArrowDown') {
+      setLastCommand((prev) => {
+        const pos = prev + 1;
+        if (prev < commandsHistory.length - 1) {
+          setCommand(commandsHistory[pos]);
+
+          return pos;
+        }
+        if (pos > commandsHistory.length - 1) {
+          setCommand('');
+
+          return prev;
+        }
+
+        return prev;
+      });
+    }
+
     if (e.key === 'Enter') {
       if (command.trim() === 'exit') {
         addCommandLines([]);
