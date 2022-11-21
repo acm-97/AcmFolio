@@ -57,7 +57,12 @@ const useSkills = () => {
     {
       headerName: t('skills.skillsTypes'),
       accessor: ({ type }: any) => (
-        <Span sx={{ color: (theme) => theme.palette.text.secondary }}>
+        <Span
+          sx={{
+            // @ts-ignore
+            color: (theme) => theme.palette.text[200],
+          }}
+        >
           {type}
         </Span>
       ),
@@ -70,8 +75,7 @@ const useSkills = () => {
       accessor: ({ values }: any) => (
         <Span
           sx={{
-            // @ts-ignore
-            color: (theme) => theme.palette.text[200],
+            color: (theme) => theme.palette.text.primary,
             margin: '3px 0',
           }}
         >
