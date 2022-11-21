@@ -4,6 +4,7 @@ import { styled, Theme } from '@mui/material/styles';
 import { COMMAND_LINES, COMMAND_LINES_HISTORY } from 'pages/terminal';
 import { useCommands, useLocalStorageState } from '@/hooks';
 import { Span } from '@/components';
+import { CommandMatchesProps, COMMANDS_MATCHES } from '../CommandResponse';
 
 const Input = styled('input')(({ theme, width }: { theme: Theme; width: string }) => ({
   flex: '1 1 auto',
@@ -33,12 +34,13 @@ const CommandInput = ({
   addCommandLines,
   cleanTerminal,
 }: CommandInputTypes) => {
-  const [command, setCommand] = useState(commandValue || '');
+  const [command, setCommand] = useState<string>(commandValue || '');
   const [lastCommand, setLastCommand] = useState(-1);
-  const { exit, handleLocale, handleTheme, handleProjectsPreview } = useCommands('');
+  const { exit, handleLocale, handleTheme, handleProjectsPreview, handleTab, handleCommand } = useCommands('');
 
   const [storedCommandLines, storeCommandLines] = useLocalStorageState<string[]>(COMMAND_LINES, []);
   const [storedCommandsHistory, storeCommandLinesHistory] = useLocalStorageState<string[]>(COMMAND_LINES_HISTORY, []);
+  const [, storeCommandMatches] = useLocalStorageState<CommandMatchesProps>(COMMANDS_MATCHES, {});
 
   useEffect(() => {
     if (storedCommandsHistory.length > 0) setLastCommand(storedCommandsHistory.length - 1);
@@ -78,6 +80,21 @@ const CommandInput = ({
           return prev;
         });
       }
+      if (e.key === 'Tab' && command) {
+        const { cKey, option } = handleCommand(command);
+        const matches = handleTab(command);
+        if (matches.length > 1) {
+          addCommandLines((prev: any[]) => [...prev, command]);
+          storeCommandLines([...storedCommandLines, command]);
+          storeCommandLinesHistory([...storedCommandsHistory, command]);
+          storeCommandMatches((prev) => ({ ...prev, [command]: matches }));
+          setCommand('');
+        } else if (option) {
+          matches[0] && setCommand(`${cKey} --${matches[0]}`);
+        } else {
+          matches[0] && setCommand(matches[0]);
+        }
+      }
 
       if (e.key === 'Enter') {
         if (command.trim() === 'exit') {
@@ -102,18 +119,20 @@ const CommandInput = ({
       }
     },
     [
-      addCommandLines,
-      cleanTerminal,
       command,
-      storedCommandLines,
       storedCommandsHistory,
-      exit,
-      handleLocale,
-      handleProjectsPreview,
-      handleTheme,
       lastCommand,
+      handleTab,
+      addCommandLines,
       storeCommandLines,
+      storedCommandLines,
       storeCommandLinesHistory,
+      storeCommandMatches,
+      exit,
+      cleanTerminal,
+      handleLocale,
+      handleTheme,
+      handleProjectsPreview,
     ],
   );
 
@@ -141,6 +160,7 @@ const CommandInput = ({
       value={command}
       onChange={onChange}
       onKeyUp={onEnter}
+      onKeyDown={(e: any) => e.key === 'Tab' && e.preventDefault()}
     />
   );
 };

@@ -58,7 +58,7 @@ const Terminal: NextPage = () => {
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <StyledSpan sx={{ marginTop: '15px !important' }}>{t('line1')}</StyledSpan>
             <StyledSpan>{t('line2')}</StyledSpan>
-            <StyledSpan sx={{ marginBottom: '15px !important' }}>
+            <StyledSpan >
               {t('line3.part1')} "
               <Span
                 sx={{
@@ -69,6 +69,17 @@ const Terminal: NextPage = () => {
                 help
               </Span>
               " {t('line3.part2')}
+            </StyledSpan>
+            <StyledSpan sx={{ marginBottom: '15px !important' }}>
+              <Span
+                sx={{
+                  // @ts-ignore
+                  color: (theme) => theme.palette.text[400],
+                }}
+              >
+              {t('line4.part1')}
+              </Span>
+              {t('line4.part2')}
             </StyledSpan>
           </Box>
         )}
@@ -89,7 +100,7 @@ const Terminal: NextPage = () => {
                   inputCommandRef={inputCommandRef}
                   command={item}
                 />
-                <CommandResponse commandKey={item || ''} />
+                <CommandResponse command={item || ''} />
               </Fragment>
             ))}
             <CommandLine

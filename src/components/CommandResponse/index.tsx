@@ -1,18 +1,24 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 
-import { useCommands, useProfileCommands, useSystemCommands } from '@/hooks';
+import { useCommands, useLocalStorageState, useProfileCommands, useSystemCommands } from '@/hooks';
 
 import Contacts from './Responses/Profile/Contacts';
-import { NotFound, Help, About, Skills } from './Responses';
+import { NotFound, Help, About, Skills, Matches } from './Responses';
 
 type CommandResponse = {
-  commandKey: string;
+  command: string;
 };
 
-const CommandResponse = ({ commandKey }: CommandResponse) => {
+export type CommandMatchesProps = {
+  [x: string]: string[];
+};
+
+export const COMMANDS_MATCHES = 'COMMANDS_MATCHES';
+
+const CommandResponse = ({ command }: CommandResponse) => {
   const { profileCommands, profileColumns } = useProfileCommands();
   const { systemColumns, systemCommands } = useSystemCommands();
-
+  const [storedCommandMatches] = useLocalStorageState<CommandMatchesProps>(COMMANDS_MATCHES, {});
   const {
     cKey,
     option,
@@ -20,25 +26,18 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
     handleThemeMessage,
     setFullScreen,
     handleProjects,
-  } = useCommands(commandKey);
+    requiredSystemCommands,
+    requiredProfileCommands,
+    requiredProjectsOptionValue,
+  } = useCommands(command);
 
-  if (
-    (systemCommands[cKey] && systemCommands[cKey].options && !option) ||
-    (profileCommands[cKey] && profileCommands[cKey].options && !option)
-  )
-    return <NotFound cKey={cKey} optionsRequired />;
+  if (storedCommandMatches[command]) {
+    return <Matches match={storedCommandMatches[command]} />;
+  }
 
-  if (
-    (systemCommands[cKey] &&
-      systemCommands[cKey].options &&
-      !systemCommands[cKey].options?.includes(option) &&
-      !option.includes('=')) ||
-    (profileCommands[cKey] &&
-      profileCommands[cKey].options &&
-      !profileCommands[cKey].options?.includes(option) &&
-      !option.includes('='))
-  )
-    return <NotFound cKey={cKey} option={option} />;
+  if (requiredSystemCommands || requiredProfileCommands) return <NotFound cKey={cKey} optionsRequired />;
+
+  if (requiredProjectsOptionValue) return <NotFound cKey={cKey} option={option} />;
 
   switch (cKey) {
     case '':
@@ -57,10 +56,7 @@ const CommandResponse = ({ commandKey }: CommandResponse) => {
     case 'help':
       return (
         <>
-          <Help
-            columns={profileColumns}
-            rows={Object.values(profileCommands)}
-          />
+          <Help columns={profileColumns} rows={Object.values(profileCommands)} />
           <Help columns={systemColumns} rows={Object.values(systemCommands)} />
         </>
       );

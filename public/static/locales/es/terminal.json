@@ -5,6 +5,10 @@
     "part1": "Escriba",
     "part2": "para ver los comandos disponibles con los que puedes interactuar."
   },
+  "line4": {
+    "part1": "Consejo profesional: ",
+    "part2": "utilise la función de autocompletar al presionar \"tabulador\" al escribir comandos, está disponible!!"
+  },
   "help": {
     "options": "Opciones",
     "description": "Descripción",
