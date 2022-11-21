@@ -9,6 +9,7 @@ import useLocale from './useLocale';
 import useDraggablePreviews, {
   newDraggableProps,
 } from './useDraggablePreviews';
+import { storage } from '@/utils';
 
 /*
  * handleCommand
@@ -101,7 +102,7 @@ const useCommands = (command?: string) => {
   const exit = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     push('/');
-    localStorage.clear();
+    storage.remove('commandLines');
   };
   /*
    * setFullScreen function

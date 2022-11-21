@@ -7,12 +7,16 @@ import { Box } from '@mui/material';
 import { scrollToBottom } from '@/utils';
 import { AppNextPage } from '@/types/common-types';
 import { COMMON_LOCALE } from '@/settings';
+import { useLocalStorageState } from '@/hooks';
 import { DraggableProvider } from '@/contexts';
 import { StyledSpan } from '@/components/CommandResponse/Responses/Profile/About';
 import CommandResponse from '@/components/CommandResponse';
 import { CommandLine, PageLayout, Span, TerminalLayout } from '@/components';
 
 import type { NextPage } from 'next';
+
+export const COMMAND_LINES = 'COMMAND_LINES';
+export const COMMAND_LINES_HISTORY = 'COMMAND_LINES_HISTORY';
 
 /*
  * manage the current locale (language)
@@ -30,6 +34,10 @@ const Terminal: NextPage = () => {
   let [cls, setCls] = useState<boolean>(false);
   const inputCommandRef = useRef<any>();
   const { locale } = useRouter();
+  const [storedCommandLines] = useLocalStorageState<string[]>(
+    COMMAND_LINES,
+    []
+  );
 
   /*
    * inputCommandFocus function
@@ -42,17 +50,10 @@ const Terminal: NextPage = () => {
 
   useEffect(() => scrollToBottom(), [commandLines.length]);
 
-  useEffect(() => {
-    if (commandLines.length > 0) {
-      localStorage.setItem('commandLines', JSON.stringify(commandLines));
-      localStorage.setItem('commandLinesHistory', JSON.stringify(commandLines));
-    }
-  }, [commandLines, commandLines.length]);
-
-  useEffect(() => {
-    const commands = localStorage.getItem('commandLines');
-    commands && setCommandLines(JSON.parse(commands));
-  }, [locale]);
+  // useEffect(() => {
+  //   const commands = localStorage.getItem('commandLines');
+  //   commands && setCommandLines(JSON.parse(commands));
+  // }, [locale]);
 
   return (
     <DraggableProvider>
