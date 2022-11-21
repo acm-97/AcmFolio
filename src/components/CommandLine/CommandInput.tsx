@@ -2,6 +2,7 @@ import React, { memo, useEffect, useMemo, useState, useCallback } from 'react';
 import { styled, Theme } from '@mui/material/styles';
 
 import { COMMAND_LINES, COMMAND_LINES_HISTORY } from 'pages/terminal';
+import { storage } from '@/utils';
 import { useCommands, useLocalStorageState } from '@/hooks';
 import { Span } from '@/components';
 
@@ -103,6 +104,8 @@ const CommandInput = ({
           setCommand('');
           exit();
         } else if (command.trim() === 'cls') {
+          storage.remove(COMMAND_LINES);
+          storage.remove(COMMANDS_MATCHES);
           addCommandLines([]);
           cleanTerminal(true);
           setCommand('');
@@ -114,12 +117,28 @@ const CommandInput = ({
           handleLocale(command);
           handleTheme(command);
           handleProjectsPreview(command);
+          storeCommandLines([...storedCommandLines, command]);
+          command && storeCommandLinesHistory([...storedCommandsHistory, command]);
         }
-        storeCommandLines([...storedCommandLines, command]);
-        command && storeCommandLinesHistory([...storedCommandsHistory, command]);
       }
     },
-    [command, storedCommandsHistory, lastCommand, handleCommand, handleTab, addCommandLines, storeCommandLines, storedCommandLines, storeCommandLinesHistory, storeCommandMatches, exit, cleanTerminal, handleLocale, handleTheme, handleProjectsPreview],
+    [
+      command,
+      storedCommandsHistory,
+      lastCommand,
+      handleCommand,
+      handleTab,
+      addCommandLines,
+      storeCommandLines,
+      storedCommandLines,
+      storeCommandLinesHistory,
+      storeCommandMatches,
+      exit,
+      cleanTerminal,
+      handleLocale,
+      handleTheme,
+      handleProjectsPreview,
+    ],
   );
 
   if (commandValue || command === undefined)
