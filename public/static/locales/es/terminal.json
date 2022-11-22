@@ -5,6 +5,10 @@
     "part1": "Escriba",
     "part2": "para ver los comandos disponibles con los que puedes interactuar."
   },
+  "line4": {
+    "part1": "Consejo profesional: ",
+    "part2": "utilise la función de autocompletar al presionar \"tabulador\" al escribir comandos, está disponible!!"
+  },
   "help": {
     "options": "Opciones",
     "description": "Descripción",
@@ -46,5 +50,17 @@
     "part5": "para ver todos los comandos disponibles",
     "part6": "opción",
     "part7": "para el comando"
+  },
+  "about": {
+    "name": "Alejandro Cabrera Mena",
+    "age": "25",
+    "birthPlace": "Cuba",
+    "currentLocation": "Cuba",
+    "bs": "Ingeniero Informático.",
+    "currentProfesion": "Desarrollador web Front-End.",
+    "line1": "Soy ingeniero de software con 3 años de experiencia.",
+    "line2": "Ofrezco conocimientos avanzados en tecnologías web frontend, principalmente ReactJS o NextJS.",
+    "line3": "Además, puedo ofrecer algo de experiencia en desarrollo con el stack MERN.",
+    "line4": "Soy un entusiasta de la programación web, con ganas de aprender nuevas tecnologías y habilidades, siempre buscando nuevos e interesantes proyectos donde mejorar mis habilidades."
   }
 }

@@ -5,6 +5,10 @@
     "part1": "Type",
     "part2": "to see the available commands you can interact with."
   },
+  "line4": {
+    "part1": "Pro Tip : ",
+    "part2": "use the auto-complete function by pressing \"tab\" when typing commands is available!!"
+  },
   "help": {
     "options": "Options",
     "description": "Description",
@@ -46,5 +50,17 @@
     "part5": "to see all available commands",
     "part6": "option",
     "part7": "for command"
+  },
+  "about": {
+    "name": "Alejandro Cabrera Mena",
+    "age": "25",
+    "birthPlace": "Cuba",
+    "currentLocation": "Cuba",
+    "bs": "Informatics Engeneering.",
+    "currentProfesion": "Front-End Web Developer.",
+    "line1": "I am a Software Engineer with 3 years of experience.",
+    "line2": "I offer advanced knowledge of frontend web technologies, mainly ReactJS or NextJS.",
+    "line3": "In addition, I can offer some experience in development with the MERN stack .",
+    "line4": "I am a web programming enthusiast, eager to learn new technologies and skills, always looking for new and interesting projects where improve my skills."
   }
 }

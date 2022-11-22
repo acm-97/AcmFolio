@@ -30,7 +30,6 @@
   ],
   "rules": {
     "jsx-a11y/anchor-is-valid": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "prefer-const": "off",
     "no-use-before-define": "off",
     "no-underscore-dangle": "off",
@@ -40,9 +39,11 @@
     "no-nested-ternary": "off",
     "space-before-blocks": "off",
     "@typescript-eslint/space-before-blocks": "warn",
-    "newline-before-return":"warn",
+    "newline-before-return":"off",
     "no-unused-expressions":"off",
-    
+    "no-plusplus": "off",
+    "no-useless-return": "off",
+
     // react rules
     "react/function-component-definition": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx", ".js", ".jsx"] }],
