@@ -31,7 +31,7 @@ export const getStaticProps = async ({ locale }: any) => ({
 const Terminal: NextPage = () => {
   const { t } = useTranslation('terminal');
   let [commandLines, setCommandLines] = useState<string[]>([]);
-  let [cls, setCls] = useState<boolean>(false);
+  let [isCLS, setCls] = useState<boolean>(false);
   const inputCommandRef = useRef<any>();
   const { locale } = useRouter();
   const [storedCommandLines] = useLocalStorageState<string[]>(COMMAND_LINES, []);
@@ -54,11 +54,11 @@ const Terminal: NextPage = () => {
   return (
     <DraggableProvider>
       <TerminalLayout>
-        {!cls && (
+        {!isCLS && (
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <StyledSpan sx={{ marginTop: '15px !important' }}>{t('line1')}</StyledSpan>
             <StyledSpan>{t('line2')}</StyledSpan>
-            <StyledSpan >
+            <StyledSpan>
               {t('line3.part1')} "
               <Span
                 sx={{
@@ -77,7 +77,7 @@ const Terminal: NextPage = () => {
                   color: (theme) => theme.palette.text[400],
                 }}
               >
-              {t('line4.part1')}
+                {t('line4.part1')}
               </Span>
               {t('line4.part2')}
             </StyledSpan>

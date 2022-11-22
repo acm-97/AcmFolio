@@ -1,10 +1,12 @@
 import { useCallback, useMemo } from 'react';
 import { useRouter } from 'next/router';
 
+import { COMMAND_LINES } from 'pages/terminal';
 import { storage } from '@/utils';
 import { THEMES } from '@/settings';
 import { useSettings } from '@/contexts/SettingsProvider';
 import { NotFound, Projects } from '@/components/CommandResponse/Responses';
+import { COMMANDS_MATCHES } from '@/components/CommandResponse';
 
 import useSystemCommands from './useSystemCommands';
 import useProfileCommands from './useProfileCommands';
@@ -122,7 +124,8 @@ const useCommands = (command?: string) => {
   const exit = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     push('/');
-    storage.remove('commandLines');
+    storage.remove(COMMAND_LINES);
+    storage.remove(COMMANDS_MATCHES);
   };
   /*
    * setFullScreen function
