@@ -5,6 +5,10 @@
     "part1": "Type",
     "part2": "to see the available commands you can interact with."
   },
+  "line4": {
+    "part1": "Pro Tip : ",
+    "part2": "use the auto-complete function by pressing \"tab\" when typing commands is available!!"
+  },
   "help": {
     "options": "Options",
     "description": "Description",

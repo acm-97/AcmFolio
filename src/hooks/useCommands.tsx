@@ -1,14 +1,15 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useRouter } from 'next/router';
 
+import { storage } from '@/utils';
 import { THEMES } from '@/settings';
 import { useSettings } from '@/contexts/SettingsProvider';
 import { NotFound, Projects } from '@/components/CommandResponse/Responses';
 
+import useSystemCommands from './useSystemCommands';
+import useProfileCommands from './useProfileCommands';
 import useLocale from './useLocale';
-import useDraggablePreviews, {
-  newDraggableProps,
-} from './useDraggablePreviews';
+import useDraggablePreviews, { newDraggableProps } from './useDraggablePreviews';
 
 /*
  * handleCommand
@@ -37,6 +38,28 @@ const useCommands = (command?: string) => {
 
   const { projects, handlePreviews } = useDraggablePreviews();
 
+  const { profileCommands } = useProfileCommands();
+  const { systemCommands } = useSystemCommands();
+
+  const requiredSystemCommands = useMemo(
+    () => systemCommands[cKey] && systemCommands[cKey].options && !option,
+    [cKey, option, systemCommands],
+  );
+
+  const requiredProfileCommands = useMemo(
+    () => profileCommands[cKey] && profileCommands[cKey].options && !option,
+    [cKey, option, profileCommands],
+  );
+
+  const requiredProjectsOptionValue = useMemo(
+    () =>
+      profileCommands[cKey] &&
+      profileCommands[cKey].options &&
+      option.includes('preview') &&
+      !option.includes('='),
+    [cKey, option, profileCommands],
+  );
+
   /*
    * handleLocale function
    * change the currente language
@@ -56,8 +79,7 @@ const useCommands = (command?: string) => {
    * when command == "language"
    */
   const handleLocaleMessage = () => {
-    if (!locales?.includes(option))
-      return <NotFound cKey={cKey} option={option} />;
+    if (!locales?.includes(option)) return <NotFound cKey={cKey} option={option} />;
 
     return <></>;
   };
@@ -76,7 +98,7 @@ const useCommands = (command?: string) => {
         saveSettings({ ...settings, theme: _option as THEMES });
       }
     },
-    [saveSettings, settings]
+    [saveSettings, settings],
   );
 
   /*
@@ -88,8 +110,7 @@ const useCommands = (command?: string) => {
   const handleThemeMessage = useCallback(() => {
     const themes = [THEMES.DARK.toLowerCase(), THEMES.LIGHT.toLowerCase()];
 
-    if (!themes.includes(option))
-      return <NotFound cKey={cKey} option={option} />;
+    if (!themes.includes(option)) return <NotFound cKey={cKey} option={option} />;
 
     return <></>;
   }, [cKey, option]);
@@ -101,7 +122,7 @@ const useCommands = (command?: string) => {
   const exit = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     push('/');
-    localStorage.clear();
+    storage.remove('commandLines');
   };
   /*
    * setFullScreen function
@@ -151,8 +172,34 @@ const useCommands = (command?: string) => {
         }
       }
     },
-    [handlePreviews, projects]
+    [handlePreviews, projects],
   );
+
+  const handleTab = (_command: string) => {
+    const { cKey: _cKey, option: _option } = handleCommand(_command);
+    const pc = Object.values(profileCommands);
+    const sc = Object.values(systemCommands);
+    let allCommands = pc.concat(sc);
+
+    if (_cKey && !_option) {
+      const commandsMatching = allCommands.filter((item) => item.key.startsWith(_cKey));
+
+      if (commandsMatching.length > 0) {
+        const matches = commandsMatching.map((item) => item.key);
+        return matches;
+      }
+
+      return [];
+    }
+
+    if (_cKey && _option) {
+      const commandMatching = allCommands.find((item) => item.key === _cKey);
+      const matches = commandMatching?.options?.filter((item) => item.startsWith(_option));
+      return matches || [];
+    }
+
+    return [];
+  };
 
   return {
     cKey,
@@ -165,6 +212,11 @@ const useCommands = (command?: string) => {
     setFullScreen,
     handleProjects,
     handleProjectsPreview,
+    handleTab,
+    requiredSystemCommands,
+    requiredProfileCommands,
+    requiredProjectsOptionValue,
+    handleCommand
   };
 };
 

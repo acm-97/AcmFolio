@@ -1,5 +1,6 @@
 import Draggable from 'react-draggable';
 import { memo } from 'react';
+import Image from 'next/image';
 import { styled, Theme } from '@mui/material/styles';
 import { Paper, Card, Box, CardContent, CardMedia } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -12,7 +13,6 @@ import { H1, H6 } from '@/components/Typography';
 import { MuiNextLink } from '@/components/Link';
 
 import TopBar from './TopBar';
-import Image from 'next/image';
 
 // type ProjectDetailsProps = {};
 

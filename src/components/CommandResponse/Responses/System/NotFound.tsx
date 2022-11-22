@@ -1,9 +1,9 @@
 import { memo } from 'react';
+import { useTranslation } from 'next-i18next';
 import { styled } from '@mui/material/styles';
 
 import { TypographyProps } from '@/components/Typography/typography.types';
 import { Span } from '@/components';
-import { useTranslation } from 'next-i18next';
 
 type NotFoundProps = {
   cKey: string;

@@ -7,12 +7,16 @@ import { Box } from '@mui/material';
 import { scrollToBottom } from '@/utils';
 import { AppNextPage } from '@/types/common-types';
 import { COMMON_LOCALE } from '@/settings';
+import { useLocalStorageState } from '@/hooks';
 import { DraggableProvider } from '@/contexts';
 import { StyledSpan } from '@/components/CommandResponse/Responses/Profile/About';
 import CommandResponse from '@/components/CommandResponse';
 import { CommandLine, PageLayout, Span, TerminalLayout } from '@/components';
 
 import type { NextPage } from 'next';
+
+export const COMMAND_LINES = 'COMMAND_LINES';
+export const COMMAND_LINES_HISTORY = 'COMMAND_LINES_HISTORY';
 
 /*
  * manage the current locale (language)
@@ -30,6 +34,7 @@ const Terminal: NextPage = () => {
   let [cls, setCls] = useState<boolean>(false);
   const inputCommandRef = useRef<any>();
   const { locale } = useRouter();
+  const [storedCommandLines] = useLocalStorageState<string[]>(COMMAND_LINES, []);
 
   /*
    * inputCommandFocus function
@@ -43,25 +48,17 @@ const Terminal: NextPage = () => {
   useEffect(() => scrollToBottom(), [commandLines.length]);
 
   useEffect(() => {
-    if (commandLines.length > 0)
-      localStorage.setItem('commandLines', JSON.stringify(commandLines));
-  }, [commandLines, commandLines.length]);
-
-  useEffect(() => {
-    const commands = localStorage.getItem('commandLines');
-    commands && setCommandLines(JSON.parse(commands));
-  }, [locale]);
+    setCommandLines(storedCommandLines);
+  }, [locale, storedCommandLines]);
 
   return (
     <DraggableProvider>
       <TerminalLayout>
         {!cls && (
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <StyledSpan sx={{ marginTop: '15px !important' }}>
-              {t('line1')}
-            </StyledSpan>
+            <StyledSpan sx={{ marginTop: '15px !important' }}>{t('line1')}</StyledSpan>
             <StyledSpan>{t('line2')}</StyledSpan>
-            <StyledSpan sx={{ marginBottom: '15px !important' }}>
+            <StyledSpan >
               {t('line3.part1')} "
               <Span
                 sx={{
@@ -72,6 +69,17 @@ const Terminal: NextPage = () => {
                 help
               </Span>
               " {t('line3.part2')}
+            </StyledSpan>
+            <StyledSpan sx={{ marginBottom: '15px !important' }}>
+              <Span
+                sx={{
+                  // @ts-ignore
+                  color: (theme) => theme.palette.text[400],
+                }}
+              >
+              {t('line4.part1')}
+              </Span>
+              {t('line4.part2')}
             </StyledSpan>
           </Box>
         )}
@@ -92,7 +100,7 @@ const Terminal: NextPage = () => {
                   inputCommandRef={inputCommandRef}
                   command={item}
                 />
-                <CommandResponse commandKey={item || ''} />
+                <CommandResponse command={item || ''} />
               </Fragment>
             ))}
             <CommandLine
