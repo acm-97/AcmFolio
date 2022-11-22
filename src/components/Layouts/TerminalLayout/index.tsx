@@ -28,7 +28,11 @@ const Container = styled('div')(({ theme }: { theme: Theme }) => ({
   width: '100%',
 
   '& .MuiPaper-root, .TopBar': {
-    width: '70%',
+    width: '55%',
+
+    [theme.breakpoints.down('xl')]: {
+      width: '70%',
+    },
 
     [theme.breakpoints.down('md')]: {
       width: '90%',
