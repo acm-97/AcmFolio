@@ -1,3 +1,5 @@
+// @ts-nocheck
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { url } from 'inspector';
 
 import { styled, Theme } from '@mui/material/styles';
