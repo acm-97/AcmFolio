@@ -1,3 +1,5 @@
+import { url } from 'inspector';
+
 import { styled, Theme } from '@mui/material/styles';
 
 export const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
@@ -105,6 +107,33 @@ export const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     '.game-area': {
       width: '600px !important',
       height: '100% !important',
+      backgroundImage: ' url(./game-area-background.png)',
+
+      '.snake-body-part': {
+        border: '1px solid grey !important',
+        borderRadius: 30,
+        width: '2.5% !important',
+        height: '3% !important',
+      },
+      '.obstacle': {
+        background: 'transparent !important',
+        borderBottom: '12px solid orange !important',
+        borderLeft: '8px solid transparent !important',
+        borderRight: '8px solid transparent !important',
+      },
+
+      '.food-wrapper, .food-wrapper .food': {
+        animation: 'pulsate 1.5s infinite alternate',
+        border: '1px solid red',
+        padding: '2px',
+        borderRadius: ' 10px',
+        boxShadow: ` 0 0 .2rem #fff,
+          0 0 .2rem #fff,
+          0 0 2rem ${theme.palette.text[100]},
+          0 0 0.8rem ${theme.palette.text[100]},
+          0 0 2.8rem ${theme.palette.text[100]},
+          inset 0 0 1.3rem ${theme.palette.text[100]}; `,
+      },
     },
 
     '.game-area-overlay': {
@@ -112,16 +141,61 @@ export const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
       zIndex: 50,
       width: '100%',
       height: '100%',
-      background: 'rgba(255, 255, 255, 0.2)',
-      borderRadius: '16px',
+      background: '#010a01',
+      borderRadius: '8px',
       boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-      backdropFilter: 'blur(5px)',
-      WebkitBackdropFilter: 'blur(5px)',
       border: '1px solid rgba(255, 255, 255, 0.3)',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      // fontFamily: "'Sacramento', sans- serif",
+
+      'h1, h3': {
+        animation: 'flicker 1.5s infinite alternate !important',
+        color: '#fff',
+      },
+
+      '@keyframes flicker': {
+        '0%, 18%, 22%, 25%, 53%, 57%, 100%': {
+          textShadow: `
+          0 0 5px #fff,
+           0 0 10px #fff,
+            0 0 15px ${theme.palette.text.primary}, 
+            0 0 20px ${theme.palette.text.primary}, 
+            0 0 25px ${theme.palette.text.primary}, 
+            0 0 30px ${theme.palette.text.primary}, 
+            0 0 35px ${theme.palette.text.primary};
+            `,
+        },
+        '20%, 24%, 55%': {
+          textShadow: 'none',
+        },
+      },
+
+      '.play-button': {
+        animation: 'pulsate 1.5s infinite alternate',
+        color: '#fff',
+        boxShadow: ` 0 0 .2rem #fff,
+          0 0 .2rem #fff,
+          0 0 2rem ${theme.palette.text.secondary},
+          0 0 0.8rem ${theme.palette.text.secondary},
+          0 0 2.8rem ${theme.palette.text.secondary},
+          inset 0 0 1.3rem ${theme.palette.text.secondary}; `,
+        '@keyframes pulsate': {
+          '0%': {
+            textShadow: `
+              0 0 2px #fff,
+              0 0 4px #fff,
+              0 0 6px #fff,
+              0 0 10px ${theme.palette.text.secondary},
+              0 0 45px ${theme.palette.text.secondary},
+              0 0 55px ${theme.palette.text.secondary},
+              0 0 70px ${theme.palette.text.secondary},
+              0 0 80px ${theme.palette.text.secondary}`,
+          },
+        },
+      },
     },
 
     [theme.breakpoints.down('xl')]: {

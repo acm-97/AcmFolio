@@ -1,4 +1,4 @@
-import { useRef, useState, Fragment, useEffect } from 'react';
+import { useRef, useState, memo, Fragment, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
@@ -117,4 +117,4 @@ const Terminal: NextPage = () => {
 };
 (Terminal as AppNextPage).Layout = PageLayout;
 
-export default Terminal;
+export default memo(Terminal);
