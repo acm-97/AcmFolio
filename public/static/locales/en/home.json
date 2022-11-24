@@ -8,5 +8,10 @@
     "part6": "Do you want to",
     "part7": "continue",
     "part8": "and find out more about me?"
+  },
+  "snake": {
+    "header": "Snake Game",
+    "bestScore": "BEST SCORE:",
+    "score": "SCORE:"
   }
 }

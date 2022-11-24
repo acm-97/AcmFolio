@@ -8,5 +8,11 @@
     "part6": "¿Quieres",
     "part7": "continuar",
     "part8": "y saber más sobre mí?"
+  
+  },
+  "snake": {
+    "header": "Juego de la serpiente",
+    "bestScore": "MEJOR PUNTUACIÓN:",
+    "score": "PUNTUACIÓN:"
   }
 }
