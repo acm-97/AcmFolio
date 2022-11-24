@@ -18,6 +18,7 @@ const ButtonStyles = {
 
 const GameAreaOvelay = () => {
   const [isRunning, setIsRunning] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
 
@@ -26,16 +27,27 @@ const GameAreaOvelay = () => {
   };
 
   const stopGame = useCallback((value: number) => {
-    setIsRunning(false);
-    setScore(value);
-    setBestScore((prev) => prev + value);
+    setIsGameOver(true);
+    setTimeout(() => {
+      setScore(value);
+      setBestScore((prev) => prev + value);
+      setIsRunning(false);
+      setIsGameOver(false);
+    }, 4000);
   }, []);
 
   return (
     <Box className="game-area-wrapper" position="relative">
+      {isGameOver && (
+        <Box className="game-area-overlay">
+          <H1 className="gameover-blood" marginTop={0} fontSize="3rem !important">
+            GAME OVER
+          </H1>
+        </Box>
+      )}
       {!isRunning && (
         <Box className="game-area-overlay">
-          <H1 marginTop={0} fontSize="3rem !important">
+          <H1 marginTop={0} fontSize="2rem !important">
             Snake Game
           </H1>
           <Box sx={{ display: 'flex', marginBottom: 8, marginTop: 2 }}>
