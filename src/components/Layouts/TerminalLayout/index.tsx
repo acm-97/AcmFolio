@@ -41,6 +41,7 @@ const Container = styled('div')(({ theme }: { theme: Theme }) => ({
 }));
 
 const TerminalWrapper = styled(Paper)<PaperProps>(({ theme }: { theme: Theme }) => ({
+  fontSize: '1.2rem',
   borderRadius: '0 0 20px 20px',
   padding: '10px 15px',
   overflow: 'auto',
@@ -51,6 +52,7 @@ const TerminalWrapper = styled(Paper)<PaperProps>(({ theme }: { theme: Theme }) 
   [theme.breakpoints.down('md')]: {
     height: 'calc(100vh - 200px)',
     maxHeight: 'calc(100vh - 200px)',
+    fontSize: '1rem',
   },
 
   /* width */

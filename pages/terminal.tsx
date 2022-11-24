@@ -4,13 +4,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { Box } from '@mui/material';
 
-import { scrollToBottom } from '@/utils';
+import { scrollToBottom, storage } from '@/utils';
 import { AppNextPage } from '@/types/common-types';
 import { COMMON_LOCALE } from '@/settings';
 import { useLocalStorageState } from '@/hooks';
 import { DraggableProvider } from '@/contexts';
-import { StyledSpan } from '@/components/CommandResponse/Responses/Profile/About';
-import CommandResponse from '@/components/CommandResponse';
+import TerminalHeadNotes from '@/components/Terminal/TerminalHeadNotes';
+import { StyledSpan } from '@/components/Terminal/CommandResponse/Responses/Profile/About';
+import CommandResponse from '@/components/Terminal/CommandResponse';
 import { CommandLine, PageLayout, Span, TerminalLayout } from '@/components';
 
 import type { NextPage } from 'next';
@@ -35,6 +36,7 @@ const Terminal: NextPage = () => {
   const inputCommandRef = useRef<any>();
   const { locale } = useRouter();
   const [storedCommandLines] = useLocalStorageState<string[]>(COMMAND_LINES, []);
+  const [isStarted, storeIstarted] = useLocalStorageState<boolean>('isStarted', false);
 
   /*
    * inputCommandFocus function
@@ -48,42 +50,22 @@ const Terminal: NextPage = () => {
   useEffect(() => scrollToBottom(), [commandLines.length]);
 
   useEffect(() => {
+    document.addEventListener('keydown', (event) => {
+      setCls(true);
+      storeIstarted(true);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     setCommandLines(storedCommandLines);
   }, [locale, storedCommandLines]);
 
   return (
     <DraggableProvider>
       <TerminalLayout>
-        {!isCLS && (
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <StyledSpan sx={{ marginTop: '15px !important' }}>{t('line1')}</StyledSpan>
-            <StyledSpan>{t('line2')}</StyledSpan>
-            <StyledSpan>
-              {t('line3.part1')} "
-              <Span
-                sx={{
-                  // @ts-ignore
-                  color: (theme) => theme.palette.text[400],
-                }}
-              >
-                help
-              </Span>
-              " {t('line3.part2')}
-            </StyledSpan>
-            <StyledSpan sx={{ marginBottom: '15px !important' }}>
-              <Span
-                sx={{
-                  // @ts-ignore
-                  color: (theme) => theme.palette.text[400],
-                }}
-              >
-                {t('line4.part1')}
-              </Span>
-              {t('line4.part2')}
-            </StyledSpan>
-          </Box>
-        )}
-        {commandLines.length === 0 ? (
+        {!isStarted && <TerminalHeadNotes />}
+        {isStarted && commandLines.length === 0 ? (
           <CommandLine
             cleanTerminal={setCls}
             addCommandLines={setCommandLines}
@@ -91,25 +73,27 @@ const Terminal: NextPage = () => {
             inputCommandFocus={inputCommandFocus}
           />
         ) : (
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            {commandLines.map((item, i) => (
-              <Fragment key={i}>
-                <CommandLine
-                  cleanTerminal={setCls}
-                  addCommandLines={setCommandLines}
-                  inputCommandRef={inputCommandRef}
-                  command={item}
-                />
-                <CommandResponse command={item || ''} />
-              </Fragment>
-            ))}
-            <CommandLine
-              cleanTerminal={setCls}
-              addCommandLines={setCommandLines}
-              inputCommandRef={inputCommandRef}
-              inputCommandFocus={inputCommandFocus}
-            />
-          </Box>
+          isStarted && (
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              {commandLines.map((item, i) => (
+                <Fragment key={i}>
+                  <CommandLine
+                    cleanTerminal={setCls}
+                    addCommandLines={setCommandLines}
+                    inputCommandRef={inputCommandRef}
+                    command={item}
+                  />
+                  <CommandResponse command={item || ''} />
+                </Fragment>
+              ))}
+              <CommandLine
+                cleanTerminal={setCls}
+                addCommandLines={setCommandLines}
+                inputCommandRef={inputCommandRef}
+                inputCommandFocus={inputCommandFocus}
+              />
+            </Box>
+          )
         )}
       </TerminalLayout>
     </DraggableProvider>
