@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@acm-97/react-snake-game@0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@acm-97/react-snake-game/-/react-snake-game-0.7.0.tgz#e7205b9aa569d2836d48e42c605a647ebb8570e3"
-  integrity sha512-8lmEe2Ab/uPnt0UBlhLS9aEKjKKxZ0ggrKKMAWjjKWd88w51MtQJN14DLR8ZZ5X5kYk5l69wMoUp/yfHCM6JKw==
+"@acm-97/react-snake-game@0.7.15":
+  version "0.7.15"
+  resolved "https://registry.yarnpkg.com/@acm-97/react-snake-game/-/react-snake-game-0.7.15.tgz#e560fc358a20df1caf54f922bba38a7ce66321cc"
+  integrity sha512-R7GaDe0CUyovH0c+dmspWBZRCbaRVKqmr5hG8c7BEV7xFu2XAsJt0A3AZo28y15W0nlXP2x7UfunMeDGRnr1eg==
   dependencies:
     "@testing-library/jest-dom" "^5.14.1"
     "@testing-library/react" "^13.0.0"
