@@ -85,11 +85,13 @@ export const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     '.dollar': {
       color: theme.palette.error.main,
     },
+    
     '#continue-blink': {
       color: theme.palette.text.secondary,
       animation: 'blinker 1s linear infinite',
       cursor: 'pointer',
       fontWeight: 800,
+      textDecoration: 'underline',
     },
     '@keyframes blinker': {
       '50%': { opacity: 0 },
