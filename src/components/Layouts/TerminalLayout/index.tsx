@@ -5,7 +5,7 @@ import { Paper, PaperProps } from '@mui/material';
 
 import { ChildrenProps } from '@/types';
 import { useDraggable } from '@/contexts/DraggableContext';
-import ProjectDetails from '@/components/CommandResponse/Responses/Profile/ProjectDetails';
+import { ProjectDetails } from '@/components';
 
 import TopBar from './TopBar';
 
@@ -16,8 +16,8 @@ const Wrapper = styled('div')(() => ({
   height: '100vh',
 
   '.react-draggable': {
-    margin: 'auto'
-  }
+    margin: 'auto',
+  },
 }));
 
 const Container = styled('div')(({ theme }: { theme: Theme }) => ({
@@ -40,39 +40,37 @@ const Container = styled('div')(({ theme }: { theme: Theme }) => ({
   },
 }));
 
-const TerminalWrapper = styled(Paper)<PaperProps>(
-  ({ theme }: { theme: Theme }) => ({
-    borderRadius: '0 0 20px 20px',
-    padding: '10px 15px',
-    overflow: 'auto',
-    width: '100%',
-    height: '65vh',
-    maxHeight: '65vh',
+const TerminalWrapper = styled(Paper)<PaperProps>(({ theme }: { theme: Theme }) => ({
+  borderRadius: '0 0 20px 20px',
+  padding: '10px 15px',
+  overflow: 'auto',
+  width: '100%',
+  height: '65vh',
+  maxHeight: '65vh',
 
-    [theme.breakpoints.down('md')]: {
-      height: 'calc(100vh - 200px)',
-      maxHeight: 'calc(100vh - 200px)',
-    },
+  [theme.breakpoints.down('md')]: {
+    height: 'calc(100vh - 200px)',
+    maxHeight: 'calc(100vh - 200px)',
+  },
 
-    /* width */
-    '&::-webkit-scrollbar': {
-      width: '8px',
-      height: '10px',
-    },
+  /* width */
+  '&::-webkit-scrollbar': {
+    width: '8px',
+    height: '10px',
+  },
 
-    /* Track */
-    '&::-webkit-scrollbar-track': {
-      boxShadow: `inset 0 0 4px ${theme.palette.secondary.main}`,
-      borderColor: theme.palette.secondary.main,
-      borderRadius: '15px',
-    },
-    /* Handle */
-    '&::-webkit-scrollbar-thumb': {
-      background: '#B9BBC6',
-      borderRadius: '15px',
-    },
-  })
-);
+  /* Track */
+  '&::-webkit-scrollbar-track': {
+    boxShadow: `inset 0 0 4px ${theme.palette.secondary.main}`,
+    borderColor: theme.palette.secondary.main,
+    borderRadius: '15px',
+  },
+  /* Handle */
+  '&::-webkit-scrollbar-thumb': {
+    background: '#B9BBC6',
+    borderRadius: '15px',
+  },
+}));
 
 type TerminalLayaoutTypes = ChildrenProps;
 

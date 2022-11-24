@@ -8,7 +8,7 @@ import { Box, Paper } from '@mui/material';
 
 import { COMMON_LOCALE } from '@/settings';
 import { EN_FRONTEND_DEVELOPER, ES_FRONTEND_DEVELOPER, GITHUB } from '@/constants';
-import { Wrapper } from '@/components/HomeTerminalWrapper';
+import { Wrapper } from '@/components/Terminal/HomeTerminalWrapper';
 import GameAreaOvelay from '@/components/GameAreaOvelay';
 import { LanguageSelector, ThemeSelector } from '@/components';
 
