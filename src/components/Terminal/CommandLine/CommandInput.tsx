@@ -21,6 +21,10 @@ const Input = styled('input')(({ theme, width }: { theme: Theme; width: string }
     fontSize: '1rem',
   },
 
+  '::before': {
+    content: '"||"',
+  },
+
   paddingLeft: 0,
   ':focus': {
     outline: 'none',
@@ -33,6 +37,7 @@ type CommandInputTypes = {
   command?: string;
   addCommandLines: (x: any) => void;
   cleanTerminal: (x: boolean) => void;
+  inputCommandFocus: () => void;
 };
 
 const CommandInput = ({
@@ -40,6 +45,7 @@ const CommandInput = ({
   command: commandValue,
   addCommandLines,
   cleanTerminal,
+  inputCommandFocus,
 }: CommandInputTypes) => {
   const [command, setCommand] = useState<string>(commandValue || '');
   const [lastCommand, setLastCommand] = useState(-1);
@@ -48,6 +54,8 @@ const CommandInput = ({
   const [storedCommandLines, storeCommandLines] = useLocalStorageState<string[]>(COMMAND_LINES, []);
   const [storedCommandsHistory, storeCommandLinesHistory] = useLocalStorageState<string[]>(COMMAND_LINES_HISTORY, []);
   const [, storeCommandMatches] = useLocalStorageState<CommandMatchesProps>(COMMANDS_MATCHES, {});
+
+  useEffect(() => inputCommandFocus(), [inputCommandFocus]);
 
   useEffect(() => {
     if (storedCommandsHistory.length > 0) setLastCommand(storedCommandsHistory.length - 1);

@@ -17,7 +17,7 @@ const Container = styled('div')(() => ({
 
 type ComandLineTypes = {
   inputCommandRef: any;
-  inputCommandFocus?: () => void;
+  inputCommandFocus: () => void;
   command?: string;
   addCommandLines: (x: any) => void;
   cleanTerminal: (x: boolean) => void;
@@ -43,7 +43,7 @@ const ComandLine = ({ inputCommandFocus, ...props }: ComandLineTypes) => (
         >
           /AcmFolio/{i18n?.language}/ :
         </Span>
-        <CommandInput {...props} />
+        <CommandInput inputCommandFocus={inputCommandFocus} {...props} />
       </Span>
     </Span>
   </Container>

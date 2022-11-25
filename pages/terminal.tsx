@@ -50,7 +50,7 @@ const Terminal: NextPage = () => {
   useEffect(() => scrollToBottom(), [commandLines.length]);
 
   useEffect(() => {
-    document.addEventListener('keydown', (event) => {
+    document.addEventListener('keyup', (event) => {
       setCls(true);
       storeIstarted(true);
     });
@@ -81,6 +81,7 @@ const Terminal: NextPage = () => {
                     cleanTerminal={setCls}
                     addCommandLines={setCommandLines}
                     inputCommandRef={inputCommandRef}
+                    inputCommandFocus={inputCommandFocus}
                     command={item}
                   />
                   <CommandResponse command={item || ''} />
