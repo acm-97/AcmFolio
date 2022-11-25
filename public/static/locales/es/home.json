@@ -13,6 +13,7 @@
   "snake": {
     "header": "Juego de la serpiente",
     "bestScore": "MEJOR PUNTUACIÓN:",
-    "score": "PUNTUACIÓN:"
+    "score": "PUNTUACIÓN:",
+    "play": "JUGAR"
   }
 }

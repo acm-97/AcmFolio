@@ -12,6 +12,7 @@
   "snake": {
     "header": "Snake Game",
     "bestScore": "BEST SCORE:",
-    "score": "SCORE:"
+    "score": "SCORE:",
+    "play": "PLAY:"
   }
 }
