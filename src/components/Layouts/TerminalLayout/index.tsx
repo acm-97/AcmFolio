@@ -14,7 +14,7 @@ const Wrapper = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
   height: '100vh',
-
+  
   '.react-draggable': {
     margin: 'auto',
   },
@@ -48,6 +48,16 @@ const TerminalWrapper = styled(Paper)<PaperProps>(({ theme }: { theme: Theme }) 
   width: '100%',
   height: '65vh',
   maxHeight: '65vh',
+
+  'p, span' : {
+    fontSize: '1.2rem',
+  fontWeight: 500
+  },
+
+  'td, th' : {
+    fontSize: '1.1rem',
+  fontWeight: 500
+  },
 
   [theme.breakpoints.down('md')]: {
     height: 'calc(100vh - 200px)',

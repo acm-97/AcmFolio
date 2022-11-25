@@ -45,11 +45,12 @@ const Container = styled(Paper)(({ top, theme }: Container) => ({
     padding: '30px 15px',
   },
   '& .CardMediaWrapper': {
+    width: '100%',
     overflow: 'hidden',
     margin: '0 auto',
   },
   '& .CardMediaWrapper .CardMedia': {
-    width: 300,
+    width: '100%',
     height: 180,
     transition: '0.5s all ease-in-out',
     ':hover': {
@@ -60,7 +61,7 @@ const Container = styled(Paper)(({ top, theme }: Container) => ({
   '& .CardMediaWrapper .CardMedia .image': {
     // borderRadius: '20px',
     position: 'relative',
-    width: '200px',
+    width: '100%',
     height: '100%',
   },
   '& .MuiCardContent-root': {
