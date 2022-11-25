@@ -1,10 +1,5 @@
-import {
-  createContext,
-  ReactNode,
-  useState,
-  useContext,
-  useEffect,
-} from 'react';
+import { profesionalProjects } from '@/constants';
+import { createContext, ReactNode, useState, useContext, useEffect } from 'react';
 
 export type DraggProps = {
   projectName: string;
@@ -19,9 +14,11 @@ export type ProjectsProps = {
   fullName: string;
   url: string;
   description: string;
+  homepage: string;
   owner: {
-    id: string;
-    avatar_url: string;
+    userName: string;
+    id?: string;
+    avatar_url?: string;
   };
 };
 
@@ -69,11 +66,12 @@ const DraggableProvider = ({ children }: DraggableProviderProps) => {
             description: item.description,
             owner: {
               id: item.owner.id,
+              userName: item.owner.userName,
               avatar_url: item.owner.avatar_url,
             },
           }));
 
-          setProjects(result);
+          setProjects(result.concat(profesionalProjects));
           setLoading(false);
         })
         .catch((err) => {
@@ -90,11 +88,9 @@ const DraggableProvider = ({ children }: DraggableProviderProps) => {
     };
   }, []);
 
-  const saveDraggable = (newDraggable: DraggProps) =>
-    setDraggable((prev) => [...prev, newDraggable]);
+  const saveDraggable = (newDraggable: DraggProps) => setDraggable((prev) => [...prev, newDraggable]);
 
-  const closeDragable = (newDraggables: DraggProps[]) =>
-    setDraggable(newDraggables);
+  const closeDragable = (newDraggables: DraggProps[]) => setDraggable(newDraggables);
 
   return (
     <DraggableContext.Provider
