@@ -22,7 +22,7 @@ const HeadNotes = () => {
       }}
     >
       <Typewriter
-        options={{ cursor: '▮', delay: 25 }}
+        options={{ cursor: '▮', delay: 15 }}
         onInit={(typewriter) => {
           typewriter
             .typeString(
