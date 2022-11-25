@@ -6,13 +6,14 @@
     "part4": "desarrollador web Front-End",
     "part5": "y esta web es mi Portafolio",
     "part6": "¿Quieres",
-    "part7": "continuar",
+    "part7": "CONTINUAR",
     "part8": "y saber más sobre mí?"
   
   },
   "snake": {
     "header": "Juego de la serpiente",
     "bestScore": "MEJOR PUNTUACIÓN:",
-    "score": "PUNTUACIÓN:"
+    "score": "PUNTUACIÓN:",
+    "play": "JUGAR"
   }
 }

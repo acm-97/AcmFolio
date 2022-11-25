@@ -85,11 +85,13 @@ export const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
     '.dollar': {
       color: theme.palette.error.main,
     },
+    
     '#continue-blink': {
       color: theme.palette.text.secondary,
       animation: 'blinker 1s linear infinite',
       cursor: 'pointer',
       fontWeight: 800,
+      textDecoration: 'underline',
     },
     '@keyframes blinker': {
       '50%': { opacity: 0 },
@@ -119,9 +121,10 @@ export const Wrapper = styled('div')(({ theme }: { theme: Theme }) => ({
       },
       '.obstacle': {
         background: 'transparent !important',
-        borderBottom: '12px solid orange !important',
-        borderLeft: '8px solid transparent !important',
-        borderRight: '8px solid transparent !important',
+        borderTop: '2px solid orange !important',
+        borderBottom: '2px solid orange !important',
+        borderLeft: '2px solid orange !important',
+        borderRight: '2px solid orange !important',
       },
 
       '.food-wrapper, .food-wrapper .food': {

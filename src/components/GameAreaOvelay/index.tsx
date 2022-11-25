@@ -1,4 +1,5 @@
 import { memo, useState, useCallback } from 'react';
+import { useTranslation } from 'next-i18next';
 import { Box, IconButton } from '@mui/material';
 import { PlayArrowRounded } from '@mui/icons-material';
 import GameArea from '@acm-97/react-snake-game';
@@ -21,6 +22,7 @@ const GameAreaOvelay = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const { t } = useTranslation('home');
 
   const startGame = () => {
     setIsRunning(true);
@@ -48,15 +50,17 @@ const GameAreaOvelay = () => {
       {!isRunning && (
         <Box className="game-area-overlay">
           <H1 marginTop={0} fontSize="2rem !important">
-            Snake Game
+            {t('snake.header')}
           </H1>
           <Box sx={{ display: 'flex', marginBottom: 8, marginTop: 2 }}>
-            <H3>BEST SCORE: {bestScore}</H3>
-            <H3 marginLeft={8}>SCORE: {score}</H3>
+            <H3>
+              {t('snake.bestScore')}: {bestScore}
+            </H3>
+            <H3 marginLeft={8}>{t('snake.score')} {score}</H3>
           </Box>
           <IconButton className="play-button" sx={ButtonStyles} onClick={startGame}>
             <PlayArrowRounded fontSize="large" />
-            Play
+            {t('snake.play')}
           </IconButton>
         </Box>
       )}

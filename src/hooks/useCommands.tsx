@@ -5,13 +5,14 @@ import { COMMAND_LINES } from 'pages/terminal';
 import { storage } from '@/utils';
 import { THEMES } from '@/settings';
 import { useSettings } from '@/contexts/SettingsProvider';
-import { NotFound, Projects } from '@/components/CommandResponse/Responses';
-import { COMMANDS_MATCHES } from '@/components/CommandResponse';
+import { COMMANDS_MATCHES } from '@/components/Terminal/CommandResponse';
+import { NotFound, Projects } from '@/components';
 
 import useSystemCommands from './useSystemCommands';
 import useProfileCommands from './useProfileCommands';
 import useLocale from './useLocale';
 import useDraggablePreviews, { newDraggableProps } from './useDraggablePreviews';
+
 
 /*
  * handleCommand
