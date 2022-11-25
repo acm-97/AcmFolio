@@ -7,8 +7,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 import { DraggProps } from '@/contexts/DraggableContext';
-import { images } from '@/constants/projects';
-import { GITHUB } from '@/constants';
+import { images, GITHUB } from '@/constants';
 import { H1, H6 } from '@/components/Typography';
 import { MuiNextLink } from '@/components/Link';
 
@@ -46,11 +45,12 @@ const Container = styled(Paper)(({ top, theme }: Container) => ({
     padding: '30px 15px',
   },
   '& .CardMediaWrapper': {
+    width: '100%',
     overflow: 'hidden',
     margin: '0 auto',
   },
   '& .CardMediaWrapper .CardMedia': {
-    width: 300,
+    width: '100%',
     height: 180,
     transition: '0.5s all ease-in-out',
     ':hover': {
@@ -66,6 +66,7 @@ const Container = styled(Paper)(({ top, theme }: Container) => ({
   },
   '& .MuiCardContent-root': {
     width: '100%',
+    maxWidth: '450px',
     flex: '1 0 auto',
     padding: '12px',
     ':last-child': {
@@ -81,7 +82,13 @@ type ProjectDetailsProps = {
 const ProjectDetails = ({
   draggable: {
     top,
-    project: { fullName, description, url },
+    project: {
+      fullName,
+      description,
+      url,
+      homepage,
+      owner: { userName },
+    },
     projectName,
   },
 }: ProjectDetailsProps) => (
@@ -91,18 +98,18 @@ const ProjectDetails = ({
       <TopBar projectName={projectName} />
       <Card className="MuiCard">
         <Box className="CardMediaWrapper">
-          <CardMedia className="CardMedia" onClick={() => window.open(url)}>
+          <CardMedia className="CardMedia" onClick={() => url && window.open(url)}>
             <div className="image">
               <Image
                 alt={projectName}
-                src={images[projectName]}
+                src={images[projectName] || images.noimage}
                 layout="fill"
                 objectFit="contain" // or objectFit="cover"
               />
             </div>
           </CardMedia>
         </Box>
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', width: '100%' }}>
           <CardContent>
             <H1 margin={0}>{projectName}</H1>
             <H6 margin={0}>{description}</H6>
@@ -118,54 +125,58 @@ const ProjectDetails = ({
                   textDecoration: 'none',
                 }}
               >
-                @acm-97
+                @{userName}
               </MuiNextLink>
             </H6>
-            <MuiNextLink
-              // @ts-ignore
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                color: (theme) => theme.palette.text.secondary,
-                textDecoration: 'none',
-              }}
-            >
-              <GitHubIcon
+            {url && (
+              <MuiNextLink
+                // @ts-ignore
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
                 sx={{
-                  width: '0.7em !important',
-                  height: '0.7em !important',
-                  color: 'white !important',
-                  marginRight: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: (theme) => theme.palette.text.secondary,
+                  textDecoration: 'none',
                 }}
-              />
-              {fullName}
-            </MuiNextLink>
-            <MuiNextLink
-              // @ts-ignore
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                color: (theme) => theme.palette.text.secondary,
-                textDecoration: 'none',
-                marginTop: 1,
-              }}
-            >
-              <OpenInNewIcon
+              >
+                <GitHubIcon
+                  sx={{
+                    width: '0.7em !important',
+                    height: '0.7em !important',
+                    color: 'white !important',
+                    marginRight: 1,
+                  }}
+                />
+                {fullName}
+              </MuiNextLink>
+            )}
+            {homepage && (
+              <MuiNextLink
+                // @ts-ignore
+                href={homepage}
+                target="_blank"
+                rel="noopener noreferrer"
                 sx={{
-                  width: '0.7em !important',
-                  height: '0.7em !important',
-                  color: 'white !important',
-                  marginRight: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: (theme) => theme.palette.text.secondary,
+                  textDecoration: 'none',
+                  marginTop: 1,
                 }}
-              />
-              {fullName}
-            </MuiNextLink>
+              >
+                <OpenInNewIcon
+                  sx={{
+                    width: '0.7em !important',
+                    height: '0.7em !important',
+                    color: 'white !important',
+                    marginRight: 1,
+                  }}
+                />
+                {fullName}
+              </MuiNextLink>
+            )}
           </CardContent>
         </Box>
       </Card>

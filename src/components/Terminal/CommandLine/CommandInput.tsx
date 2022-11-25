@@ -15,6 +15,11 @@ const Input = styled('input')(({ theme, width }: { theme: Theme; width: string }
   caretColor: theme.palette.error.main,
   // @ts-ignore
   color: theme.palette.text[400],
+  fontSize: '1.2rem',
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: '1rem',
+  },
 
   paddingLeft: 0,
   ':focus': {
