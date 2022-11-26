@@ -1,4 +1,4 @@
-import { useRef, useState, memo, Fragment, useEffect } from 'react';
+import { useRef, useState, memo, Fragment, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
@@ -31,12 +31,12 @@ export const getStaticProps = async ({ locale }: any) => ({
 
 const Terminal: NextPage = () => {
   const { t } = useTranslation('terminal');
-  let [commandLines, setCommandLines] = useState<string[]>([]);
-  let [isCLS, setCls] = useState<boolean>(false);
+  const [commandLines, setCommandLines] = useState<string[]>([]);
+  const [isStarted, setIsStarted] = useState<boolean>(false);
   const inputCommandRef = useRef<any>();
   const { locale } = useRouter();
   const [storedCommandLines] = useLocalStorageState<string[]>(COMMAND_LINES, []);
-  const [isStarted, storeIstarted] = useLocalStorageState<boolean>('isStarted', false);
+  const [storedIsStarted, storeIstarted] = useLocalStorageState<boolean>('isStarted', false);
 
   /*
    * inputCommandFocus function
@@ -51,7 +51,7 @@ const Terminal: NextPage = () => {
 
   useEffect(() => {
     document.addEventListener('keyup', (event) => {
-      setCls(true);
+      setIsStarted(true);
       storeIstarted(true);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,13 +61,18 @@ const Terminal: NextPage = () => {
     setCommandLines(storedCommandLines);
   }, [locale, storedCommandLines]);
 
+  useEffect(() => {
+    setIsStarted(storedIsStarted);
+  }, [storedIsStarted]);
+
+
   return (
     <DraggableProvider>
       <TerminalLayout>
         {!isStarted && <TerminalHeadNotes />}
         {isStarted && commandLines.length === 0 ? (
           <CommandLine
-            cleanTerminal={setCls}
+            cleanTerminal={setIsStarted}
             addCommandLines={setCommandLines}
             inputCommandRef={inputCommandRef}
             inputCommandFocus={inputCommandFocus}
@@ -78,7 +83,7 @@ const Terminal: NextPage = () => {
               {commandLines.map((item, i) => (
                 <Fragment key={i}>
                   <CommandLine
-                    cleanTerminal={setCls}
+                    cleanTerminal={setIsStarted}
                     addCommandLines={setCommandLines}
                     inputCommandRef={inputCommandRef}
                     inputCommandFocus={inputCommandFocus}
@@ -88,7 +93,7 @@ const Terminal: NextPage = () => {
                 </Fragment>
               ))}
               <CommandLine
-                cleanTerminal={setCls}
+                cleanTerminal={setIsStarted}
                 addCommandLines={setCommandLines}
                 inputCommandRef={inputCommandRef}
                 inputCommandFocus={inputCommandFocus}
