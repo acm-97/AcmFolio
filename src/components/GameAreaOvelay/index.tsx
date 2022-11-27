@@ -54,7 +54,7 @@ const GameAreaOvelay = () => {
           </H1>
           <Box sx={{ display: 'flex', marginBottom: 8, marginTop: 2 }}>
             <H3>
-              {t('snake.bestScore')}: {bestScore}
+              {t('snake.bestScore')} {bestScore}
             </H3>
             <H3 marginLeft={8}>{t('snake.score')} {score}</H3>
           </Box>
